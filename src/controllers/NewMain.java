@@ -36,11 +36,11 @@ public class NewMain {
         //proyectData.insertProyecto(proyecto2);
         //Proyecto proyecto3 = new Proyecto("la punta", "modificado", fechaInicio, 1);
         //proyectData.updateProyecto(proyecto3);
-     /*   
+      
         proyectos=proyectData.selectProyecto();
         Proyecto proyid=new Proyecto();
         proyid=proyectos.get(0);
-        proyid.setDescripcion("vamos a hacer chocolatada");
+        proyid.setDescripcion("vamos a hacer lavandina");
           proyectData.updateProyecto(proyid);
         
         for(int i=0;i<proyectos.size();i++)
@@ -49,7 +49,7 @@ public class NewMain {
             System.out.println(proyec.toString());
             
         }
-       */ 
+       
        
 /*         miembros=miembroData.selectMiembro();
         for (Miembro miembro1 : miembros) {

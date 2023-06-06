@@ -29,7 +29,7 @@ public class proyectoData {
             PreparedStatement ps = conexion.getConexion().prepareStatement(sql);
             ps.setString(1, proyecto.getNombre());
             ps.setString(2, proyecto.getDescripcion());
-            java.sql.Date fechaInicioSQL = java.sql.Date.valueOf(proyecto.getFechainicio());
+            java.sql.Date fechaInicioSQL = java.sql.Date.valueOf(proyecto.getFecha_inicio());
             ps.setDate(3,fechaInicioSQL);
             ps.setInt(4,proyecto.getEstado());
             validacion = ps.executeUpdate();
@@ -57,13 +57,13 @@ public class proyectoData {
             } else {
                 while (rs.next()) {
                     Proyecto proyect=new Proyecto();
-                   proyect.setIdproyecto(rs.getInt("id_proyecto"));
+                   proyect.setId_proyecto(rs.getInt("id_proyecto"));
                      proyect.setNombre(rs.getString("nombre_proyecto"));
                     proyect.setDescripcion(rs.getString("descripcion_proyecto"));
                     java.sql.Date fechaInicioSQL = rs.getDate("fecha_Inicio_proyecto");
                     java.util.Date fechaInicioUtil = new java.util.Date(fechaInicioSQL.getTime());
                     java.time.LocalDate fechaInicioLocalDate = fechaInicioUtil.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                   proyect.setFechainicio(fechaInicioLocalDate);
+                   proyect.setFecha_inicio(fechaInicioLocalDate);
                     proyect.setEstado(rs.getInt("estado"));
                     
                     proyectos.add(proyect);
@@ -83,10 +83,10 @@ public class proyectoData {
             ps.setString(1, proyecto.getNombre());
             ps.setString(2, proyecto.getDescripcion());
           
-            java.sql.Date fechaInicioSQL = java.sql.Date.valueOf(proyecto.getFechainicio());
+            java.sql.Date fechaInicioSQL = java.sql.Date.valueOf(proyecto.getFecha_inicio());
             ps.setDate(3,fechaInicioSQL);
             ps.setInt(4, proyecto.getEstado());
-            ps.setInt(5, proyecto.getIdproyecto());
+            ps.setInt(5, proyecto.getId_proyecto());
             validacion = ps.executeUpdate();
               System.out.println(ps);
             if (validacion == 1) {

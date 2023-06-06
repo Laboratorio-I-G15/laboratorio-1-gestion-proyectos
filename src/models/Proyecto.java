@@ -12,27 +12,27 @@ import java.time.LocalDate;
  * @author Ruben
  */
 public class Proyecto {
-    private  int idproyecto;
+    private  int id_proyecto;
     private String nombre; 
     private String descripcion;
-    private LocalDate fechainicio;
+    private LocalDate fecha_inicio;
     private int estado;
 
     public Proyecto() {
     }
 
     public Proyecto(int idproyecto, String nombre, String descripcion, LocalDate fechainicio, int estado) {
-        this.idproyecto = idproyecto;
+        this.id_proyecto = idproyecto;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.fechainicio = fechainicio;
+        this.fecha_inicio = fechainicio;
         this.estado=estado;
     }
 
     public Proyecto(String nombre, String descripcion, LocalDate fechainicio,int estado) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.fechainicio = fechainicio;
+        this.fecha_inicio = fechainicio;
          this.estado=estado;
     }
     public int getEstado()
@@ -42,12 +42,12 @@ public class Proyecto {
     
     }
 
-    public int getIdproyecto() {
-        return idproyecto;
+    public int getId_proyecto() {
+        return id_proyecto;
     }
 
-    public void setIdproyecto(int idproyecto) {
-        this.idproyecto = idproyecto;
+    public void setId_proyecto(int id_proyecto) {
+        this.id_proyecto = id_proyecto;
     }
 
     public String getNombre() {
@@ -66,18 +66,20 @@ public class Proyecto {
         this.descripcion = descripcion;
     }
 
-    public LocalDate getFechainicio() {
-        return fechainicio;
+    public LocalDate getFecha_inicio() {
+        return fecha_inicio;
     }
 
-    public void setFechainicio(LocalDate fechainicio) {
-        this.fechainicio = fechainicio;
+    public void setFecha_inicio(LocalDate fecha_inicio) {
+        this.fecha_inicio = fecha_inicio;
     }
 
     @Override
     public String toString() {
-        return "Proyecto{" + "idproyecto=" + idproyecto + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fechainicio=" + fechainicio + ", estado=" + estado + '}';
+        return  id_proyecto+ "," + nombre + "," + descripcion + "," + fecha_inicio + "," + estado;
     }
+
+ 
 
    
 
