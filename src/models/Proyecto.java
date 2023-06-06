@@ -12,8 +12,9 @@ import java.time.LocalDate;
  * @author Ruben
  */
 public class Proyecto {
-    private  int id_proyecto;
-    private String nombre; 
+
+    private int id_proyecto;
+    private String nombre;
     private String descripcion;
     private LocalDate fecha_inicio;
     private int estado;
@@ -26,20 +27,23 @@ public class Proyecto {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fecha_inicio = fechainicio;
-        this.estado=estado;
+        this.estado = estado;
     }
 
-    public Proyecto(String nombre, String descripcion, LocalDate fechainicio,int estado) {
+    public Proyecto(String nombre, String descripcion, LocalDate fechainicio, int estado) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fecha_inicio = fechainicio;
-         this.estado=estado;
+        this.estado = estado;
     }
-    public int getEstado()
-    {return estado;}
-    public void setEstado(int estado)
-    {  this.estado=estado;
-    
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+
     }
 
     public int getId_proyecto() {
@@ -76,13 +80,7 @@ public class Proyecto {
 
     @Override
     public String toString() {
-        return  id_proyecto+ "," + nombre + "," + descripcion + "," + fecha_inicio + "," + estado;
+        return id_proyecto + "," + nombre + "," + descripcion + "," + fecha_inicio + "," + estado;
     }
 
- 
-
-   
-
-   
-    
 }
