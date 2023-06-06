@@ -7,7 +7,7 @@ public class Equipo {
     private int idEquipo;
     private Proyecto proyecto;
     private String nombre;
-    LocalDate creacion;
+    private LocalDate creacion;
     private int estado;
 
     public Equipo() {
