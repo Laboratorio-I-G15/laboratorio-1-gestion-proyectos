@@ -27,6 +27,6 @@ public class Equipo {
         this.creacion = creacion;
         this.estado = estado;
     }
-    // RUBEN LA CAGO CUANDO CARGABA AL PROFE DE WEB 1
+   
 
 }
