@@ -20,4 +20,13 @@ public class Equipo {
         this.estado = estado;
     }
 
+    public Equipo(int idEquipo, Proyecto proyecto, String nombre, LocalDate creacion, int estado) {
+        this.idEquipo = idEquipo;
+        this.proyecto = proyecto;
+        this.nombre = nombre;
+        this.creacion = creacion;
+        this.estado = estado;
+    }
+    // RUBEN LA CAGO CUANDO CARGABA AL PROFE DE WEB 1
+
 }
