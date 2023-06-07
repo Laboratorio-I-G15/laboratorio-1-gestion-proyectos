@@ -25,19 +25,20 @@ public class miembroData {
     public ArrayList<Miembro> selectMiembro() {
         try {
 
-            String sql = "SELECT * from Miembro WHERE estado = 1";
+            String sql = "SELECT * from miembro WHERE estado = 1";
             PreparedStatement ps = conexion.getConexion().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             if (rs == null) {
                 System.out.println("No se encontró ningun miembro");
             } else {
                 while (rs.next()) {
-                    miembro.setIdMiembro(rs.getInt("idMiembro"));
-                    miembro.setDni(rs.getLong("dni"));
-                    miembro.setApellido(rs.getString("apellido"));
-                    miembro.setNombre(rs.getString("nombre"));
-                    miembro.setEstado(rs.getBoolean("estado"));
-                    miembros.add(miembro);
+                    Miembro miem=new Miembro();
+                    miem.setIdMiembro(rs.getInt("id_miembro"));
+                    miem.setDni(rs.getLong("dni"));
+                    miem.setApellido(rs.getString("apellido"));
+                    miem.setNombre(rs.getString("nombre"));
+                    miem.setEstado(rs.getBoolean("estado"));
+                    miembros.add(miem);
                 }
             }
 
@@ -54,7 +55,7 @@ public class miembroData {
     public void insertMiembro(Miembro miembro){
         int validacion = 0;
         try {
-            String sql = "INSERT INTO Miembro(dni, apellido, nombre, estado) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO miembro(dni, apellido, nombre, estado) VALUES (?,?,?,?)";
             PreparedStatement ps = conexion.getConexion().prepareStatement(sql);
             ps.setLong(1, miembro.getDni());
             ps.setString(2, miembro.getApellido());
@@ -75,12 +76,12 @@ public class miembroData {
      * Metodo para actualizar un miembro en la bd
      * con este metodo se puede actualizar cuaquier campo y 
      * volver a guardar en el mismo objeto de tipo miembro
-     * @param miembro 
+     * @
      */
     public void updateMiembro(Miembro miembro){
         int validacion = 0;
         try {
-            String sql = "UPDATE `Miembro` SET `dni`= ? , `apellido`= ? , `nombre`= ? ,`estado`= ? WHERE `idMiembro`=?;";
+            String sql = "UPDATE `miembro` SET `dni`= ? , `apellido`= ? , `nombre`= ? ,`estado`= ? WHERE `id_miembro`=?";
             PreparedStatement ps = conexion.getConexion().prepareStatement(sql);
             ps.setLong(1, miembro.getDni());
             ps.setString(2, miembro.getApellido());

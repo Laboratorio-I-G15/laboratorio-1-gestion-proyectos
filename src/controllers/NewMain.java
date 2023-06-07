@@ -21,6 +21,9 @@ public class NewMain {
     public static void main(String[] args) {
         miembroData miembroData = new miembroData();
         Miembro miembroPrueba = new Miembro();
+         Miembro miembroPrueba1 = new Miembro();
+         Miembro miembr=new Miembro();
+         Miembro miembraux=new Miembro();
         proyectoData proyectData= new proyectoData();
         ArrayList <Miembro> miembros;
         ArrayList<Proyecto> proyectos;
@@ -36,7 +39,7 @@ public class NewMain {
         //proyectData.insertProyecto(proyecto2);
         //Proyecto proyecto3 = new Proyecto("la punta", "modificado", fechaInicio, 1);
         //proyectData.updateProyecto(proyecto3);
-      
+   /*    
         proyectos=proyectData.selectProyecto();
         Proyecto proyid=new Proyecto();
         proyid=proyectos.get(0);
@@ -49,25 +52,41 @@ public class NewMain {
             System.out.println(proyec.toString());
             
         }
+       */
        
-       
-/*         miembros=miembroData.selectMiembro();
-        for (Miembro miembro1 : miembros) {
-            System.out.println(miembro1);
-        }
-      
-      
+
+/*      
 miembroPrueba.setDni(43690464);
 miembroPrueba.setApellido("Vallejos");
 miembroPrueba.setNombre("Roberta");
 miembroPrueba.setEstado(true);
 
+      
+miembroPrueba1.setDni(112131321);
+miembroPrueba1.setApellido("Villa");
+miembroPrueba1.setNombre("Robe");
+miembroPrueba1.setEstado(true);
+
+miembroData.insertMiembro(miembroPrueba);
+miembroData.insertMiembro(miembroPrueba1);
+*/
+miembros=miembroData.selectMiembro();
+miembraux=miembros.get(0);
+miembraux.setApellido("leotoloza");
+miembroData.updateMiembro(miembraux);
+
+for (int i=0;i<miembros.size();i++)
+{
+  miembr=miembros.get(i);
+    System.out.println(miembr.toString());
+  
+}
+
+/*
 System.out.println("Miembro ID antes de la actualización: " + miembroPrueba.getIdMiembro());
 
-  tengo un error con la actualizacion del miembro
- 
 miembroData.updateMiembro(miembroPrueba);
-*/
 
+*/
     }
 }
