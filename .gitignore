@@ -1,2 +1,4 @@
 /build/
 nbproject/private/private.properties
+build/classes/controllers/NewMain.class
+build/classes/controllers/conexion.class
