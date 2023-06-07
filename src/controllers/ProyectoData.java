@@ -16,9 +16,9 @@ import models.Proyecto;
  *
  * @author Ruben
  */
-public class proyectoData {
+public class ProyectoData {
 
-    public proyectoData() {
+    public ProyectoData() {
     }
     
     public void insertProyecto(Proyecto proyecto)
@@ -26,7 +26,7 @@ public class proyectoData {
         int validacion = 0;
         try {
             String sql = "INSERT INTO proyecto (nombre_proyecto, descripcion_proyecto, fecha_Inicio_proyecto, estado) VALUES (?,?,?,?)";
-            PreparedStatement ps = conexion.getConexion().prepareStatement(sql);
+            PreparedStatement ps = Conexion.getConexion().prepareStatement(sql);
             ps.setString(1, proyecto.getNombre());
             ps.setString(2, proyecto.getDescripcion());
             java.sql.Date fechaInicioSQL = java.sql.Date.valueOf(proyecto.getFecha_inicio());
@@ -50,7 +50,7 @@ public class proyectoData {
         try {
 
             String sql = "SELECT * from proyecto WHERE estado = 1";
-            PreparedStatement ps = conexion.getConexion().prepareStatement(sql);
+            PreparedStatement ps = Conexion.getConexion().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             if (rs == null) {
                 System.out.println("No hay Proyecto para Mostrar");
@@ -79,7 +79,7 @@ public class proyectoData {
         int validacion = 0;
         try {
             String sql = "UPDATE `proyecto` SET `nombre_proyecto`= ? , `descripcion_proyecto`= ? , `fecha_Inicio_proyecto`= ? ,`estado`= ? WHERE `id_proyecto`=?";
-            PreparedStatement ps = conexion.getConexion().prepareStatement(sql);
+            PreparedStatement ps = Conexion.getConexion().prepareStatement(sql);
             ps.setString(1, proyecto.getNombre());
             ps.setString(2, proyecto.getDescripcion());
           

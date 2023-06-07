@@ -19,12 +19,12 @@ public class NewMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        miembroData miembroData = new miembroData();
+        MiembroData miembroData = new MiembroData();
         Miembro miembroPrueba = new Miembro();
          Miembro miembroPrueba1 = new Miembro();
          Miembro miembr=new Miembro();
          Miembro miembraux=new Miembro();
-        proyectoData proyectData= new proyectoData();
+        ProyectoData proyectData= new ProyectoData();
         ArrayList <Miembro> miembros;
         ArrayList<Proyecto> proyectos;
        String fechaInicioString = "1989-05-22";
@@ -67,8 +67,8 @@ miembroPrueba1.setApellido("Villa");
 miembroPrueba1.setNombre("Robe");
 miembroPrueba1.setEstado(true);
 
-miembroData.insertMiembro(miembroPrueba);
-miembroData.insertMiembro(miembroPrueba1);
+MiembroData.insertMiembro(miembroPrueba);
+MiembroData.insertMiembro(miembroPrueba1);
 */
 miembros=miembroData.selectMiembro();
 miembraux=miembros.get(0);
@@ -85,7 +85,7 @@ for (int i=0;i<miembros.size();i++)
 /*
 System.out.println("Miembro ID antes de la actualización: " + miembroPrueba.getIdMiembro());
 
-miembroData.updateMiembro(miembroPrueba);
+MiembroData.updateMiembro(miembroPrueba);
 
 */
     }
