@@ -45,7 +45,7 @@ public class Conexion {
             /**
              * descomentar la linea 32 y corroborar en consola que la conexion sea correcta
              */
-            JOptionPane.showMessageDialog(null, "Se conecto correctamente", "BASE DATOS", JOptionPane.INFORMATION_MESSAGE);
+            //  JOptionPane.showMessageDialog(null, "Se conecto correctamente", "BASE DATOS", JOptionPane.INFORMATION_MESSAGE);
             System.out.println("Conectado exitosamente!");
         } catch (HeadlessException | ClassNotFoundException | SQLException e) {
             System.out.println(e.getMessage());
