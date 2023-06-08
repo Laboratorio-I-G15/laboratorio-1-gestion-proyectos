@@ -27,8 +27,10 @@ public class NewMain {
         // Cambiar a true si quieren probar,  se recomienda  1 test x prueba usar misma metodologiapra realizar test [EIVITA COMENTAR LINEAS]
 
         boolean miembro_test = false;
-        boolean equipo_test = true;
+        boolean equipo_test = false;
         boolean proyecto_test = false;
+        boolean equipo_miembro_test = true;
+
 
         /* instancias test  y auxiliares */
         // miembro
@@ -37,6 +39,9 @@ public class NewMain {
         Miembro miembroPrueba1 = new Miembro();
         Miembro miembr = new Miembro();
         Miembro miembraux = new Miembro();
+        // meruipo miem,bro
+        EquipoMiembroData equipo_miembro_data = new EquipoMiembroData();
+
         ArrayList<Miembro> miembros;
         // equipo
         EquipoData equipo_data = new EquipoData();
@@ -99,7 +104,7 @@ public class NewMain {
 
 // test equipo
         if (equipo_test) {
-            boolean insert_equipo = true;
+            boolean insert_equipo = false;
             // insert equipo
             System.out.println("Test Insert equipo");
             if (insert_equipo) {
