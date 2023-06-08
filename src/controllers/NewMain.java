@@ -27,7 +27,7 @@ public class NewMain {
         // Cambiar a true si quieren probar,  se recomienda  1 test x prueba usar misma metodologiapra realizar test [EIVITA COMENTAR LINEAS]
 
         boolean miembro_test = false;
-        boolean equipo_test = false;
+        boolean equipo_test = true;
         boolean proyecto_test = false;
         boolean equipo_miembro_test = true;
 
@@ -105,6 +105,8 @@ public class NewMain {
 // test equipo
         if (equipo_test) {
             boolean insert_equipo = false;
+            boolean mostrar_equipo = false;
+            System.out.println("Test equipo");
             // insert equipo
             System.out.println("Test Insert equipo");
             if (insert_equipo) {
@@ -119,16 +121,17 @@ public class NewMain {
                 System.out.println("Ultimo equipo ingresado");
                 System.out.println(buscado.toString());
             }
-            equipos = equipo_data.selectEquipos(1);
-            for (int i = 0; i < equipos.size(); i++) {
-                Equipo equi = new Equipo();
-                equi = equipos.get(i);
+            if (mostrar_equipo) {
+                equipos = equipo_data.selectEquipos(1);
+                for (int i = 0; i < equipos.size(); i++) {
+                    Equipo equi = new Equipo();
+                    equi = equipos.get(i);
+                }
+                System.out.println("Listado equipos activos");
+                for (Equipo equip : equipos) {
+                    System.out.println(equip.toString());
+                }
             }
-            System.out.println("Listado equipos activos");
-            for (Equipo equip : equipos) {
-                System.out.println(equip.toString());
-            }
-
         }
 
     }
