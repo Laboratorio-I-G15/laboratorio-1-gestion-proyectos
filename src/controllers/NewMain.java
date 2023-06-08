@@ -27,22 +27,22 @@ public class NewMain {
         // Cambiar a true si quieren probar,  se recomienda  1 test x prueba usar misma metodologiapra realizar test [EIVITA COMENTAR LINEAS]
 
         boolean miembro_test = false;
-        boolean equipo_test = false;
+        boolean equipo_test = true;
         boolean proyecto_test = false;
         boolean equipo_miembro_test = true;
 
-
         /* instancias test  y auxiliares */
-        // miembro
+// miembro
         MiembroData miembroData = new MiembroData();
         Miembro miembroPrueba = new Miembro();
         Miembro miembroPrueba1 = new Miembro();
         Miembro miembr = new Miembro();
         Miembro miembraux = new Miembro();
-        // meruipo miem,bro
+        ArrayList<Miembro> miembros;
+
+        // equipo miembro
         EquipoMiembroData equipo_miembro_data = new EquipoMiembroData();
 
-        ArrayList<Miembro> miembros;
         // equipo
         EquipoData equipo_data = new EquipoData();
         ArrayList<Equipo> equipos = new ArrayList();
@@ -58,7 +58,7 @@ public class NewMain {
 // test proyecto
         if (proyecto_test) {
             // crear un proyecto
-            System.out.println("Tst crear proyecto");
+            System.out.println("Test crear proyecto");
             Proyecto proyecto1 = new Proyecto("la punta", "hay que hacer un login", LocalDate.of(2023, 5, 15), 1);
             proyectData.insertProyecto(proyecto1);
             // verifica ultimo agregado
@@ -105,13 +105,17 @@ public class NewMain {
 // test equipo
         if (equipo_test) {
             boolean insert_equipo = false;
+            boolean mostrar_equipo = false;
+            System.out.println("Test equipo");
             // insert equipo
             System.out.println("Test Insert equipo");
             if (insert_equipo) {
                 System.out.println("linea 106");
                 ProyectoData proyecto_ultimo = new ProyectoData();
+                // busca ultimo proyecto
                 Proyecto ultimo = proyecto_ultimo.selectUltimoProyecto();
                 Equipo equipo_ultimo = new Equipo();
+
                 equipo_ultimo = equipo_data.selectEquipo();
                 equipo_data.insertEquipo(equipo_ultimo, ultimo);
                 Equipo buscado = new Equipo();
@@ -119,17 +123,23 @@ public class NewMain {
                 System.out.println("Ultimo equipo ingresado");
                 System.out.println(buscado.toString());
             }
-            equipos = equipo_data.selectEquipos(1);
-            for (int i = 0; i < equipos.size(); i++) {
-                Equipo equi = new Equipo();
-                equi = equipos.get(i);
+            if (mostrar_equipo) {
+                equipos = equipo_data.selectEquipos(1);
+                for (int i = 0; i < equipos.size(); i++) {
+                    Equipo equi = new Equipo();
+                    equi = equipos.get(i);
+                }
+                System.out.println("Listado equipos activos");
+                for (Equipo equip : equipos) {
+                    System.out.println(equip.toString());
+                }
             }
-            System.out.println("Listado equipos activos");
-            for (Equipo equip : equipos) {
-                System.out.println(equip.toString());
-            }
+        }
+// test  equipo_miembro_test
+        if (equipo_miembro_test) {
+            System.out.println("Test  integrantes de un equipo");
+            equipo_miembro_data.selectEquipoMiembro(equipo);
 
         }
-
     }
 }
