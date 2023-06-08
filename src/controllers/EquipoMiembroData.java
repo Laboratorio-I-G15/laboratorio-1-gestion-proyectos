@@ -37,6 +37,7 @@ public class EquipoMiembroData {
 
     public Equipo setEquipo(Equipo equipo) {
         this.equipo = equipo;
+        return equipo;
     }
 
     /**

@@ -136,9 +136,10 @@ public class NewMain {
             }
         }
 // test  equipo_miembro_test
-        if (equipo_miembro_test) {
+        if (equipo_miembro_test) { // en proceso
             System.out.println("Test  integrantes de un equipo");
-            equipo_miembro_data.selectEquipoMiembro(equipo);
+            int id_equipo = 7;
+            equipo_miembro_data.selectEquipoMiembro(id_equipo);
 
         }
     }
