@@ -24,9 +24,12 @@ public class NewMain {
      */
     public static void main(String[] args) {
         /* test activacion */
+        // Cambiar a true si queiren probar,
+        // se recomienda  1 test x prueba
         boolean miembro_test = false;
-        boolean equipo_test = true;
-        boolean proyecto_test = false;
+        boolean equipo_test = false;
+        boolean proyecto_test = true;
+
         /* instancias test  y auxiliares */
         // miembro
         MiembroData miembroData = new MiembroData();
@@ -43,19 +46,28 @@ public class NewMain {
         // proyecto
         ProyectoData proyectData = new ProyectoData();
         ArrayList<Proyecto> proyectos;
-
         String fechaInicioString = "1989-05-22";
         java.time.LocalDate fechaInicio = java.time.LocalDate.parse(fechaInicioString);
         String fechaInicioString1 = "2000-01-15";
         java.time.LocalDate fechaInicio1 = java.time.LocalDate.parse(fechaInicioString1);
+
         if (proyecto_test) {
-            Proyecto proyecto1 = new Proyecto("la punta", "hay que hacer un login", fechaInicio, 1);
-            Proyecto proyecto2 = new Proyecto("universidad nacional", "hay que hacer el frontend", fechaInicio1, 1);
+            // crear un proyecto
+            Proyecto proyecto1 = new Proyecto("la punta", "hay que hacer un login", LocalDate.of(2023, 5, 15), 1);
             proyectData.insertProyecto(proyecto1);
-            proyectData.insertProyecto(proyecto2);
-            Proyecto proyecto3 = new Proyecto("la punta", "modificado", fechaInicio, 1);
-            proyectData.updateProyecto(proyecto3);
+            // verifica ultimo agregado
+            ProyectoData proyecto_ultimo = new ProyectoData();
+            Proyecto ultimo = proyecto_ultimo.selectUltimoProyecto();
+            System.out.println(ultimo.toString());
+            // modifica ultimo agregado
+            ultimo.setNombre("San Luis");
+            ultimo.setDescripcion("Contruir Casa 200 m2");
+            proyecto_ultimo.updateProyecto(ultimo);
+            // verifica modificacion
+            ultimo = proyecto_ultimo.selectUltimoProyecto();
+            System.out.println(ultimo.toString());
         }
+
         /*
         proyectos=proyectData.selectProyecto();
         Proyecto proyid=new Proyecto();
@@ -80,7 +92,6 @@ public class NewMain {
         MiembroData.insertMiembro(miembroPrueba);
         MiembroData.insertMiembro(miembroPrueba1);
          */
-
         if (miembro_test) {
             miembros = miembroData.selectMiembro();
             miembraux = miembros.get(0);
@@ -94,12 +105,17 @@ public class NewMain {
 // test equipo
         if (equipo_test) {
             // insert equipo
-//            Proyecto proyecto1 = new Proyecto(7, "la punta1", "hay que hacer un login", fechaInicio, 1);
-//            Equipo equipo = new Equipo(6, "GRUPO 15", LocalDate.of(2023, 5, 15), 1);
-//            equipo_data.insertEquipo(equipo, proyecto1);
-//        public Equipo(int id_proyecto, String nombre, LocalDate creacion, int estado)
-
-//    equipo_data.selectEquipo(equipo, fechaInicioString);
+            //      Proyecto proyecto1 = new Proyecto(7, "la punta1", "hay que hacer un login", fechaInicio, 1);
+            //Equipo equipo = new Equipo(6, "GRUPO 15", LocalDate.of(2023, 5, 15), 1);
+            Equipo equipo = new Equipo();
+            equipo.setId_equipo(6);
+            //      equipo_data.insertEquipo(equipo, proyecto1);
+            //      public Equipo(int id_proyecto, String nombre, LocalDate creacion, int estado)
+            //       equipo_data.selectEquipo(equipo, fechaInicioString);
+            Equipo buscado = new Equipo();
+            // buscado = equipo_data.selectEquipo(equipo, "id_equipo");
+            System.out.println(buscado.toString());
+            /*
             equipos = equipo_data.selectEquipos();
             for (int i = 0; i < equipos.size(); i++) {
                 Equipo equi = new Equipo();
@@ -109,6 +125,17 @@ public class NewMain {
             for (Equipo equip : equipos) {
                 System.out.println(equip.toString());
             }
+             */
+            equipos = equipo_data.selectEquipos(1);
+            for (int i = 0; i < equipos.size(); i++) {
+                Equipo equi = new Equipo();
+                equi = equipos.get(i);
+                //  System.out.println(equi.getId_equipo() + "id desde main");
+            }
+            for (Equipo equip : equipos) {
+                System.out.println(equip.toString());
+            }
+            /*      */
         }
 
     }

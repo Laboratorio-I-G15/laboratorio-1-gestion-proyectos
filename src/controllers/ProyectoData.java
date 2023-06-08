@@ -8,6 +8,7 @@ package controllers;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import models.Proyecto;
@@ -31,6 +32,7 @@ public class ProyectoData {
             java.sql.Date fechaInicioSQL = java.sql.Date.valueOf(proyecto.getFecha_inicio());
             ps.setDate(3, fechaInicioSQL);
             ps.setInt(4, proyecto.getEstado());
+            System.out.println(ps.toString());
             validacion = ps.executeUpdate();
             if (validacion == 1) {
                 System.out.println("Se agregó un nuevo Proyecto");
@@ -96,4 +98,26 @@ public class ProyectoData {
 
     }
 
+    /**
+     *
+     * @return proyecto
+     */
+    public Proyecto selectUltimoProyecto() {
+        Proyecto proyecto = new Proyecto();
+        try {
+            String consulta = "SELECT * from proyecto ORDER BY `id_proyecto` DESC LIMIT 1 ";
+            PreparedStatement stmt = Conexion.getConexion().prepareStatement(consulta);
+            ResultSet result = stmt.executeQuery();
+            if (result.next()) {
+                proyecto.setId_proyecto(result.getInt("id_proyecto"));
+                proyecto.setNombre(result.getString("nombre_proyecto"));
+                proyecto.setDescripcion(result.getString("descripcion_proyecto"));
+                proyecto.setFecha_inicio(result.getDate("fecha_inicio_proyecto").toLocalDate());
+                proyecto.setEstado(result.getInt("estado"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Ocurrio un error: " + (e.getMessage()));
+        }
+        return proyecto;
+    }
 }
