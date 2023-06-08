@@ -20,35 +20,31 @@ public class ProyectoData {
 
     public ProyectoData() {
     }
-    
-    public void insertProyecto(Proyecto proyecto)
-   {
+
+    public void insertProyecto(Proyecto proyecto) {
         int validacion = 0;
         try {
-            String sql = "INSERT INTO proyecto (nombre_proyecto, descripcion_proyecto, fecha_Inicio_proyecto, estado) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO proyecto (nombre_proyecto, descripcion_proyecto, fecha_inicio_proyecto, estado) VALUES (?,?,?,?)";
             PreparedStatement ps = Conexion.getConexion().prepareStatement(sql);
             ps.setString(1, proyecto.getNombre());
             ps.setString(2, proyecto.getDescripcion());
             java.sql.Date fechaInicioSQL = java.sql.Date.valueOf(proyecto.getFecha_inicio());
-            ps.setDate(3,fechaInicioSQL);
-            ps.setInt(4,proyecto.getEstado());
+            ps.setDate(3, fechaInicioSQL);
+            ps.setInt(4, proyecto.getEstado());
             validacion = ps.executeUpdate();
             if (validacion == 1) {
-                System.out.println("Se agregó un nuevo Proyecto");   
-            }else{
+                System.out.println("Se agregó un nuevo Proyecto");
+            } else {
                 System.out.println("Se produjo un error al agregar un Proyecto");
             }
         } catch (SQLException e) {
-            System.out.println("Ocurrio un error al agregar un Proyecto: "+e.getMessage());
+            System.out.println("Ocurrio un error al agregar un Proyecto: " + e.getMessage());
         }
     }
-    
-    
-    public ArrayList<Proyecto> selectProyecto()
-    {   ArrayList proyectos=new ArrayList();
-      
-        try {
 
+    public ArrayList<Proyecto> selectProyecto() {
+        ArrayList<Proyecto> proyectos = new ArrayList();
+        try {
             String sql = "SELECT * from proyecto WHERE estado = 1";
             PreparedStatement ps = Conexion.getConexion().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -56,16 +52,16 @@ public class ProyectoData {
                 System.out.println("No hay Proyecto para Mostrar");
             } else {
                 while (rs.next()) {
-                    Proyecto proyect=new Proyecto();
-                   proyect.setId_proyecto(rs.getInt("id_proyecto"));
-                     proyect.setNombre(rs.getString("nombre_proyecto"));
+                    Proyecto proyect = new Proyecto();
+                    proyect.setId_proyecto(rs.getInt("id_proyecto"));
+                    proyect.setNombre(rs.getString("nombre_proyecto"));
                     proyect.setDescripcion(rs.getString("descripcion_proyecto"));
-                    java.sql.Date fechaInicioSQL = rs.getDate("fecha_Inicio_proyecto");
+                    java.sql.Date fechaInicioSQL = rs.getDate("fecha_inicio_proyecto");
                     java.util.Date fechaInicioUtil = new java.util.Date(fechaInicioSQL.getTime());
                     java.time.LocalDate fechaInicioLocalDate = fechaInicioUtil.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                   proyect.setFecha_inicio(fechaInicioLocalDate);
+                    proyect.setFecha_inicio(fechaInicioLocalDate);
                     proyect.setEstado(rs.getInt("estado"));
-                    
+
                     proyectos.add(proyect);
                 }
             }
@@ -75,29 +71,29 @@ public class ProyectoData {
         }
         return proyectos;
     }
-    public void updateProyecto(Proyecto proyecto){
+
+    public void updateProyecto(Proyecto proyecto) {
         int validacion = 0;
         try {
-            String sql = "UPDATE `proyecto` SET `nombre_proyecto`= ? , `descripcion_proyecto`= ? , `fecha_Inicio_proyecto`= ? ,`estado`= ? WHERE `id_proyecto`=?";
+            String sql = "UPDATE `proyecto` SET `nombre_proyecto`= ? , `descripcion_proyecto`= ? , `fecha_inicio_proyecto`= ? ,`estado`= ? WHERE `id_proyecto`=?";
             PreparedStatement ps = Conexion.getConexion().prepareStatement(sql);
             ps.setString(1, proyecto.getNombre());
             ps.setString(2, proyecto.getDescripcion());
-          
             java.sql.Date fechaInicioSQL = java.sql.Date.valueOf(proyecto.getFecha_inicio());
-            ps.setDate(3,fechaInicioSQL);
+            ps.setDate(3, fechaInicioSQL);
             ps.setInt(4, proyecto.getEstado());
             ps.setInt(5, proyecto.getId_proyecto());
             validacion = ps.executeUpdate();
-              System.out.println(ps);
+            System.out.println(ps);
             if (validacion == 1) {
-                System.out.println("Proyecto Actualizado");   
-            }else{
+                System.out.println("Proyecto Actualizado");
+            } else {
                 System.out.println("Se produjo un error al actualizar un miembro");
             }
         } catch (SQLException e) {
-            System.out.println("Ocurrio un error al actualizar el proyecto: "+e.getMessage());
+            System.out.println("Ocurrio un error al actualizar el proyecto: " + e.getMessage());
         }
-      
+
     }
-    
+
 }

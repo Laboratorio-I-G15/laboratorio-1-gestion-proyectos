@@ -22,18 +22,18 @@ public class Proyecto {
     public Proyecto() {
     }
 
-    public Proyecto(int idproyecto, String nombre, String descripcion, LocalDate fechainicio, int estado) {
+    public Proyecto(int idproyecto, String nombre, String descripcion, LocalDate fecha_inicio, int estado) {
         this.id_proyecto = idproyecto;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.fecha_inicio = fechainicio;
+        this.fecha_inicio = fecha_inicio;
         this.estado = estado;
     }
 
-    public Proyecto(String nombre, String descripcion, LocalDate fechainicio, int estado) {
+    public Proyecto(String nombre, String descripcion, LocalDate fecha_inicio, int estado) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.fecha_inicio = fechainicio;
+        this.fecha_inicio = fecha_inicio;
         this.estado = estado;
     }
 
