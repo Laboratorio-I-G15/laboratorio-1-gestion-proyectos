@@ -38,18 +38,20 @@ public class Conexion {
      * @return devuelve una Conexion
      */
     public static Connection getConexion() {
-        try {
-            Class.forName("org.mariadb.jdbc.Driver");
-            conectar = DriverManager.getConnection(url, usuario, pass);
+        if (conectar == null) {
+            try {
+                Class.forName("org.mariadb.jdbc.Driver");
+                conectar = DriverManager.getConnection(url, usuario, pass);
 
-            /**
-             * descomentar la linea 32 y corroborar en consola que la conexion sea correcta
-             */
-            //  JOptionPane.showMessageDialog(null, "Se conecto correctamente", "BASE DATOS", JOptionPane.INFORMATION_MESSAGE);
-            System.out.println("Conectado exitosamente!");
-        } catch (HeadlessException | ClassNotFoundException | SQLException e) {
-            System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "Error: \n" + e.getMessage(), "Se ha producido un error.", JOptionPane.ERROR_MESSAGE);
+                /* descomentar  para  corroborar  que la conexion sea correcta  */
+                // JOptionPane.showMessageDialog(null, "Se conecto correctamente", "BASE DATOS", JOptionPane.INFORMATION_MESSAGE);
+                // System.out.println("Conectado exitosamente!");
+            } catch (HeadlessException | ClassNotFoundException | SQLException e) {
+                System.out.println(e.getMessage());
+                JOptionPane.showMessageDialog(null, "Error: \n" + e.getMessage(), "Se ha producido un error.", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            System.out.println(" Utilizando Conexion existente! ");
         }
         return conectar;
     }
