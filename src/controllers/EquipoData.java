@@ -122,7 +122,6 @@ public class EquipoData {
                 buscado.setCreacion(result.getDate("fecha_creacion_equipo").toLocalDate());
                 buscado.setId_proyecto(result.getInt("id_proyecto"));
                 buscado.setEstado(result.getInt("estado_equipo"));
-                System.out.println(result.getInt("id_equipo") + " id");
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error: \n" + e.getMessage(), "Se ha producido un error.", JOptionPane.ERROR_MESSAGE);
@@ -142,14 +141,36 @@ public class EquipoData {
         try (PreparedStatement stmt = Conexion.getConexion().prepareStatement(consulta)) {
             stmt.setString(1, nombre);
             ResultSet result = stmt.executeQuery();
-            System.out.println(stmt);
             if (result.next()) {
                 buscado.setId_equipo(result.getInt("id_equipo"));
                 buscado.setNombre(result.getString("nombre_equipo"));
                 buscado.setCreacion(result.getDate("fecha_creacion_equipo").toLocalDate());
                 buscado.setId_proyecto(result.getInt("id_proyecto"));
                 buscado.setEstado(result.getInt("estado_equipo"));
-                System.out.println(result.getInt("id_equipo") + " id");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: \n" + e.getMessage(), "Se ha producido un error.", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+        return buscado;
+    }
+
+    /**
+     * Devuelve ULTIMO equipo insertado
+     *
+     * @return
+     */
+    public Equipo selectEquipo() {
+        Equipo buscado = new Equipo();
+        String consulta = "SELECT * FROM `equipo` ORDER BY  `id_equipo` DESC LIMIT 1";
+        try (PreparedStatement stmt = Conexion.getConexion().prepareStatement(consulta)) {
+            ResultSet result = stmt.executeQuery();
+            if (result.next()) {
+                buscado.setId_equipo(result.getInt("id_equipo"));
+                buscado.setNombre(result.getString("nombre_equipo"));
+                buscado.setCreacion(result.getDate("fecha_creacion_equipo").toLocalDate());
+                buscado.setId_proyecto(result.getInt("id_proyecto"));
+                buscado.setEstado(result.getInt("estado_equipo"));
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error: \n" + e.getMessage(), "Se ha producido un error.", JOptionPane.ERROR_MESSAGE);

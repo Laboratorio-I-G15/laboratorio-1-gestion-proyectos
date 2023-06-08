@@ -24,11 +24,11 @@ public class NewMain {
      */
     public static void main(String[] args) {
         /* test activacion */
-        // Cambiar a true si queiren probar,
-        // se recomienda  1 test x prueba
+        // Cambiar a true si quieren probar,  se recomienda  1 test x prueba usar misma metodologiapra realizar test [EIVITA COMENTAR LINEAS]
+
         boolean miembro_test = false;
-        boolean equipo_test = false;
-        boolean proyecto_test = true;
+        boolean equipo_test = true;
+        boolean proyecto_test = false;
 
         /* instancias test  y auxiliares */
         // miembro
@@ -39,7 +39,6 @@ public class NewMain {
         Miembro miembraux = new Miembro();
         ArrayList<Miembro> miembros;
         // equipo
-
         EquipoData equipo_data = new EquipoData();
         ArrayList<Equipo> equipos = new ArrayList();
 
@@ -51,13 +50,16 @@ public class NewMain {
         String fechaInicioString1 = "2000-01-15";
         java.time.LocalDate fechaInicio1 = java.time.LocalDate.parse(fechaInicioString1);
 
+// test proyecto
         if (proyecto_test) {
             // crear un proyecto
+            System.out.println("Tst crear proyecto");
             Proyecto proyecto1 = new Proyecto("la punta", "hay que hacer un login", LocalDate.of(2023, 5, 15), 1);
             proyectData.insertProyecto(proyecto1);
             // verifica ultimo agregado
             ProyectoData proyecto_ultimo = new ProyectoData();
             Proyecto ultimo = proyecto_ultimo.selectUltimoProyecto();
+            System.out.println("Verifica ultimo");
             System.out.println(ultimo.toString());
             // modifica ultimo agregado
             ultimo.setNombre("San Luis");
@@ -65,34 +67,26 @@ public class NewMain {
             proyecto_ultimo.updateProyecto(ultimo);
             // verifica modificacion
             ultimo = proyecto_ultimo.selectUltimoProyecto();
+            System.out.println("Verifica Modificado");
             System.out.println(ultimo.toString());
         }
 
-        /*
-        proyectos=proyectData.selectProyecto();
-        Proyecto proyid=new Proyecto();
-        proyid=proyectos.get(0);
-        proyid.setDescripcion("vamos a hacer lavandina");
-          proyectData.updateProyecto(proyid);
-        for(int i=0;i<proyectos.size();i++)
-        { Proyecto proyec=new Proyecto();
-          proyec=proyectos.get(i);
-            System.out.println(proyec.toString());
-        }
-         */
- /*
-        miembroPrueba.setDni(43690464);
-        miembroPrueba.setApellido("Vallejos");
-        miembroPrueba.setNombre("Roberta");
-        miembroPrueba.setEstado(true);
-        miembroPrueba1.setDni(112131321);
-        miembroPrueba1.setApellido("Villa");
-        miembroPrueba1.setNombre("Robe");
-        miembroPrueba1.setEstado(true);
-        MiembroData.insertMiembro(miembroPrueba);
-        MiembroData.insertMiembro(miembroPrueba1);
-         */
+// test miembro
         if (miembro_test) {
+            boolean insert_miembro = false;
+            System.out.println("Test insert miembro");
+            if (insert_miembro) {
+                miembroPrueba.setDni(43690464);
+                miembroPrueba.setApellido("Vallejos");
+                miembroPrueba.setNombre("Roberta");
+                miembroPrueba.setEstado(true);
+                miembroPrueba1.setDni(112131321);
+                miembroPrueba1.setApellido("Villa");
+                miembroPrueba1.setNombre("Robe");
+                miembroPrueba1.setEstado(true);
+                miembroData.insertMiembro(miembroPrueba);
+                miembroData.insertMiembro(miembroPrueba1);
+            }
             miembros = miembroData.selectMiembro();
             miembraux = miembros.get(0);
             miembraux.setApellido("leoT");
@@ -102,40 +96,34 @@ public class NewMain {
                 System.out.println(miembr.toString());
             }
         }
+
 // test equipo
         if (equipo_test) {
+            boolean insert_equipo = true;
             // insert equipo
-            //      Proyecto proyecto1 = new Proyecto(7, "la punta1", "hay que hacer un login", fechaInicio, 1);
-            //Equipo equipo = new Equipo(6, "GRUPO 15", LocalDate.of(2023, 5, 15), 1);
-            Equipo equipo = new Equipo();
-            equipo.setId_equipo(6);
-            //      equipo_data.insertEquipo(equipo, proyecto1);
-            //      public Equipo(int id_proyecto, String nombre, LocalDate creacion, int estado)
-            //       equipo_data.selectEquipo(equipo, fechaInicioString);
-            Equipo buscado = new Equipo();
-            // buscado = equipo_data.selectEquipo(equipo, "id_equipo");
-            System.out.println(buscado.toString());
-            /*
-            equipos = equipo_data.selectEquipos();
-            for (int i = 0; i < equipos.size(); i++) {
-                Equipo equi = new Equipo();
-                equi = equipos.get(i);
-                System.out.println(equi.getId_equipo() + "id desde main");
+            System.out.println("Test Insert equipo");
+            if (insert_equipo) {
+                System.out.println("linea 106");
+                ProyectoData proyecto_ultimo = new ProyectoData();
+                Proyecto ultimo = proyecto_ultimo.selectUltimoProyecto();
+                Equipo equipo_ultimo = new Equipo();
+                equipo_ultimo = equipo_data.selectEquipo();
+                equipo_data.insertEquipo(equipo_ultimo, ultimo);
+                Equipo buscado = new Equipo();
+                buscado = equipo_data.selectEquipo();
+                System.out.println("Ultimo equipo ingresado");
+                System.out.println(buscado.toString());
             }
-            for (Equipo equip : equipos) {
-                System.out.println(equip.toString());
-            }
-             */
             equipos = equipo_data.selectEquipos(1);
             for (int i = 0; i < equipos.size(); i++) {
                 Equipo equi = new Equipo();
                 equi = equipos.get(i);
-                //  System.out.println(equi.getId_equipo() + "id desde main");
             }
+            System.out.println("Listado equipos activos");
             for (Equipo equip : equipos) {
                 System.out.println(equip.toString());
             }
-            /*      */
+
         }
 
     }
