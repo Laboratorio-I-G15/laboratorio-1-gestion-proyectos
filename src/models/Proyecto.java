@@ -82,5 +82,4 @@ public class Proyecto {
     public String toString() {
         return id_proyecto + "," + nombre + "," + descripcion + "," + fecha_inicio + "," + estado;
     }
-
 }
