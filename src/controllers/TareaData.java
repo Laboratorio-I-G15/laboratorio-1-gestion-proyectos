@@ -107,17 +107,18 @@ public class TareaData {
     }
     
     //filtrar tareas por miembro
-    public ArrayList<Tarea> selectTareasMiembro(Tarea tarea, Miembro miembro){
+    public ArrayList<Tarea> selectTareasMiembro(Tarea tarea){
         
         ArrayList<Tarea> tareas= new ArrayList();
         try{
-            String sql="SELECT * FROM tarea \n" +
-                        "JOIN equipo_miembro ON  tarea.id_miembro_equipo = equipo_miembro.id_miembro_eq\n" +
-                        "JOIN miembro ON miembro.id_miembro = equipo_miembro.id_miembro_eq\n" +
-                        "WHERE miembro.id_miembro = ?";
+//            String sql="SELECT * FROM tarea " +
+//                        "JOIN equipo_miembro ON  tarea.id_miembro_equipo = equipo_miembro.id_miembro_eq"+
+//                        "JOIN miembro ON miembro.id_miembro = equipo_miembro.id_miembro" +
+//                        "WHERE miembro.id_miembro = ?";
+            String sql="SELECT * FROM tarea WHERE id_miembro_equipo=?";
             PreparedStatement ps=Conexion.getConexion().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            ps.setInt(1,miembro.getIdMiembro()); 
+            ps.setInt(1,tarea.getEquipoMiembro().getId_equipo_miembro()); 
             
             if(rs==null)
             {
