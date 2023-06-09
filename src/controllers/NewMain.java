@@ -40,7 +40,7 @@ public class NewMain {
 
         /* instancias test  y auxiliares */
 // miembro
-        MiembroData miembroData = new MiembroData();
+        miembroData miembroData = new miembroData();
         Miembro miembroPrueba = new Miembro();
         Miembro miembroPrueba1 = new Miembro();
         Miembro miembr = new Miembro();
@@ -117,23 +117,27 @@ public class NewMain {
 
 // test miembro
         if (miembro_test) {
-            boolean insert_miembro = false;
+            boolean insert_miembro = true;
             System.out.println("Test insert miembro");
             if (insert_miembro) {
                 miembroPrueba.setDni(43690464);
                 miembroPrueba.setApellido("Vallejos");
                 miembroPrueba.setNombre("Roberta");
                 miembroPrueba.setEstado(true);
+                
                 miembroPrueba1.setDni(112131321);
                 miembroPrueba1.setApellido("Villa");
                 miembroPrueba1.setNombre("Robe");
                 miembroPrueba1.setEstado(true);
-                miembroData.insertMiembro(miembroPrueba);
-                miembroData.insertMiembro(miembroPrueba1);
+//                miembroData.insertMiembro(miembroPrueba);
+//                miembroData.insertMiembro(miembroPrueba1);
             }
             miembros = miembroData.selectMiembro();
-            miembraux = miembros.get(0);
-            miembraux.setApellido("leoT");
+//            miembraux = miembros.get(1);
+//            miembraux.setNombre("Roberta");
+//            miembraux.setApellido("Vallejos");
+//            miembraux.setDni(43690464);
+//            miembraux.setEstado(true);
             miembroData.updateMiembro(miembraux);
             for (int i = 0; i < miembros.size(); i++) {
                 miembr = miembros.get(i);
