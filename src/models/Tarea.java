@@ -19,26 +19,26 @@ public class Tarea {
     private LocalDate fechaCreacion;  
     private LocalDate fechaCierre;
     private int estado;
-    private Miembro miembro;
+    private EquipoMiembro equipoMiembro;
 
     public Tarea() {
     }
 
-    public Tarea(int idTarea, String nombre, LocalDate Creacion, LocalDate fechaCierre, int estado, Miembro miembro) {
+    public Tarea(int idTarea, String nombre, LocalDate Creacion, LocalDate fechaCierre, int estado, EquipoMiembro equipoMiembro) {
         this.idTarea = idTarea;
         this.nombre = nombre;
         this.fechaCreacion = Creacion;
         this.fechaCierre = fechaCierre;
         this.estado = estado;
-        this.miembro = miembro;
+        this.equipoMiembro = equipoMiembro;
     }
 
-    public Tarea(String nombre, LocalDate Creacion, LocalDate fechaCierre, int estado, Miembro miembro) {
+    public Tarea(String nombre, LocalDate Creacion, LocalDate fechaCierre, int estado, EquipoMiembro equipoMiembro) {
         this.nombre = nombre;
         this.fechaCreacion = Creacion;
         this.fechaCierre = fechaCierre;
         this.estado = estado;
-        this.miembro = miembro;
+        this.equipoMiembro = equipoMiembro;
     }
 
     public int getIdTarea() {
@@ -81,17 +81,17 @@ public class Tarea {
         this.estado = Estado;
     }
 
-    public Miembro getMiembro() {
-        return miembro;
+    public EquipoMiembro getEquipoMiembro() {
+        return equipoMiembro;
     }
 
-    public void setMiembro(Miembro miembro) {
-        this.miembro = miembro;
+    public void setEquipoMiembro(EquipoMiembro equipoMiembro) {
+        this.equipoMiembro = equipoMiembro;
     }
 
     @Override
     public String toString() {
-        return  "idTarea= " + idTarea + "\n Nombre=" + nombre + "\n FechaCreacion=" + fechaCreacion + "\n FechaCierre=" + fechaCierre + "\n  Estado=" + estado + "\n  Miembro=" + miembro ;
+        return  "idTarea= " + idTarea + "\n Nombre=" + nombre + "\n FechaCreacion=" + fechaCreacion + "\n FechaCierre=" + fechaCierre + "\n  Estado=" + estado + "\n  EquipoMiembro=" + equipoMiembro ;
     }
     
 }
