@@ -27,9 +27,16 @@ public class NewMain {
         // Cambiar a true si quieren probar,  se recomienda  1 test x prueba usar misma metodologiapra realizar test [EIVITA COMENTAR LINEAS]
 
         boolean miembro_test = false;
-        boolean equipo_test = true;
+        boolean equipo_test = false;
         boolean proyecto_test = false;
-        boolean equipo_miembro_test = true;
+        boolean equipo_miembro_test = false;
+        boolean proyecto_test1=true;
+        
+        
+        
+        
+        
+        
 
         /* instancias test  y auxiliares */
 // miembro
@@ -39,6 +46,7 @@ public class NewMain {
         Miembro miembr = new Miembro();
         Miembro miembraux = new Miembro();
         ArrayList<Miembro> miembros;
+       
 
         // equipo miembro
         EquipoMiembroData equipo_miembro_data = new EquipoMiembroData();
@@ -50,11 +58,42 @@ public class NewMain {
         // proyecto
         ProyectoData proyectData = new ProyectoData();
         ArrayList<Proyecto> proyectos;
+        Proyecto proyecto=new Proyecto();
         String fechaInicioString = "1989-05-22";
         java.time.LocalDate fechaInicio = java.time.LocalDate.parse(fechaInicioString);
         String fechaInicioString1 = "2000-01-15";
         java.time.LocalDate fechaInicio1 = java.time.LocalDate.parse(fechaInicioString1);
 
+   //test de proyecto devolviendo todos los equipos dependiendo   
+//  para probar proyecto_test1=true en linea 33   
+        if (proyecto_test1)
+        {
+         proyecto=proyectData.selectProyecto(7);
+         System.out.println(proyecto.toString());
+         equipos=proyectData.selectEquipos(proyecto);
+         
+         for(int i=0;i<equipos.size();i++)
+         {
+             Equipo equi=new Equipo();
+          equi=equipos.get(i);
+          proyecto.setEquipos(equipos);
+             System.out.println(equi.toString());
+             
+         }
+         
+  //---Aca le agreglo el Arraylist de Equipos a Proyecto funcional       
+         
+            System.out.println("-----------------------------------------");
+           for(int i=0;i<proyecto.getEquipos().size();i++)
+         {Equipo equip=new Equipo();
+          equip=proyecto.getEquipos().get(i);
+             System.out.println(equip.toString());
+             
+         }
+            
+        }
+        
+        
 // test proyecto
         if (proyecto_test) {
             // crear un proyecto

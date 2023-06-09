@@ -89,6 +89,7 @@ public class EquipoMiembroData {
                 + " WHERE `equipo`.`id_equipo` = ?;";
         try (PreparedStatement stmt = Conexion.getConexion().prepareStatement(consulta)) {
             // bindeo id_proyecto
+            
             stmt.setInt(1, equipo.getId_equipo());
             ResultSet result = stmt.executeQuery();
             while (result.next()) {

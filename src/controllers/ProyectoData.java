@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import models.Equipo;
 import models.Proyecto;
 
 /**
@@ -18,8 +20,10 @@ import models.Proyecto;
  * @author Ruben
  */
 public class ProyectoData {
-
+              
+      
     public ProyectoData() {
+         EquipoMiembroData equipo=new EquipoMiembroData();
     }
 
     public void insertProyecto(Proyecto proyecto) {
@@ -73,6 +77,34 @@ public class ProyectoData {
         }
         return proyectos;
     }
+    //---------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------
+    public Proyecto selectProyecto(int id_proyecto) {
+     Proyecto proyect=new Proyecto();       
+
+       String consulta = "SELECT * FROM `proyecto` WHERE `id_proyecto` = ?";
+
+        try (PreparedStatement stmt = Conexion.getConexion().prepareStatement(consulta)) {
+            stmt.setInt(1, id_proyecto);
+            ResultSet result = stmt.executeQuery();
+            System.out.println(stmt);
+            if (result.next()) {
+                proyect.setId_proyecto(result.getInt("id_proyecto"));
+               proyect.setNombre(result.getString("nombre_proyecto"));
+                proyect.setDescripcion(result.getString("descripcion_proyecto"));
+                 java.sql.Date fechaInicioSQL = result.getDate("fecha_inicio_proyecto");
+                    java.util.Date fechaInicioUtil = new java.util.Date(fechaInicioSQL.getTime());
+                    java.time.LocalDate fechaInicioLocalDate = fechaInicioUtil.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    proyect.setFecha_inicio(fechaInicioLocalDate);
+                proyect.setEstado(result.getInt("estado"));
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: \n" + e.getMessage(), "Se ha producido un error.", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+        return proyect;
+    }
+
 
     public void updateProyecto(Proyecto proyecto) {
         int validacion = 0;
@@ -121,4 +153,14 @@ public class ProyectoData {
         }
         return proyecto;
     }
+    
+    public ArrayList<Equipo> selectEquipos(Proyecto proyect)
+    {
+        ArrayList<Equipo> equipos=new ArrayList();
+        EquipoData equipo=new EquipoData();
+        equipos=equipo.selectEquipos(proyect);
+        return equipos;
+     
+       }
+    
 }

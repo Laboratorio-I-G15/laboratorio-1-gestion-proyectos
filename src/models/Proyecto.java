@@ -6,6 +6,7 @@
 package models;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,7 +19,7 @@ public class Proyecto {
     private String descripcion;
     private LocalDate fecha_inicio;
     private int estado;
-
+    private  ArrayList<Equipo>  equipos;
     public Proyecto() {
     }
 
@@ -28,6 +29,7 @@ public class Proyecto {
         this.descripcion = descripcion;
         this.fecha_inicio = fecha_inicio;
         this.estado = estado;
+        equipos=new ArrayList();
     }
 
     public Proyecto(String nombre, String descripcion, LocalDate fecha_inicio, int estado) {
@@ -40,6 +42,15 @@ public class Proyecto {
     public int getEstado() {
         return estado;
     }
+
+    public void setEquipos(ArrayList<Equipo> equips) {
+        equipos=equips;
+    }
+
+    public ArrayList<Equipo> getEquipos() {
+        return equipos;
+    }
+    
 
     public void setEstado(int estado) {
         this.estado = estado;
