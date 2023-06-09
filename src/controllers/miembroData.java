@@ -51,8 +51,9 @@ public class miembroData {
      * Metodo para insertar/agregar un miembro a la bd
      * usando una consulta parametrizada.
      * @param miembro pasado por parametro
+     * @return verdadero o falso si se agrega un miembro
      */
-    public void insertMiembro(Miembro miembro){
+    public boolean insertMiembro(Miembro miembro){
         int validacion = 0;
         try {
             String sql = "INSERT INTO miembro(dni, apellido, nombre, estado) VALUES (?,?,?,?)";
@@ -61,16 +62,17 @@ public class miembroData {
             ps.setString(2, miembro.getApellido());
             ps.setString(3, miembro.getNombre());
             ps.setBoolean(4, miembro.isEstado());
-            
             validacion = ps.executeUpdate();
             if (validacion == 1) {
                 System.out.println("Se agregó un nuevo miembro");   
+                 return true;
             }else{
                 System.out.println("Se produjo un error al agregar un miembro");
             }
         } catch (SQLException e) {
             System.out.println("Ocurrio un error al agregar un miembro: "+e.getMessage());
         }
+        return false;
     }
     /**
      * Metodo para actualizar un miembro en la bd

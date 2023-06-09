@@ -56,14 +56,13 @@
                           </Group>
                           <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnActivar" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txtDniMiembro" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtApellidoMiembro" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtNombreMiembro1" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
+                              <Component id="txtDniMiembro" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtApellidoMiembro" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtNombreMiembro" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                                  <Component id="radioActivar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -89,7 +88,7 @@
                   <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" linkSize="2" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                      <Component id="txtNombreMiembro1" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtNombreMiembro" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
@@ -106,11 +105,9 @@
                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" linkSize="2" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                      <Component id="btnActivar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="radioActivar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnCerrar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -198,19 +195,17 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtApellidoMiembro">
         </Component>
-        <Component class="javax.swing.JTextField" name="txtNombreMiembro1">
+        <Component class="javax.swing.JTextField" name="txtNombreMiembro">
         </Component>
         <Component class="javax.swing.JTextField" name="txtDniMiembro">
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="btnActivar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Activar/Desactivar"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnGuardar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Guardar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnCerrar">
           <Properties>
@@ -225,9 +220,9 @@
             <Property name="text" type="java.lang.String" value="Actualizar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+        <Component class="javax.swing.JRadioButton" name="radioActivar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jRadioButton1"/>
+            <Property name="text" type="java.lang.String" value="Activar/Desactivar"/>
           </Properties>
         </Component>
       </SubComponents>

@@ -5,6 +5,10 @@
  */
 package views;
 
+import controllers.miembroData;
+import javax.swing.JOptionPane;
+import models.Miembro;
+
 /**
  *
  * @author leo_t
@@ -35,13 +39,12 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtApellidoMiembro = new javax.swing.JTextField();
-        txtNombreMiembro1 = new javax.swing.JTextField();
+        txtNombreMiembro = new javax.swing.JTextField();
         txtDniMiembro = new javax.swing.JTextField();
-        btnActivar = new javax.swing.JToggleButton();
         btnGuardar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        radioActivar = new javax.swing.JRadioButton();
 
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
@@ -86,9 +89,12 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
         jLabel5.setText("DNI:");
         jLabel5.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
-        btnActivar.setText("Activar/Desactivar");
-
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnCerrar.setText("Cerrar");
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +105,7 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
 
         btnUpdate.setText("Actualizar");
 
-        jRadioButton1.setText("jRadioButton1");
+        radioActivar.setText("Activar/Desactivar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -121,13 +127,13 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(82, 82, 82)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton1)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnActivar)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtDniMiembro)
-                                    .addComponent(txtApellidoMiembro)
-                                    .addComponent(txtNombreMiembro1))))))
+                            .addComponent(txtDniMiembro)
+                            .addComponent(txtApellidoMiembro)
+                            .addComponent(txtNombreMiembro)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(radioActivar)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(59, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -149,7 +155,7 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
                 .addGap(65, 65, 65)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNombreMiembro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombreMiembro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -162,10 +168,8 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnActivar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton1)
-                .addGap(26, 26, 26)
+                    .addComponent(radioActivar))
+                .addGap(57, 57, 57)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(btnCerrar)
@@ -173,7 +177,7 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel2, jLabel3, jLabel4, jLabel5, txtApellidoMiembro, txtDniMiembro, txtNombreMiembro1});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel2, jLabel3, jLabel4, jLabel5, txtApellidoMiembro, txtDniMiembro, txtNombreMiembro});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -197,9 +201,22 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
  Gestion.vistaMiembro=null;
     }//GEN-LAST:event_formInternalFrameClosing
 
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        miembroData miembroData = new miembroData();
+        Miembro miembro = new Miembro();
+        miembro.setApellido(txtApellidoMiembro.getText());
+        miembro.setNombre(txtNombreMiembro.getText());
+        miembro.setDni(Long.parseLong(txtDniMiembro.getText()));
+        miembro.setEstado(radioActivar.isSelected());
+        if (miembroData.insertMiembro(miembro)) {
+         JOptionPane.showMessageDialog(null, "Se añadio correctamente un nuevo miembro");
+        }else{
+        JOptionPane.showMessageDialog(null, "Ocurrio un error!");  
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton btnActivar;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnUpdate;
@@ -209,9 +226,9 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton radioActivar;
     private javax.swing.JTextField txtApellidoMiembro;
     private javax.swing.JTextField txtDniMiembro;
-    private javax.swing.JTextField txtNombreMiembro1;
+    private javax.swing.JTextField txtNombreMiembro;
     // End of variables declaration//GEN-END:variables
 }
