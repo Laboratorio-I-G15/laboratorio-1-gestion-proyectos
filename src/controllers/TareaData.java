@@ -23,8 +23,8 @@ public class TareaData {
     public TareaData() {
     }
     
-    //asignar tarea
-    public void asignarTarea(Tarea tarea){
+    //asignar tarea, devuelve true si se asigno la tarea
+    public boolean insertTarea(Tarea tarea){
        
         int resultado;
         
@@ -41,17 +41,19 @@ public class TareaData {
             resultado = ps.executeUpdate();
             if (resultado == 1) {
                 System.out.println("Se agregó la tarea");   
+                return true;
             }else{
                 System.out.println("Se produjo un error al agregar la tarea");
             }
         }catch (SQLException e){
             System.out.println("Error al acceder a la tabla Tarea" + e.getMessage());
         }
+        return false;
         
     }
     
-    //
-    public void updateTarea(Tarea tarea){
+    //Devuelve true si se actualizó la tarea
+    public boolean updateTarea(Tarea tarea){
         int resultado;
         
         try{
@@ -61,19 +63,23 @@ public class TareaData {
             ps.setDate(2,Date.valueOf(tarea.getFechaCreacion()));
             ps.setDate(3,Date.valueOf(tarea.getFechaCierre()));
             ps.setInt(4,tarea.getEstado());
-            ps.setInt(5, tarea.getEquipoMiembro().getId_equipo_miembro());
+            ps.setInt(5,tarea.getEquipoMiembro().getId_equipo_miembro());
             ps.setInt(6, tarea.getIdTarea());
             
             resultado = ps.executeUpdate();
             if (resultado == 1) {
-                System.out.println("Se actualizó la tarea");   
+                System.out.println("Se actualizó la tarea"); 
+                return true;
             }else{
                 System.out.println("Se produjo un error al actualizar la tarea");
             }
         }catch(SQLException e){
             System.out.println("Error al acceder a la tabla Tarea " + e.getMessage());
         } 
+        return false;
     }
+    
+    //filtra las tareas por estado 
     public ArrayList<Tarea> selectTareasEstado(Tarea tarea){
         
         ArrayList<Tarea> tareas= new ArrayList();
@@ -81,8 +87,8 @@ public class TareaData {
         try{
             String sql="SELECT * FROM tarea WHERE estado_tarea=?";
             PreparedStatement ps=Conexion.getConexion().prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
             ps.setInt(1,tarea.getEstado());
+            ResultSet rs = ps.executeQuery();
             
             if(rs==null){
                 System.out.println("No se encontraron tareas");
@@ -101,12 +107,12 @@ public class TareaData {
                 }
             }
         }catch(SQLException e){
-            System.out.println("Error al acceder a la tabla Tarea" + e.getMessage());
+            System.out.println("Error al acceder a la tabla Tarea " + e.getMessage());
         } 
         return tareas;
     }
     
-    //filtrar tareas por miembro
+    //filtrar tareas de un miembro
     public ArrayList<Tarea> selectTareasMiembro(Tarea tarea){
         
         ArrayList<Tarea> tareas= new ArrayList();
@@ -117,8 +123,8 @@ public class TareaData {
 //                        "WHERE miembro.id_miembro = ?";
             String sql="SELECT * FROM tarea WHERE id_miembro_equipo=?";
             PreparedStatement ps=Conexion.getConexion().prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
             ps.setInt(1,tarea.getEquipoMiembro().getId_equipo_miembro()); 
+            ResultSet rs = ps.executeQuery();
             
             if(rs==null)
             {
@@ -131,6 +137,7 @@ public class TareaData {
                     aux.setFechaCreacion(rs.getDate("fecha_inicio_tarea").toLocalDate());
                     aux.setNombre(rs.getString("nombre_tarea"));
                     aux.setIdTarea(rs.getInt("id_tarea"));
+                    aux.setEquipoMiembro(tarea.getEquipoMiembro());
                     tareas.add(aux);
                 }
             }
