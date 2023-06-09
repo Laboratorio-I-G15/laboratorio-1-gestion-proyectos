@@ -180,7 +180,7 @@ public class EquipoData {
     }
 
     /**
-     * Recibe equipo y proyecto realiza actualizacion: incluey borrado logico
+     * Recibe equipo y proyecto realiza actualizacion: incluye borrado logico
      *
      * @param equipo
      * @return result
