@@ -39,7 +39,7 @@ public class ComentarioData {
                 System.out.println("Se produjo un error al agregar el comentario");
             }
         }catch (SQLException e){
-            System.out.println("Error al acceder a la tabla Comentario" + e.getMessage());
+            System.out.println("Error al acceder a la tabla Comentario " + e.getMessage());
         }
         return false;
     }
@@ -70,9 +70,34 @@ public class ComentarioData {
                     }
                }
            }catch (SQLException e){
-                System.out.println("Error al acceder a la tabla Comentario" + e.getMessage());
+                System.out.println("Error al acceder a la tabla Comentario " + e.getMessage());
             }
-        return comentarios;
-        
+        return comentarios;   
+    }
+    
+    //actualizar comentario devuelve true si se logró actualizar el comentario
+    public boolean updateComentario(Comentario comentario){
+        int resultado;
+        try{
+                String sql="UPDATE comentario SET comentario=?,fecha_avance=? WHERE id_comentario=?";
+               PreparedStatement ps=Conexion.getConexion().prepareStatement(sql);
+              
+                ps.setString(1,comentario.getComentario() );
+                ps.setDate(2,Date.valueOf(comentario.getFechaAvance()));
+                ps.setInt(3, comentario.getIdComentario());
+                
+                resultado = ps.executeUpdate();
+            if (resultado == 1) {
+                System.out.println("Se actualizó el comentario");  
+                return true;
+            }else{
+                System.out.println("Se produjo un error al actualizar el comentario");
+            }
+            
+          }catch (SQLException e){
+                System.out.println("Error al acceder a la tabla Comentario " + e.getMessage());
+           }
+        return false;
+                
     }
 }
