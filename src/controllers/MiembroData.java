@@ -13,8 +13,8 @@ import models.Miembro;
  *
  * @author leo_t
  */
-public class miembroData {
-    private Miembro miembro= new Miembro();
+public class MiembroData {
+    
     private ArrayList <Miembro>miembros = new ArrayList();
     /**
      * Metodo para listar los miembros de una bd donde el estado sea activo;
@@ -78,6 +78,7 @@ public class miembroData {
      * Metodo para actualizar un miembro en la bd
      * con este metodo se puede actualizar cuaquier campo y 
      * volver a guardar en el mismo objeto de tipo miembro
+     * @param miembro
      * @
      */
     public void updateMiembro(Miembro miembro){
@@ -91,7 +92,6 @@ public class miembroData {
             ps.setBoolean(4, miembro.isEstado());
             ps.setInt(5, miembro.getIdMiembro());
             validacion = ps.executeUpdate();
-              System.out.println(ps);
             if (validacion == 1) {
                 System.out.println("Se actualizó un miembro de la base de datos");   
             }else{
@@ -102,5 +102,31 @@ public class miembroData {
         }
       
     }
+    /**
+     * Metodo para validar si ya existe un miembro/usuario en la base de datos.
+     * @param dni (long) como parametro para buscar el dni en la base de datos
+     * @return devuelve un true si lo encuentra o false si no lo encuentra y permite
+     * realizar un insert.
+     */
+    public boolean verificarMiembro(long dni){
+        String sql = "SELECT count(nombre)FROM miembro WHERE dni = ?";
+        try {
+           PreparedStatement ps = Conexion.getConexion().prepareStatement(sql);
+            ps.setLong(1, dni);
+           ResultSet rs = ps.executeQuery();
+           if (rs.next()){
+               rs.getLong(1);
+            System.out.println("Se encontro un miembro con el mismo DNI");
+               
+           }
+           return true;
+        } catch (SQLException e) {
+            System.out.println("ERROR: "+e);
+            return false;
+        }
+    }
+    
+    
+    
     
 }

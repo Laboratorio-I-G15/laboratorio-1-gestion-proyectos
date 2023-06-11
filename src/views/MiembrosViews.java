@@ -5,7 +5,7 @@
  */
 package views;
 
-import controllers.miembroData;
+import controllers.MiembroData;
 import javax.swing.JOptionPane;
 import models.Miembro;
 
@@ -202,7 +202,7 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameClosing
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        miembroData miembroData = new miembroData();
+        MiembroData miembroData = new MiembroData();
         Miembro miembro = new Miembro();
         miembro.setApellido(txtApellidoMiembro.getText());
         miembro.setNombre(txtNombreMiembro.getText());

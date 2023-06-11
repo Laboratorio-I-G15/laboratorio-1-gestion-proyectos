@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import models.Equipo;
 import models.Miembro;
 import models.Proyecto;
+import models.Tarea;
 
 /**
  *
@@ -23,166 +24,134 @@ public class NewMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        /* test activacion */
-        // Cambiar a true si quieren probar,  se recomienda  1 test x prueba usar misma metodologiapra realizar test [EIVITA COMENTAR LINEAS]
+        /* Pruebas por consola */
+        // Cambiar a true si quieres probar, se recomienda 1 test por prueba y usar la misma metodología para realizar pruebas
 
         boolean miembro_test = false;
         boolean equipo_test = false;
         boolean proyecto_test = false;
         boolean equipo_miembro_test = false;
-        boolean proyecto_test1=true;
-        
-        
-        
-        
-        
-        
-
-        /* instancias test  y auxiliares */
-// miembro
-        miembroData miembroData = new miembroData();
+        boolean tarea_test = true;
+        /* Instancias de prueba y auxiliares */
+        // Miembro
+        MiembroData miembroData = new MiembroData();
         Miembro miembroPrueba = new Miembro();
-        Miembro miembroPrueba1 = new Miembro();
-        Miembro miembr = new Miembro();
-        Miembro miembraux = new Miembro();
-        ArrayList<Miembro> miembros;
-       
-
-        // equipo miembro
+        // Equipo Miembro
         EquipoMiembroData equipo_miembro_data = new EquipoMiembroData();
 
-        // equipo
+        // Equipo
         EquipoData equipo_data = new EquipoData();
-        ArrayList<Equipo> equipos = new ArrayList();
+        ArrayList<Equipo> equipos;
 
-        // proyecto
-        ProyectoData proyectData = new ProyectoData();
-        ArrayList<Proyecto> proyectos;
-        Proyecto proyecto=new Proyecto();
-        String fechaInicioString = "1989-05-22";
-        java.time.LocalDate fechaInicio = java.time.LocalDate.parse(fechaInicioString);
-        String fechaInicioString1 = "2000-01-15";
-        java.time.LocalDate fechaInicio1 = java.time.LocalDate.parse(fechaInicioString1);
-
-   //test de proyecto devolviendo todos los equipos dependiendo   
-//  para probar proyecto_test1=true en linea 33   
-        if (proyecto_test1)
-        {
-         proyecto=proyectData.selectProyecto(7);
-         System.out.println(proyecto.toString());
-         equipos=proyectData.selectEquipos(proyecto);
-         
-         for(int i=0;i<equipos.size();i++)
-         {
-             Equipo equi=new Equipo();
-          equi=equipos.get(i);
-          proyecto.setEquipos(equipos);
-             System.out.println(equi.toString());
-             
-         }
-         
-  //---Aca le agreglo el Arraylist de Equipos a Proyecto funcional       
-         
-            System.out.println("-----------------------------------------");
-           for(int i=0;i<proyecto.getEquipos().size();i++)
-         {Equipo equip=new Equipo();
-          equip=proyecto.getEquipos().get(i);
-             System.out.println(equip.toString());
-             
-         }
-            
-        }
-        
-        
-// test proyecto
+        // Proyecto
+        ProyectoData proyectoData = new ProyectoData();
+        // Test de proyecto
         if (proyecto_test) {
-            // crear un proyecto
+            // Crear un proyecto
             System.out.println("Test crear proyecto");
             Proyecto proyecto1 = new Proyecto("la punta", "hay que hacer un login", LocalDate.of(2023, 5, 15), 1);
-            proyectData.insertProyecto(proyecto1);
-            // verifica ultimo agregado
+            proyectoData.insertProyecto(proyecto1);
+
+            // Verificar último agregado
             ProyectoData proyecto_ultimo = new ProyectoData();
             Proyecto ultimo = proyecto_ultimo.selectUltimoProyecto();
-            System.out.println("Verifica ultimo");
+            System.out.println("Verificar último");
             System.out.println(ultimo.toString());
-            // modifica ultimo agregado
+
+            // Modificar último agregado
             ultimo.setNombre("San Luis");
-            ultimo.setDescripcion("Contruir Casa 200 m2");
+            ultimo.setDescripcion("Construir Casa 200 m2");
             proyecto_ultimo.updateProyecto(ultimo);
-            // verifica modificacion
+
+            // Verificar modificación
             ultimo = proyecto_ultimo.selectUltimoProyecto();
-            System.out.println("Verifica Modificado");
+            System.out.println("Verificar Modificado");
             System.out.println(ultimo.toString());
         }
 
-// test miembro
+        // Test de miembro
         if (miembro_test) {
+            Miembro miembraux;
+            ArrayList<Miembro> miembros;
             boolean insert_miembro = true;
+
+            // Insertar un nuevo miembro y validar si ya existe en la base de datos para evitar duplicados
             System.out.println("Test insert miembro");
             if (insert_miembro) {
                 miembroPrueba.setDni(43690464);
                 miembroPrueba.setApellido("Vallejos");
                 miembroPrueba.setNombre("Roberta");
                 miembroPrueba.setEstado(true);
-                
-                miembroPrueba1.setDni(112131321);
-                miembroPrueba1.setApellido("Villa");
-                miembroPrueba1.setNombre("Robe");
-                miembroPrueba1.setEstado(true);
-//                miembroData.insertMiembro(miembroPrueba);
-//                miembroData.insertMiembro(miembroPrueba1);
+                if (miembroData.verificarMiembro(miembroPrueba.getDni())) {
+                    miembroData.insertMiembro(miembroPrueba);
+                }
             }
+
             miembros = miembroData.selectMiembro();
-//            miembraux = miembros.get(1);
-//            miembraux.setNombre("Roberta");
-//            miembraux.setApellido("Vallejos");
-//            miembraux.setDni(43690464);
-//            miembraux.setEstado(true);
-            miembroData.updateMiembro(miembraux);
-            for (int i = 0; i < miembros.size(); i++) {
-                miembr = miembros.get(i);
-                System.out.println(miembr.toString());
+
+            // Listar los miembros existentes y con estado activo
+            System.out.println("Mostrando miembros existentes: ");
+            for (Miembro miembro : miembros) {
+                System.out.println(miembro.toString());
             }
+
+            // Modificar el miembro insertado
+            miembraux = miembros.get(1);
+            miembraux.setNombre("Roberta");
+            miembraux.setApellido("Vallejos");
+            miembraux.setDni(43690464);
+            miembroData.updateMiembro(miembraux);
         }
 
-// test equipo
+        // Test de equipo
         if (equipo_test) {
-            boolean insert_equipo = false;
-            boolean mostrar_equipo = false;
+            boolean insert_equipo = true;
+            boolean mostrar_equipo = true;
+
             System.out.println("Test equipo");
-            // insert equipo
+
+            // Insertar equipo
             System.out.println("Test Insert equipo");
             if (insert_equipo) {
-                System.out.println("linea 106");
-                ProyectoData proyecto_ultimo = new ProyectoData();
-                // busca ultimo proyecto
-                Proyecto ultimo = proyecto_ultimo.selectUltimoProyecto();
-                Equipo equipo_ultimo = new Equipo();
 
-                equipo_ultimo = equipo_data.selectEquipo();
+                ProyectoData proyecto_ultimo = new ProyectoData();
+                // Buscar último proyecto
+                Proyecto ultimo = proyecto_ultimo.selectUltimoProyecto();
+                Equipo equipo_ultimo = equipo_data.selectEquipo();
                 equipo_data.insertEquipo(equipo_ultimo, ultimo);
-                Equipo buscado = new Equipo();
-                buscado = equipo_data.selectEquipo();
-                System.out.println("Ultimo equipo ingresado");
+                Equipo buscado = equipo_data.selectEquipo();
+                System.out.println("Último equipo ingresado");
                 System.out.println(buscado.toString());
             }
+
             if (mostrar_equipo) {
                 equipos = equipo_data.selectEquipos(1);
-                for (int i = 0; i < equipos.size(); i++) {
-                    Equipo equi = new Equipo();
-                    equi = equipos.get(i);
-                }
                 System.out.println("Listado equipos activos");
-                for (Equipo equip : equipos) {
-                    System.out.println(equip.toString());
+                for (Equipo equipo : equipos) {
+                    System.out.println(equipo.toString());
                 }
             }
         }
-// test  equipo_miembro_test
-        if (equipo_miembro_test) { // en proceso
-            System.out.println("Test  integrantes de un equipo");
+
+        // Test de equipo_miembro
+        if (equipo_miembro_test) { // En proceso
+            System.out.println("Test integrantes de un equipo");
             int id_equipo = 7;
             equipo_miembro_data.selectEquipoMiembro(id_equipo);
+        }
+/**
+ * test de prueba de tareas.
+ */
+        if (tarea_test) {
+            System.out.println("Test de tareas");
+            Tarea tareaPrueba = new Tarea();
+            tareaPrueba.setEstado(1);
+            TareaData tareaData = new TareaData();
+            ArrayList<Tarea> tareas;
+            tareas = tareaData.selectTareasEstado(tareaPrueba);
+            for (Tarea aux : tareas) {
+                System.out.println(aux);
+            }
 
         }
     }

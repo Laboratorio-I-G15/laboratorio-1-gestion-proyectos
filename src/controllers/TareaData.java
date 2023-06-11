@@ -79,7 +79,11 @@ public class TareaData {
         return false;
     }
     
-    //filtra las tareas por estado 
+    /**
+     * filtra las tareas por estado 
+     * @param tarea
+     * @return arrayList de tareas
+     */
     public ArrayList<Tarea> selectTareasEstado(Tarea tarea){
         
         ArrayList<Tarea> tareas= new ArrayList();

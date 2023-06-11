@@ -36,7 +36,6 @@ public class ProyectoData {
             java.sql.Date fechaInicioSQL = java.sql.Date.valueOf(proyecto.getFecha_inicio());
             ps.setDate(3, fechaInicioSQL);
             ps.setInt(4, proyecto.getEstado());
-            System.out.println(ps.toString());
             validacion = ps.executeUpdate();
             if (validacion == 1) {
                 System.out.println("Se agregó un nuevo Proyecto");
@@ -100,7 +99,7 @@ public class ProyectoData {
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error: \n" + e.getMessage(), "Se ha producido un error.", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+           
         }
         return proyect;
     }
@@ -118,11 +117,11 @@ public class ProyectoData {
             ps.setInt(4, proyecto.getEstado());
             ps.setInt(5, proyecto.getId_proyecto());
             validacion = ps.executeUpdate();
-            System.out.println(ps);
+            
             if (validacion == 1) {
                 System.out.println("Proyecto Actualizado");
             } else {
-                System.out.println("Se produjo un error al actualizar un miembro");
+                System.out.println("Se produjo un error al actualizar un proyecto");
             }
         } catch (SQLException e) {
             System.out.println("Ocurrio un error al actualizar el proyecto: " + e.getMessage());
