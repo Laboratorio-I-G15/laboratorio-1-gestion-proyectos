@@ -117,7 +117,8 @@ public class MiembroData {
            if (rs.next()){
                rs.getLong(1);
             System.out.println("Se encontro un miembro con el mismo DNI");
-               
+           }else{
+               System.out.println("El miembro se puede agregar a la base de datos");
            }
            return true;
         } catch (SQLException e) {

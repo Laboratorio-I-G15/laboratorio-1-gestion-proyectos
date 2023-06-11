@@ -30,8 +30,8 @@ public class NewMain {
         boolean miembro_test = false;
         boolean equipo_test = false;
         boolean proyecto_test = false;
-        boolean equipo_miembro_test = false;
-        boolean tarea_test = true;
+        boolean equipo_miembro_test = true;
+        boolean tarea_test = false;
         /* Instancias de prueba y auxiliares */
         // Miembro
         MiembroData miembroData = new MiembroData();
@@ -134,11 +134,22 @@ public class NewMain {
         }
 
         // Test de equipo_miembro
-        if (equipo_miembro_test) { // En proceso
+        // Test de equipo_miembro
+        if (equipo_miembro_test) {
             System.out.println("Test integrantes de un equipo");
-            int id_equipo = 7;
-            equipo_miembro_data.selectEquipoMiembro(id_equipo);
+            int id_equipo =2;
+            ArrayList<Miembro> miembros = equipo_miembro_data.selectEquipoMiembro(id_equipo);
+
+            if (miembros.isEmpty()) {
+                System.out.println("No se encontraron miembros para el equipo con ID " + id_equipo);
+            } else {
+                System.out.println("Miembros del equipo con ID " + id_equipo + ":");
+                for (Miembro miembro : miembros) {
+                    System.out.println(miembro.getNombre());
+                }
+            }
         }
+
 /**
  * test de prueba de tareas.
  */
