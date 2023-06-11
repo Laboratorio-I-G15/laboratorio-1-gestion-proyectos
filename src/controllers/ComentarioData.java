@@ -53,9 +53,8 @@ public class ComentarioData {
            try{
                String sql="SELECT * FROM comentario WHERE id_tarea=?";
                PreparedStatement ps=Conexion.getConexion().prepareStatement(sql);
-               ResultSet rs = ps.executeQuery();
-               
                ps.setInt(1, comentario.getTarea().getIdTarea());
+               ResultSet rs = ps.executeQuery();
                
                if(rs==null){
                    System.out.println("No se encontraron comentarios para la tarea");
