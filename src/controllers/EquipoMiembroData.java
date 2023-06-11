@@ -48,24 +48,23 @@ public class EquipoMiembroData {
      */
     public ArrayList<Miembro> selectEquipoMiembro(int id_equipo) {
         ArrayList<Miembro> miembros = new ArrayList();
-        String consulta = " SELECT `miembro`.`id_miembro`, `miembro`.`nombre`"
-                + " FROM `miembro` JOIN `equipo_miembro` ON `miembro`.`id_miembro`=`equipo_miembro`.`id_miembro`"
-                + " JOIN `equipo` ON `equipo_miembro`.`id_equipo`=`equipo`.`id_equipo`"
-                + " WHERE `equipo`.`id_equipo` = ?;";
+        String consulta = " SELECT miembro.id_miembro, miembro.nombre\n"
+                + "FROM equipo_miembro\n"
+                + "JOIN miembro ON equipo_miembro.id_miembro = miembro.id_miembro\n"
+                + "JOIN equipo ON equipo_miembro.id_equipo = equipo.id_equipo\n"
+                + "WHERE equipo.id_equipo = ?;";
         try (PreparedStatement stmt = Conexion.getConexion().prepareStatement(consulta)) {
             // bindeo id_proyecto
             stmt.setInt(1, id_equipo);
             ResultSet result = stmt.executeQuery();
             while (result.next()) {
-                while (result.next()) {
-                    Miembro miembro_1 = new Miembro();
-                    miembro_1.setIdMiembro(result.getInt("id_miembro"));
-                    miembro_1.setDni(result.getLong("dni"));
-                    miembro_1.setApellido(result.getString("apellido"));
-                    miembro_1.setNombre(result.getString("nombre"));
-                    miembro_1.setEstado(result.getBoolean("estado"));
-                    miembros.add(miembro_1);
-                }
+                Miembro miembro_1 = new Miembro();
+                miembro_1.setIdMiembro(result.getInt("id_miembro"));
+                // miembro_1.setDni(result.getLong("dni"));
+                // miembro_1.setApellido(result.getString("apellido"));
+                miembro_1.setNombre(result.getString("nombre"));
+                //miembro_1.setEstado(result.getBoolean("estado"));
+                miembros.add(miembro_1);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error: \n" + e.getMessage(), "Se ha producido un error.", JOptionPane.ERROR_MESSAGE);
