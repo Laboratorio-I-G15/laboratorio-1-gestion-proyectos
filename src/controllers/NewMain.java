@@ -134,25 +134,23 @@ public class NewMain {
         }
 
         // Test de equipo_miembro
-        // Test de equipo_miembro
         if (equipo_miembro_test) {
             System.out.println("Test integrantes de un equipo");
-            int id_equipo =2;
+            int id_equipo = 5;
             ArrayList<Miembro> miembros = equipo_miembro_data.selectEquipoMiembro(id_equipo);
-
             if (miembros.isEmpty()) {
                 System.out.println("No se encontraron miembros para el equipo con ID " + id_equipo);
             } else {
                 System.out.println("Miembros del equipo con ID " + id_equipo + ":");
                 for (Miembro miembro : miembros) {
-                    System.out.println(miembro.getNombre());
+                    System.out.println(miembro.toString());
                 }
             }
         }
 
-/**
- * test de prueba de tareas.
- */
+        /**
+         * test de prueba de tareas.
+         */
         if (tarea_test) {
             System.out.println("Test de tareas");
             Tarea tareaPrueba = new Tarea();
