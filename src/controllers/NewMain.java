@@ -60,11 +60,15 @@ public class NewMain {
                     realizarPruebasProyecto(proyectoData);
                     break;
                 case 4:
+                    
                     realizarPruebasEquipoMiembro(equipoMiembroData);
                     break;
                 case 5:
                     realizarPruebasTarea();
                     break;
+                
+                            
+                           
                 case 0:
                     System.out.println("Saliendo del programa...");
                     break;
@@ -153,13 +157,18 @@ public class NewMain {
 
     public static void realizarPruebasEquipoMiembro(EquipoMiembroData equipoMiembroData) {
         EquipoMiembroData equipoData = new EquipoMiembroData();
-        // Test de equipo_miembro
+        
+
+        //probando el la relacion de miembro con el equipo
+          equipoData.insertEquipoMiembro(1, 16);
+                  // Test de equipo_miembro
         System.out.println("Test integrantes de un equipo");
         int id_equipo = 5;
         ArrayList<Miembro> miembros = equipoData.selectEquipoMiembro(id_equipo);
         if (miembros.isEmpty()) {
             System.out.println("No se encontraron miembros para el equipo con ID " + id_equipo);
         } else {
+          
             System.out.println("Miembros del equipo con ID " + id_equipo + ":");
             for (Miembro miembro : miembros) {
                 System.out.println(miembro.getNombre());

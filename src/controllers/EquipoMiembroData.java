@@ -6,6 +6,7 @@ package controllers;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import models.Equipo;
@@ -76,6 +77,33 @@ public class EquipoMiembroData {
      * @param equipo
      * @return
      */
+    public void insertEquipoMiembro(int id_miembro, int id_equipo)
+    {  
+      
+     int validacion = 0;
+        try {
+           String sql="INSERT INTO equipo_miembro( fecha_inscripcion, id_equipo, id_miembro) VALUES (?,?,?)";
+           System.out.println("hola");
+            PreparedStatement ps = Conexion.getConexion().prepareStatement(sql);
+             System.out.println("hola");
+           java.sql.Date fechaInicioSQL = java.sql.Date.valueOf(LocalDate.now());
+            System.out.println("no paso");
+            ps.setDate(1, fechaInicioSQL);
+            ps.setInt(2,id_equipo);
+            ps.setInt(3, id_miembro);
+            
+            validacion = ps.executeUpdate();
+            if (validacion == 1) {
+                System.out.println("Se asigno miembro al equipo");
+            } else {
+                System.out.println("Se produjo un error al agregar un miembro al equipo");
+            }
+        } catch (SQLException e) {
+            System.out.println("Ocurrio un error al agregar un Proyecto: " + e.getMessage());
+        }
+    }
+
+    
     public ArrayList<Miembro> selectEquipoMiembro(Equipo equipo) {
         ArrayList<Miembro> miembros = new ArrayList();
         String consulta = " SELECT `miembro`.*"
