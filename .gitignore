@@ -16,3 +16,5 @@ nbproject/private/config.properties
 build/classes/controllers/NewMain.class
 build/classes/controllers/conexion.class
 src/controllers/Conexion.java
+src/controllers/Conexion.java
+build/classes/controllers/conexion.class
