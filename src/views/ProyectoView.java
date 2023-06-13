@@ -17,6 +17,7 @@ import models.Proyecto;
 import models.Tarea;
 
 
+
 /**
  *
  * @author Ro
@@ -466,11 +467,17 @@ public class ProyectoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonBorrarPActionPerformed
 
     private void jButtonMoificarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMoificarPActionPerformed
-        
+         
        
-       UpProyecto proyec=new  UpProyecto();
+       UpProyecto1 proyec=new  UpProyecto1();
+        proyec.setVisible(true);
+       Gestion.desktop.add(proyec);
+       this.setVisible(false);
+    
        proyec.setVisible(true);
-      
+       
+    
+             
        
         
 

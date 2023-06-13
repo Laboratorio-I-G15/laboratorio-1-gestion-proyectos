@@ -39,8 +39,10 @@ public class ProyectoData {
             validacion = ps.executeUpdate();
             if (validacion == 1) {
                 System.out.println("Se agregó un nuevo Proyecto");
+                JOptionPane.showMessageDialog(null,"Se Cargo Nuevo proyecto");
             } else {
                 System.out.println("Se produjo un error al agregar un Proyecto");
+                JOptionPane.showMessageDialog(null,"No se pudo Cargar Nuevo Proyecto");
             }
         } catch (SQLException e) {
             System.out.println("Ocurrio un error al agregar un Proyecto: " + e.getMessage());

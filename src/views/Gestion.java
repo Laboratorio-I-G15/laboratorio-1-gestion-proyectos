@@ -16,6 +16,7 @@ public class Gestion extends javax.swing.JFrame {
  */
   public static MiembrosViews vistaMiembro = null;
   public static ProyectoView vistaProyecto = null;
+  public static ProyectoView vistaProyectoso = null;
  
     
     public Gestion() {
@@ -163,7 +164,7 @@ public class Gestion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Proyecto;
     private javax.swing.JMenu adminMiembros;
-    private javax.swing.JDesktopPane desktop;
+    public static javax.swing.JDesktopPane desktop;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
