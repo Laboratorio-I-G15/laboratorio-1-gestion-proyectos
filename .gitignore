@@ -1,10 +1,8 @@
-/build/
+build/
 src/controllers/Conexion.java
 dist/lib/mysql-connector-java-5.1.23-bin.jar
 *.jar
+*.class
 dist/README.TXT
 nbproject/private/private.xml
-src/controllers/Conexion.java
-src/views/Gestion1.form
-src/views/Gestion1.form
 src/views/Gestion1.java
