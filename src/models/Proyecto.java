@@ -18,12 +18,12 @@ public class Proyecto {
     private String nombre;
     private String descripcion;
     private LocalDate fecha_inicio;
-    private int estado;
+    private boolean estado;
     private  ArrayList<Equipo>  equipos;
     public Proyecto() {
     }
 
-    public Proyecto(int idproyecto, String nombre, String descripcion, LocalDate fecha_inicio, int estado) {
+    public Proyecto(int idproyecto, String nombre, String descripcion, LocalDate fecha_inicio,  boolean estado) {
         this.id_proyecto = idproyecto;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -32,14 +32,14 @@ public class Proyecto {
         equipos=new ArrayList();
     }
 
-    public Proyecto(String nombre, String descripcion, LocalDate fecha_inicio, int estado) {
+    public Proyecto(String nombre, String descripcion, LocalDate fecha_inicio, boolean estado) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fecha_inicio = fecha_inicio;
         this.estado = estado;
     }
 
-    public int getEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
@@ -52,7 +52,7 @@ public class Proyecto {
     }
     
 
-    public void setEstado(int estado) {
+    public void setEstado(boolean estado) {
         this.estado = estado;
 
     }

@@ -35,7 +35,7 @@ public class ProyectoData {
             ps.setString(2, proyecto.getDescripcion());
             java.sql.Date fechaInicioSQL = java.sql.Date.valueOf(proyecto.getFecha_inicio());
             ps.setDate(3, fechaInicioSQL);
-            ps.setInt(4, proyecto.getEstado());
+            ps.setBoolean(4,proyecto.getEstado());
             validacion = ps.executeUpdate();
             if (validacion == 1) {
                 System.out.println("Se agregó un nuevo Proyecto");
@@ -65,7 +65,7 @@ public class ProyectoData {
                     java.util.Date fechaInicioUtil = new java.util.Date(fechaInicioSQL.getTime());
                     java.time.LocalDate fechaInicioLocalDate = fechaInicioUtil.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     proyect.setFecha_inicio(fechaInicioLocalDate);
-                    proyect.setEstado(rs.getInt("estado"));
+                    proyect.setEstado(rs.getBoolean("estado"));
 
                     proyectos.add(proyect);
                 }
@@ -95,7 +95,7 @@ public class ProyectoData {
                     java.util.Date fechaInicioUtil = new java.util.Date(fechaInicioSQL.getTime());
                     java.time.LocalDate fechaInicioLocalDate = fechaInicioUtil.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     proyect.setFecha_inicio(fechaInicioLocalDate);
-                proyect.setEstado(result.getInt("estado"));
+                proyect.setEstado(result.getBoolean("estado"));
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error: \n" + e.getMessage(), "Se ha producido un error.", JOptionPane.ERROR_MESSAGE);
@@ -114,7 +114,7 @@ public class ProyectoData {
             ps.setString(2, proyecto.getDescripcion());
             java.sql.Date fechaInicioSQL = java.sql.Date.valueOf(proyecto.getFecha_inicio());
             ps.setDate(3, fechaInicioSQL);
-            ps.setInt(4, proyecto.getEstado());
+            ps.setBoolean(4, proyecto.getEstado());
             ps.setInt(5, proyecto.getId_proyecto());
             validacion = ps.executeUpdate();
             
@@ -145,7 +145,7 @@ public class ProyectoData {
                 proyecto.setNombre(result.getString("nombre_proyecto"));
                 proyecto.setDescripcion(result.getString("descripcion_proyecto"));
                 proyecto.setFecha_inicio(result.getDate("fecha_inicio_proyecto").toLocalDate());
-                proyecto.setEstado(result.getInt("estado"));
+                proyecto.setEstado(result.getBoolean("estado"));
             }
         } catch (SQLException e) {
             System.out.println("Ocurrio un error: " + (e.getMessage()));
