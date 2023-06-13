@@ -3,3 +3,5 @@ src/controllers/Conexion.java
 dist/lib/mysql-connector-java-5.1.23-bin.jar
 *.jar
 dist/README.TXT
+nbproject/private/private.xml
+src/controllers/Conexion.java
