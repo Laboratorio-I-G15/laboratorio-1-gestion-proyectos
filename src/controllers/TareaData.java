@@ -115,9 +115,10 @@ public class TareaData {
         } 
         return tareas;
     }
+
     
     //filtrar tareas de un miembro
-    public ArrayList<Tarea> selectTareasMiembro(Tarea tarea){
+    public ArrayList<Tarea> selectTareasMiembro(EquipoMiembro equipoMiembro){
         
         ArrayList<Tarea> tareas= new ArrayList();
         try{
@@ -127,7 +128,7 @@ public class TareaData {
 //                        "WHERE miembro.id_miembro = ?";
             String sql="SELECT * FROM tarea WHERE id_miembro_equipo=?";
             PreparedStatement ps=Conexion.getConexion().prepareStatement(sql);
-            ps.setInt(1,tarea.getEquipoMiembro().getId_equipo_miembro()); 
+            ps.setInt(1,equipoMiembro.getId_equipo_miembro()); 
             ResultSet rs = ps.executeQuery();
             
             if(rs==null)
@@ -141,7 +142,7 @@ public class TareaData {
                     aux.setFechaCreacion(rs.getDate("fecha_inicio_tarea").toLocalDate());
                     aux.setNombre(rs.getString("nombre_tarea"));
                     aux.setIdTarea(rs.getInt("id_tarea"));
-                    aux.setEquipoMiembro(tarea.getEquipoMiembro());
+                    aux.setEquipoMiembro(equipoMiembro);
                     tareas.add(aux);
                 }
             }
