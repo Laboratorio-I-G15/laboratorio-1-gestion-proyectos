@@ -8,3 +8,5 @@ src/controllers/Conexion.java
 src/views/Gestion1.form
 src/views/Gestion1.form
 src/views/Gestion1.java
+build/classes/controllers/conexion.class
+src/controllers/Conexion.java
