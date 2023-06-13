@@ -28,7 +28,9 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
         ArrayList<Proyecto> proyectos=new ArrayList();
         ProyectoData proyectod=new ProyectoData();
         proyectos=proyectod.selectProyecto();
-        
+        jButtonActualizar.setEnabled(false);
+        jButtonBorrar.setEnabled(false);
+        jButtonGuardar.setEnabled(false);
         for(int i=0;i<proyectos.size();i++)
         {
          jComboProyecto.addItem(proyectos.get(i));
@@ -51,7 +53,7 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
         jComboProyecto = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jRadioActualizar = new javax.swing.JRadioButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioNuevo = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
         jTextidentidad = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -112,10 +114,10 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
             }
         });
 
-        jRadioButton1.setText("Nuevo");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        jRadioNuevo.setText("Nuevo");
+        jRadioNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                jRadioNuevoActionPerformed(evt);
             }
         });
 
@@ -227,7 +229,7 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jRadioActualizar)
                                     .addGap(165, 165, 165)
-                                    .addComponent(jRadioButton1))
+                                    .addComponent(jRadioNuevo))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jComboProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(64, 64, 64)
@@ -259,7 +261,7 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioActualizar)
-                    .addComponent(jRadioButton1))
+                    .addComponent(jRadioNuevo))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -319,6 +321,9 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Proyecto proyecto1;
         proyecto1 = (Proyecto) jComboProyecto.getSelectedItem();
+        jRadioActualizar.setSelected(false);
+        jRadioNuevo.setSelected(false);
+        
        
         String var;
         
@@ -336,15 +341,16 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
         jTextnombre1.setEditable(false);
         jDateChooser1.setEnabled(false);
         radioActivar.setEnabled(false);
+        jButtonBorrar.setEnabled(true);
         jButtonActualizar.setEnabled(false);
         jButtonGuardar.setEnabled(false);
         ver=true;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jRadioActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioActualizarActionPerformed
-       if (ver)
+       if (ver &&jTextidentidad.getText()!="")
        {
-        if (jRadioButton1.isSelected())
+        if (jRadioNuevo.isSelected())
         {
             jRadioActualizar.setSelected(false);
         }
@@ -373,19 +379,19 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
             jDateChooser1.setEnabled(false);
             jTextnombre1.setEditable(false);
             radioActivar.setEnabled(false);
-            
+            jButtonActualizar.setEnabled(false);
            
            JOptionPane.showMessageDialog(this,"Para Actualizar en Necesario Presionar el boton Cargar");}
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioActualizarActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void jRadioNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioNuevoActionPerformed
         if (jRadioActualizar.isSelected())
         {
-            jRadioButton1.setSelected(false);
+            jRadioNuevo.setSelected(false);
         }
 
-        if (!jRadioButton1.isSelected())
+        if (!jRadioNuevo.isSelected())
         {
             jTextdescripcion.setEditable(false);
             jTextidentidad.setEditable(false);
@@ -407,7 +413,7 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
 
         } // TODO add your handling code here:
         Limpiar();
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_jRadioNuevoActionPerformed
     private void Limpiar()
     {
     jTextdescripcion.setText("");
@@ -422,21 +428,33 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
-        // TODO add your handling code here:
+        Proyecto proyect=new Proyecto();
+       ProyectoData proyectod=new ProyectoData();
+       String var;
+       int numeroInt = Integer.parseInt(jTextidentidad.getText());
+       proyect.setId_proyecto(numeroInt);
+       proyect.setNombre(jTextnombre1.getText());
+       proyect.setDescripcion(jTextdescripcion.getText());
+       proyect.setEstado(radioActivar.isSelected());
+      java.time.LocalDate fechaInicioLocalDate = jDateChooser1.getCalendar().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+      proyect.setFecha_inicio(fechaInicioLocalDate);
+       proyectod.updateProyecto(proyect); // TODO add your handling code here:
+       Limpiar();
     }//GEN-LAST:event_jButtonActualizarActionPerformed
 
     private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
-//      Proyecto proyect=new Proyecto();
-//       ProyectoData proyectod=new ProyectoData();
-//       String var;
-//       int numeroInt = Integer.parseInt(jTextidentidad.getText());
-//       proyect.setId_proyecto(numeroInt);
-//       proyect.setNombre(jTextnombre1.getText());
-//       proyect.setDescripcion(jTextdescripcion.getText());
-//       proyect.setEstado(false);
-//      java.time.LocalDate fechaInicioLocalDate = jDateChooser1.getCalendar().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//      proyect.setFecha_inicio(fechaInicioLocalDate);
-//       proyectod.updateProyecto(proyect);
+      Proyecto proyect=new Proyecto();
+       ProyectoData proyectod=new ProyectoData();
+       String var;
+       int numeroInt = Integer.parseInt(jTextidentidad.getText());
+       proyect.setId_proyecto(numeroInt);
+       proyect.setNombre(jTextnombre1.getText());
+       proyect.setDescripcion(jTextdescripcion.getText());
+       proyect.setEstado(false);
+      java.time.LocalDate fechaInicioLocalDate = jDateChooser1.getCalendar().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+      proyect.setFecha_inicio(fechaInicioLocalDate);
+       proyectod.updateProyecto(proyect);
+         Limpiar();
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
@@ -451,6 +469,7 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
       java.time.LocalDate fechaInicioLocalDate = jDateChooser1.getCalendar().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
       proyect.setFecha_inicio(fechaInicioLocalDate);
        proyectod.insertProyecto(proyect);
+         Limpiar();
        
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
@@ -475,7 +494,7 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioActualizar;
-    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioNuevo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextdescripcion;
     private javax.swing.JTextField jTextidentidad;

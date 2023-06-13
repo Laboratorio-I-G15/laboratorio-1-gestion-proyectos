@@ -122,10 +122,12 @@ public class ProyectoData {
             
             if (validacion == 1) {
                 System.out.println("Proyecto Actualizado");
+                JOptionPane.showMessageDialog(null, "Peticion Confirmada");
             } else {
-                System.out.println("Se produjo un error al actualizar un proyecto");
+                JOptionPane.showMessageDialog(null, "Peticion Denegada");
             }
         } catch (SQLException e) {
+             JOptionPane.showMessageDialog(null, "No se accedio a la base de dato");
             System.out.println("Ocurrio un error al actualizar el proyecto: " + e.getMessage());
         }
 
