@@ -25,7 +25,7 @@ public class Conexion {
     private static String usuario = "root"; // usuario para acceder a la base de datos, por defecto es 'root'
     private static String pass = ""; // contraseña para acceder, por defecto el usuario root, no tiene contraseña
     private static String url = "jdbc:mysql://localhost:3306/" + base; // URL es la direccion de la Conexion, por defecto en local y el puerto 3306 + el nombre de la db
-//      private static String base = "leotoloza_proyectogestion"; //nombre de la base de datos
+//    private static String base = "leotoloza_proyectogestion"; //nombre de la base de datos
 //    private static String usuario = "leotoloza"; // usuario para acceder a la base de datos, por defecto es 'root'
 //    private static String pass = "LeonelSantiagoToloza113346"; // contraseña para acceder, por defecto el usuario root, no tiene contraseña
 //    private static String url = "jdbc:mysql://mysql-leotoloza.alwaysdata.net/" + base; // URL es la direccion de la Conexion, por defecto en local y el puerto 3306 + el nombre de la db
@@ -37,7 +37,7 @@ public class Conexion {
     }
 
     /**
-     * metedo para conectarse a la bd en remoto, alerta con un aviso por consola si se conectó satisfactoriamente.
+     * metodo para conectarse a la bd en remoto, alerta con un aviso por consola si se conectó satisfactoriamente.
      *
      * @return devuelve una Conexion
      */
