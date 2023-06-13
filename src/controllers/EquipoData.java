@@ -21,7 +21,11 @@ public class EquipoData {
 
     public EquipoData() {
     }
-
+    
+    /**
+     * 
+     */
+    
     /**
      * Recibe Equipo y Proyecto , se inserta el eqipo
      *

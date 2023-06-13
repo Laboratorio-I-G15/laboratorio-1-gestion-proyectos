@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import models.Equipo;
+import models.EquipoMiembro;
 import models.Miembro;
 
 /**
@@ -40,7 +41,37 @@ public class EquipoMiembroData {
         this.equipo = equipo;
         return equipo;
     }
-
+    /**
+     * devuelve el idMiembroEquipo
+     *
+     * @param 
+     * @return
+     */
+    public int selectIdEquipoMiembro(int id_miembro) {
+        
+        
+        int id_equipo_miembro=0;
+        
+        String consulta = "SELECT *  FROM equipo_miembro JOIN miembro ON equipo_miembro.id_miembro = miembro.id_miembro WHERE miembro.id_miembro = 1";
+        try (PreparedStatement stmt = Conexion.getConexion().prepareStatement(consulta)) {
+            // bindeo id_proyecto
+            //stmt.setInt(1, 1);
+            System.out.println(stmt);
+            ResultSet result = stmt.executeQuery();
+            if (result.next()) {
+               id_equipo_miembro=result.getInt("id_miembro_equipo");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: \n" + e.getMessage(), "Se ha producido un error.", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+        return id_equipo_miembro;
+    }
+    
+    
+    
+    
+    
     /**
      * devuelve ArrayList miembro de un equipo
      *
