@@ -41,25 +41,25 @@ public class EquipoMiembroData {
         this.equipo = equipo;
         return equipo;
     }
+
     /**
      * devuelve el idMiembroEquipo
      *
-     * @param 
+     * @param
      * @return
      */
     public int selectIdEquipoMiembro(int id_miembro) {
-        
-        
-        int id_equipo_miembro=0;
-        
-        String consulta = "SELECT *  FROM equipo_miembro JOIN miembro ON equipo_miembro.id_miembro = miembro.id_miembro WHERE miembro.id_miembro = 1";
+
+        int id_equipo_miembro = 0;
+
+        String consulta = "SELECT *  FROM equipo_miembro JOIN miembro ON equipo_miembro.id_miembro = miembro.id_miembro WHERE miembro.id_miembro = ?";
         try (PreparedStatement stmt = Conexion.getConexion().prepareStatement(consulta)) {
             // bindeo id_proyecto
-            //stmt.setInt(1, 1);
+            stmt.setInt(1, id_miembro);
             System.out.println(stmt);
             ResultSet result = stmt.executeQuery();
             if (result.next()) {
-               id_equipo_miembro=result.getInt("id_miembro_equipo");
+                id_equipo_miembro = result.getInt("id_miembro_eq");
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error: \n" + e.getMessage(), "Se ha producido un error.", JOptionPane.ERROR_MESSAGE);
@@ -67,11 +67,7 @@ public class EquipoMiembroData {
         }
         return id_equipo_miembro;
     }
-    
-    
-    
-    
-    
+
     /**
      * devuelve ArrayList miembro de un equipo
      *
@@ -108,21 +104,20 @@ public class EquipoMiembroData {
      * @param equipo
      * @return
      */
-    public void insertEquipoMiembro(int id_miembro, int id_equipo)
-    {  
-      
-     int validacion = 0;
+    public void insertEquipoMiembro(int id_miembro, int id_equipo) {
+
+        int validacion = 0;
         try {
-           String sql="INSERT INTO equipo_miembro( fecha_inscripcion, id_equipo, id_miembro) VALUES (?,?,?)";
-           System.out.println("hola");
+            String sql = "INSERT INTO equipo_miembro( fecha_inscripcion, id_equipo, id_miembro) VALUES (?,?,?)";
+            System.out.println("hola");
             PreparedStatement ps = Conexion.getConexion().prepareStatement(sql);
-             System.out.println("hola");
-           java.sql.Date fechaInicioSQL = java.sql.Date.valueOf(LocalDate.now());
+            System.out.println("hola");
+            java.sql.Date fechaInicioSQL = java.sql.Date.valueOf(LocalDate.now());
             System.out.println("no paso");
             ps.setDate(1, fechaInicioSQL);
-            ps.setInt(2,id_equipo);
+            ps.setInt(2, id_equipo);
             ps.setInt(3, id_miembro);
-            
+
             validacion = ps.executeUpdate();
             if (validacion == 1) {
                 System.out.println("Se asigno miembro al equipo");
@@ -134,7 +129,6 @@ public class EquipoMiembroData {
         }
     }
 
-    
     public ArrayList<Miembro> selectEquipoMiembro(Equipo equipo) {
         ArrayList<Miembro> miembros = new ArrayList();
         String consulta = " SELECT `miembro`.*"

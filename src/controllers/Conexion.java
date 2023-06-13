@@ -33,8 +33,7 @@ public class Conexion {
     }
 
     /**
-     * metedo para conectarse a la bd en remoto, alerta con un aviso por consola
-     * si se conectó satisfactoriamente.
+     * metedo para conectarse a la bd en remoto, alerta con un aviso por consola si se conectó satisfactoriamente.
      *
      * @return devuelve una Conexion
      */
@@ -46,7 +45,7 @@ public class Conexion {
 
                 /* descomentar  para  corroborar  que la conexion sea correcta  */
                 // JOptionPane.showMessageDialog(null, "Se conecto correctamente", "BASE DATOS", JOptionPane.INFORMATION_MESSAGE);
-                 System.out.println("Conectado exitosamente!");
+                System.out.println("Conectado exitosamente!");
             } catch (HeadlessException | ClassNotFoundException | SQLException e) {
                 System.out.println(e.getMessage());
                 JOptionPane.showMessageDialog(null, "Error: \n" + e.getMessage(), "Se ha producido un error.", JOptionPane.ERROR_MESSAGE);
