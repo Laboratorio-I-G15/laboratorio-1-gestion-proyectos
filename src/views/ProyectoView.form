@@ -25,10 +25,6 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jComboTarea1" min="-2" pref="335" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -55,35 +51,38 @@
                                           <Component id="jButton11" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jComboEquipos" min="-2" pref="335" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                                              <Component id="jBuscarMiembro" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                              <Component id="jButton12" min="-2" pref="131" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton7" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" pref="27" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jButton14" pref="64" max="32767" attributes="0"/>
+                                  <Component id="jButton15" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jComboEquipos" min="-2" pref="335" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                      <Component id="jBuscarMiembro" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jComboTarea1" min="-2" pref="335" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Component id="jComboProyecto" min="-2" pref="335" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jBuscarEquipos" min="-2" pref="117" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                      <Component id="jButtonMoificarP" min="-2" pref="224" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace type="separate" pref="22" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButton14" pref="69" max="32767" attributes="0"/>
-                                  <Component id="jButton15" max="32767" attributes="0"/>
-                                  <Component id="jButton13" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="jButtonMoificarP" min="-2" pref="287" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jButton12" min="-2" pref="131" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="jButton7" min="-2" pref="134" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -122,7 +121,6 @@
                   <Component id="jComboEquipos" min="-2" pref="33" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jBuscarMiembro" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="jButton13" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="jButton12" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="jButton7" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
@@ -268,7 +266,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton7">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Modificar"/>
+        <Property name="text" type="java.lang.String" value="Modificar/Borrar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>
@@ -332,14 +330,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton12ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButton13">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Borrar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton13ActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton14">
