@@ -104,16 +104,52 @@ public class EquipoMiembroData {
      * @param equipo
      * @return
      */
+    
+ public void insertEquipoMiembros(int id_miembro, int id_equipo) {
+    try {
+        // Verificar si la fila ya existe
+        String selectSql = "SELECT COUNT(*) FROM equipo_miembro WHERE id_miembro = ? AND id_equipo = ?";
+        PreparedStatement selectStatement = Conexion.getConexion().prepareStatement(selectSql);
+        selectStatement.setInt(1, id_miembro);
+        selectStatement.setInt(2, id_equipo);
+        ResultSet resultSet = selectStatement.executeQuery();
+        resultSet.next();
+        int count = resultSet.getInt(1);
+        
+        if (count > 0) {
+            JOptionPane.showMessageDialog(null, "Ya esta Agregado este Miembro Al Equipo");
+            return; // Salir del método sin realizar la inserción
+        }
+        
+        // Insertar la nueva fila
+        String insertSql = "INSERT INTO equipo_miembro(fecha_inscripcion, id_equipo, id_miembro) VALUES (?,?,?)";
+        PreparedStatement insertStatement = Conexion.getConexion().prepareStatement(insertSql);
+        insertStatement.setDate(1, new java.sql.Date(System.currentTimeMillis())); // Fecha actual
+        insertStatement.setInt(2, id_equipo);
+        insertStatement.setInt(3, id_miembro);
+        int validacion = insertStatement.executeUpdate();
+        
+        if (validacion == 1) {
+            JOptionPane.showMessageDialog(null, "Agregado miembro a equipo COrrectamente");
+        } else {
+            System.out.println("Se produjo un error al agregar un miembro al equipo.");
+        }
+    } catch (SQLException e) {
+        System.out.println("Ocurrió un error al agregar un Proyecto: " + e.getMessage());
+    }
+}
+
+
     public void insertEquipoMiembro(int id_miembro, int id_equipo) {
 
         int validacion = 0;
         try {
             String sql = "INSERT INTO equipo_miembro( fecha_inscripcion, id_equipo, id_miembro) VALUES (?,?,?)";
-            System.out.println("hola");
+         
             PreparedStatement ps = Conexion.getConexion().prepareStatement(sql);
-            System.out.println("hola");
+            
             java.sql.Date fechaInicioSQL = java.sql.Date.valueOf(LocalDate.now());
-            System.out.println("no paso");
+            
             ps.setDate(1, fechaInicioSQL);
             ps.setInt(2, id_equipo);
             ps.setInt(3, id_miembro);
