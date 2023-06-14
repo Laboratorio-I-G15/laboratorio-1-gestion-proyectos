@@ -91,7 +91,11 @@ public class Tarea {
 
     @Override
     public String toString() {
-        return  "idTarea= " + idTarea + "\n Nombre=" + nombre + "\n FechaCreacion=" + fechaCreacion + "\n FechaCierre=" + fechaCierre + "\n  Estado=" + estado + "\n  EquipoMiembro=" + equipoMiembro ;
+        return   nombre ;
     }
+
+  
+    
+    
     
 }

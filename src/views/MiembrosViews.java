@@ -106,6 +106,11 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
         btnUpdate.setText("Actualizar");
 
         radioActivar.setText("Activar/Desactivar");
+        radioActivar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioActivarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -214,6 +219,10 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(null, "Ocurrio un error!");  
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void radioActivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioActivarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioActivarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -10,6 +10,7 @@ import controllers.ProyectoData;
 import controllers.TareaData;
 import static java.awt.SystemColor.desktop;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import models.Equipo;
 import models.EquipoMiembro;
 import models.Miembro;
@@ -26,6 +27,14 @@ public class ProyectoView extends javax.swing.JInternalFrame {
 
     private ArrayList<Proyecto> proyectos = new ArrayList();
     private ProyectoData proyectoD = new ProyectoData();
+    private ArrayList<Tarea> tareas = new ArrayList();
+    private Tarea tarea = new Tarea();
+    private TareaData tareaD = new TareaData();
+    private EquipoMiembro equipoM = new EquipoMiembro();
+    private EquipoMiembroData equipoMD = new EquipoMiembroData();
+    private Miembro miembro = new Miembro();
+    private ArrayList<Miembro> miembros = new ArrayList();
+    private Equipo equipo = new Equipo();
     
     /**
      * Creates new form ProyectoView
@@ -58,22 +67,25 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         jComboTarea = new javax.swing.JComboBox<>();
         jBuscarTarea = new javax.swing.JButton();
         jBuscarComentario = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        bAdministrarTareas = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton10 = new javax.swing.JButton();
+        BAgregarComentario = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
+<<<<<<< HEAD
         jButton14 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
         jComboTarea1 = new javax.swing.JComboBox<>();
+=======
+>>>>>>> 2756fda3ae5ba141a42acae710c632570ad5f5ac
         jLabel6 = new javax.swing.JLabel();
         jButtonMoificarP = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Comentarios = new javax.swing.JTextArea();
 
         jComboEquipos.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
@@ -130,24 +142,15 @@ public class ProyectoView extends javax.swing.JInternalFrame {
             }
         });
 
+<<<<<<< HEAD
         jButton7.setText("Modificar/Borrar");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
+=======
+        bAdministrarTareas.setText("Administrar Tareas");
+        bAdministrarTareas.addActionListener(new java.awt.event.ActionListener() {
+>>>>>>> 2756fda3ae5ba141a42acae710c632570ad5f5ac
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-
-        jButton8.setText("Modificar");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-
-        jButton9.setText("Modificar");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                bAdministrarTareasActionPerformed(evt);
             }
         });
 
@@ -159,27 +162,28 @@ public class ProyectoView extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Seleccione una Tarea");
 
-        jButton10.setText("Agregar comentario");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        BAgregarComentario.setText("Administrar comentarios");
+        BAgregarComentario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                BAgregarComentarioActionPerformed(evt);
             }
         });
 
-        jButton11.setText("Agregar Miembro");
+        jButton11.setText("Administrar Miembros");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
             }
         });
 
-        jButton12.setText("Agregar Equipo");
+        jButton12.setText("Administrar Equipos");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton12ActionPerformed(evt);
             }
         });
 
+<<<<<<< HEAD
         jButton14.setText("Borrar");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,6 +205,8 @@ public class ProyectoView extends javax.swing.JInternalFrame {
             }
         });
 
+=======
+>>>>>>> 2756fda3ae5ba141a42acae710c632570ad5f5ac
         jLabel6.setText("Comentarios:");
 
         jButtonMoificarP.setText("Administracion De Proyectos");
@@ -217,6 +223,11 @@ public class ProyectoView extends javax.swing.JInternalFrame {
             }
         });
 
+        Comentarios.setEditable(false);
+        Comentarios.setColumns(20);
+        Comentarios.setRows(5);
+        jScrollPane1.setViewportView(Comentarios);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -226,21 +237,50 @@ public class ProyectoView extends javax.swing.JInternalFrame {
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel5)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
                             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+=======
+                                .addComponent(jComboProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBuscarEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonMoificarP, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel6)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jComboEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBuscarMiembro, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(BAgregarComentario)
+                                        .addGap(6, 6, 6))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+>>>>>>> 2756fda3ae5ba141a42acae710c632570ad5f5ac
                                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                                 .addComponent(jComboTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(jBuscarComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jButton9))
-                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jBuscarComentario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                                 .addComponent(jComboMiembro, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
+<<<<<<< HEAD
                                                 .addComponent(jBuscarTarea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jButton8)))
@@ -281,22 +321,34 @@ public class ProyectoView extends javax.swing.JInternalFrame {
                 .addGap(315, 315, 315)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+=======
+                                                .addComponent(jBuscarTarea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addGap(12, 12, 12)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(bAdministrarTareas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(38, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(298, 298, 298))
+>>>>>>> 2756fda3ae5ba141a42acae710c632570ad5f5ac
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBuscarEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonMoificarP, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addComponent(jLabel2)
                 .addGap(18, 18, 18)
+<<<<<<< HEAD
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -304,6 +356,15 @@ public class ProyectoView extends javax.swing.JInternalFrame {
                         .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(47, 47, 47)
+=======
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBuscarMiembro, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+>>>>>>> 2756fda3ae5ba141a42acae710c632570ad5f5ac
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,24 +373,23 @@ public class ProyectoView extends javax.swing.JInternalFrame {
                             .addComponent(jComboMiembro, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jBuscarTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(44, 44, 44)
+                                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jComboTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jBuscarComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addComponent(bAdministrarTareas, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboTarea1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BAgregarComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -352,68 +412,66 @@ public class ProyectoView extends javax.swing.JInternalFrame {
     private void jBuscarMiembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarMiembroActionPerformed
         // TODO add your handling code here:
         jComboMiembro.removeAllItems();
-        ArrayList<Miembro> miembros = new ArrayList();
-        EquipoMiembroData equipoMD = new EquipoMiembroData();
-        Equipo equipo = new Equipo();
+        ///No puede buscar miembros de un equipo si no se selecciona el equipo primero
+        
         equipo = (Equipo) jComboEquipos.getSelectedItem();
-        miembros = equipoMD.selectEquipoMiembro(equipo.getId_equipo());
-        for (Miembro miembro : miembros) {
-            jComboMiembro.addItem(miembro);
-        }
+        if(equipo!=null){
+            miembros = equipoMD.selectEquipoMiembro(equipo.getId_equipo());
+            for (Miembro miembro : miembros) {
+                jComboMiembro.addItem(miembro);
+            }
+        }else
+            JOptionPane.showMessageDialog(null,"Seleccione un equipo");
+        
     }//GEN-LAST:event_jBuscarMiembroActionPerformed
 
     private void jComboTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboTareaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboTareaActionPerformed
 
-    private void jBuscarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarTareaActionPerformed
-        // TODO add your handling code here:
-        //       jComboMiembro.removeAllItems();
-        ArrayList<Tarea> tareas = new ArrayList();
-        Tarea tarea = new Tarea();
-        TareaData tareaD = new TareaData();
-        EquipoMiembro equipoM = new EquipoMiembro();
-        EquipoMiembroData equipoMD = new EquipoMiembroData();
-        Miembro miembro = new Miembro();
-        int idMiembroEquipo;
-
-        miembro = (Miembro) jComboMiembro.getSelectedItem();
-        System.out.println(miembro.toString());
-        idMiembroEquipo = equipoMD.selectIdEquipoMiembro(miembro.getIdMiembro());
-
-        equipoM.setId_equipo_miembro(idMiembroEquipo);
-
-        tareas = tareaD.selectTareasMiembro(idMiembroEquipo);
-
-        for (Tarea t : tareas) {
-            jComboTarea.addItem(t);
-        }
-
-    }//GEN-LAST:event_jBuscarTareaActionPerformed
-
     private void jBuscarComentarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarComentarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBuscarComentarioActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void bAdministrarTareasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAdministrarTareasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+          
+        
+     
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+        //////no se puede acceder a tarea si no hay miembro seleccionado:
+        
+        //Conseguir el Miembro para obtener el id del equipoMiembro y pasarlo al jInternalFrame de modificar Tarea
+        
+        miembro = (Miembro) jComboMiembro.getSelectedItem(); //obtiene el miembro seleccionado en el combo
+        if(miembro!=null)
+        {
+              ModificarTareaView  modificarTarea = new ModificarTareaView();
+              modificarTarea.setVisible(true);
+              Gestion.desktop.add(modificarTarea);
+              this.setVisible(false);
+                       //System.out.println(miembro.toString());
+           int idMiembroEquipo = equipoMD.selectIdEquipoMiembro(miembro.getIdMiembro());//busca el id del EquipoMiembro
+           //Pasa el id a la ventana modificar Tarea
+           modificarTarea.jidEquipoMiembro.setText(String.valueOf(idMiembroEquipo));//setea en un jLabel el id del EquipoMiembro obtenido en la ventana modifcarTarea
+           //obtener una lista de las tareas
+           tareas = tareaD.selectTareasMiembro(idMiembroEquipo);//Obtiene un ArrayList de Tareas segun el id MiembroEquipo obtenido
+           //añadir al combo de la ventana tareaMiembro las tareas obtenidas
+           for (Tarea t : tareas) {
+               modificarTarea.jComboTareas.addItem(t);
+           }
+        }else
+           JOptionPane.showMessageDialog(null,"Seleccione un miembro");
+       
+        
+        
+        
+        
+    }//GEN-LAST:event_bAdministrarTareasActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void BAgregarComentarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAgregarComentarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
-
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton10ActionPerformed
-
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton11ActionPerformed
+    }//GEN-LAST:event_BAgregarComentarioActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
        Equipovista vista=new Equipovista();
@@ -423,6 +481,7 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton12ActionPerformed
 
+<<<<<<< HEAD
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton14ActionPerformed
@@ -431,6 +490,8 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton15ActionPerformed
 
+=======
+>>>>>>> 2756fda3ae5ba141a42acae710c632570ad5f5ac
     private void jComboProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboProyectoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboProyectoActionPerformed
@@ -438,10 +499,6 @@ public class ProyectoView extends javax.swing.JInternalFrame {
     private void jComboMiembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboMiembroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboMiembroActionPerformed
-
-    private void jComboTarea1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboTarea1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboTarea1ActionPerformed
 
     private void jButtonMoificarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMoificarPActionPerformed
          
@@ -468,31 +525,73 @@ public class ProyectoView extends javax.swing.JInternalFrame {
        Gestion.desktop.add(vista);// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jBuscarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarTareaActionPerformed
+        // TODO add your handling code here:
+        //       jComboMiembro.removeAllItems();
+        //        ArrayList<Tarea> tareas = new ArrayList();
+        //        Tarea tarea = new Tarea();
+        //        TareaData tareaD = new TareaData();
+        //        EquipoMiembro equipoM = new EquipoMiembro();
+        //        EquipoMiembroData equipoMD = new EquipoMiembroData();
+        //        Miembro miembro = new Miembro();
+        int idMiembroEquipo;
+        
+        
+        ///No puede buscar Tareas si no selecciona el miembro
+        
+        //conseguir el id del equipoMiembro
+        miembro = (Miembro) jComboMiembro.getSelectedItem();
+        if(miembro!=null)
+        {
+             System.out.println(miembro.toString());
+            idMiembroEquipo = equipoMD.selectIdEquipoMiembro(miembro.getIdMiembro());
+            //setear el id del equipo miembro
+            equipoM.setId_equipo_miembro(idMiembroEquipo);
+
+            tareas = tareaD.selectTareasMiembro(idMiembroEquipo);
+
+            for (Tarea t : tareas) {
+                jComboTarea.addItem(t);
+            }
+        }else 
+             JOptionPane.showMessageDialog(null,"Seleccione un miembro");
+       
+    }//GEN-LAST:event_jBuscarTareaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BAgregarComentario;
+    private javax.swing.JTextArea Comentarios;
+    private javax.swing.JButton bAdministrarTareas;
     private javax.swing.JButton jBuscarComentario;
     private javax.swing.JButton jBuscarEquipos;
     private javax.swing.JButton jBuscarMiembro;
     private javax.swing.JButton jBuscarTarea;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+<<<<<<< HEAD
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+=======
+>>>>>>> 2756fda3ae5ba141a42acae710c632570ad5f5ac
     private javax.swing.JButton jButtonMoificarP;
     private javax.swing.JComboBox<Equipo> jComboEquipos;
     private javax.swing.JComboBox<Miembro> jComboMiembro;
     private javax.swing.JComboBox<Proyecto> jComboProyecto;
     private javax.swing.JComboBox<Tarea> jComboTarea;
-    private javax.swing.JComboBox<String> jComboTarea1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
