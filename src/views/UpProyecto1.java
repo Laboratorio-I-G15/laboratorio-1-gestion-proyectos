@@ -349,7 +349,7 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jRadioActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioActualizarActionPerformed
-       if (ver &&jTextidentidad.getText()!="")
+       if (ver&&jTextidentidad.getText()!="")
        {
         if (jRadioNuevo.isSelected())
         {
@@ -367,7 +367,7 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
         else{ jTextdescripcion.setEditable(true);
             jTextidentidad.setEditable(false);
             jTextnombre1.setEditable(true);
-            jDateChooser1.setEnabled(false);
+            jDateChooser1.setEnabled(true);
             radioActivar.setEnabled(true);
             jButtonActualizar.setEnabled(true);
             jButtonBorrar.setEnabled(false);
@@ -426,9 +426,15 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
     }
     private boolean validar()
     {
-     if (jTextnombre1.getText()!="" || jDateChooser1.getDate()!=null || jTextdescripcion.getText()!="")
-     { return false;}
-     return true;
+    if (!jTextnombre1.getText().equals("") && !jTextdescripcion.getText().equals("") )
+     {
+         return true;
+     
+     }
+     else
+     {
+     return false;
+     }
     }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         dispose();        // TODO add your handling code here:
@@ -449,6 +455,12 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
       proyect.setFecha_inicio(fechaInicioLocalDate);
        proyectod.updateProyecto(proyect); // TODO add your handling code here:
        limpiar();
+       jTextdescripcion.setEditable(false);
+            jTextidentidad.setEditable(false);
+            jDateChooser1.setEnabled(false);
+            jTextnombre1.setEditable(false);
+            radioActivar.setEnabled(false);
+            jButtonActualizar.setEnabled(false);
           }
        else {JOptionPane.showMessageDialog(this, "Necesita llenar Los Campos");}
        
@@ -471,7 +483,8 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
      private boolean validarfecha()
      {
      Calendar fechaActual = Calendar.getInstance();
-        
+        if (jDateChooser1.getCalendar()==null)
+        {return false;}
         Calendar fechaSeleccionada = jDateChooser1.getCalendar();
         
         int añoActual = fechaActual.get(Calendar.YEAR);
@@ -493,7 +506,7 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
        Calendar fechaActual = Calendar.getInstance();
         
-        if (validarfecha()) 
+        if (validarfecha() ) 
         {     
         if (validar())
        {   

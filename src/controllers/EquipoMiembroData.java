@@ -105,9 +105,11 @@ public class EquipoMiembroData {
      * @return
      */
     
- public void insertEquipoMiembros(int id_miembro, int id_equipo) {
+
+
+public void insertEquipoMiembros(int id_miembro, int id_equipo) {
     try {
-        // Verificar si la fila ya existe
+        
         String selectSql = "SELECT COUNT(*) FROM equipo_miembro WHERE id_miembro = ? AND id_equipo = ?";
         PreparedStatement selectStatement = Conexion.getConexion().prepareStatement(selectSql);
         selectStatement.setInt(1, id_miembro);
@@ -115,12 +117,12 @@ public class EquipoMiembroData {
         ResultSet resultSet = selectStatement.executeQuery();
         resultSet.next();
         int count = resultSet.getInt(1);
-        
+
         if (count > 0) {
-            JOptionPane.showMessageDialog(null, "Ya esta Agregado este Miembro Al Equipo");
-            return; // Salir del método sin realizar la inserción
+            JOptionPane.showMessageDialog(null, "Este miembro ya está asociado a este equipo.");
+            return; 
         }
-        
+
         // Insertar la nueva fila
         String insertSql = "INSERT INTO equipo_miembro(fecha_inscripcion, id_equipo, id_miembro) VALUES (?,?,?)";
         PreparedStatement insertStatement = Conexion.getConexion().prepareStatement(insertSql);
@@ -128,14 +130,15 @@ public class EquipoMiembroData {
         insertStatement.setInt(2, id_equipo);
         insertStatement.setInt(3, id_miembro);
         int validacion = insertStatement.executeUpdate();
-        
+
         if (validacion == 1) {
-            JOptionPane.showMessageDialog(null, "Agregado miembro a equipo COrrectamente");
+            JOptionPane.showMessageDialog(null, "Miembro agregado al equipo correctamente.");
         } else {
             System.out.println("Se produjo un error al agregar un miembro al equipo.");
         }
     } catch (SQLException e) {
-        System.out.println("Ocurrió un error al agregar un Proyecto: " + e.getMessage());
+        JOptionPane.showMessageDialog(null, "Error: \n" + e.getMessage(), "Se ha producido un error.", JOptionPane.ERROR_MESSAGE);
+        e.printStackTrace();
     }
 }
 
