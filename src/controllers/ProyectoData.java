@@ -25,8 +25,46 @@ public class ProyectoData {
     public ProyectoData() {
          EquipoMiembroData equipo=new EquipoMiembroData();
     }
+public void insertProyecto(Proyecto proyecto) {
+    int validacion = 0;
+    try {
+        // Verificar si el proyecto ya existe
+        String selectSql = "SELECT COUNT(*) FROM proyecto WHERE nombre_proyecto = ?";
+        PreparedStatement selectStatement = Conexion.getConexion().prepareStatement(selectSql);
+        selectStatement.setString(1, proyecto.getNombre());
+        ResultSet resultSet = selectStatement.executeQuery();
+        resultSet.next();
+        int count = resultSet.getInt(1);
+        
+        if (count > 0) {
+           JOptionPane.showMessageDialog(null, "Ya a sido agregado este equipo al Proyecto");
+            JOptionPane.showMessageDialog(null, "El proyecto ya ha sido ingresado anteriormente.", "Proyecto Duplicado", JOptionPane.WARNING_MESSAGE);
+            return; // Salir del método sin realizar la inserción
+        }
+        
+        // Insertar el nuevo proyecto
+        String insertSql = "INSERT INTO proyecto (nombre_proyecto, descripcion_proyecto, fecha_inicio_proyecto, estado) VALUES (?,?,?,?)";
+        PreparedStatement insertStatement = Conexion.getConexion().prepareStatement(insertSql);
+        insertStatement.setString(1, proyecto.getNombre());
+        insertStatement.setString(2, proyecto.getDescripcion());
+        java.sql.Date fechaInicioSQL = java.sql.Date.valueOf(proyecto.getFecha_inicio());
+        insertStatement.setDate(3, fechaInicioSQL);
+        insertStatement.setBoolean(4, proyecto.getEstado());
+        validacion = insertStatement.executeUpdate();
+        
+        if (validacion == 1) {
+            System.out.println("Se agregó un nuevo Proyecto");
+            JOptionPane.showMessageDialog(null, "Se agregó un nuevo Proyecto");
+        } else {
+            System.out.println("Se produjo un error al agregar un Proyecto");
+            JOptionPane.showMessageDialog(null, "No se pudo Cargar Nuevo Proyecto");
+        }
+    } catch (SQLException e) {
+        System.out.println("Ocurrió un error al agregar un Proyecto: " + e.getMessage());
+    }
+}
 
-    public void insertProyecto(Proyecto proyecto) {
+    public void insertProyectos(Proyecto proyecto) {
         int validacion = 0;
         try {
             String sql = "INSERT INTO proyecto (nombre_proyecto, descripcion_proyecto, fecha_inicio_proyecto, estado) VALUES (?,?,?,?)";
