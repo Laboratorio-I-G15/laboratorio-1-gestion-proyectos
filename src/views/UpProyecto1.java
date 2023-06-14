@@ -9,6 +9,7 @@ import controllers.MiembroData;
 import controllers.ProyectoData;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import models.Miembro;
 import models.Proyecto;
@@ -366,7 +367,7 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
         else{ jTextdescripcion.setEditable(true);
             jTextidentidad.setEditable(false);
             jTextnombre1.setEditable(true);
-            jDateChooser1.setEnabled(true);
+            jDateChooser1.setEnabled(false);
             radioActivar.setEnabled(true);
             jButtonActualizar.setEnabled(true);
             jButtonBorrar.setEnabled(false);
@@ -412,9 +413,9 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
             jButtonBorrar.setEnabled(false);
 
         } // TODO add your handling code here:
-        Limpiar();
+        limpiar();
     }//GEN-LAST:event_jRadioNuevoActionPerformed
-    private void Limpiar()
+    private void limpiar()
     {
     jTextdescripcion.setText("");
             jTextidentidad.setText("");
@@ -423,11 +424,19 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
     
     
     }
+    private boolean validar()
+    {
+     if (jTextnombre1.getText()!="" || jDateChooser1.getDate()!=null || jTextdescripcion.getText()!="")
+     { return false;}
+     return true;
+    }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
+       if (validar())
+       {
         Proyecto proyect=new Proyecto();
        ProyectoData proyectod=new ProyectoData();
        String var;
@@ -439,7 +448,10 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
       java.time.LocalDate fechaInicioLocalDate = jDateChooser1.getCalendar().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
       proyect.setFecha_inicio(fechaInicioLocalDate);
        proyectod.updateProyecto(proyect); // TODO add your handling code here:
-       Limpiar();
+       limpiar();
+          }
+       else {JOptionPane.showMessageDialog(this, "Necesita llenar Los Campos");}
+       
     }//GEN-LAST:event_jButtonActualizarActionPerformed
 
     private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
@@ -454,11 +466,38 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
       java.time.LocalDate fechaInicioLocalDate = jDateChooser1.getCalendar().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
       proyect.setFecha_inicio(fechaInicioLocalDate);
        proyectod.updateProyecto(proyect);
-         Limpiar();
+         limpiar();
     }//GEN-LAST:event_jButtonBorrarActionPerformed
-
+     private boolean validarfecha()
+     {
+     Calendar fechaActual = Calendar.getInstance();
+        
+        Calendar fechaSeleccionada = jDateChooser1.getCalendar();
+        
+        int añoActual = fechaActual.get(Calendar.YEAR);
+        int mesActual = fechaActual.get(Calendar.MONTH);
+        int diaActual = fechaActual.get(Calendar.DAY_OF_MONTH);
+        
+        int añoSeleccionado = fechaSeleccionada.get(Calendar.YEAR);
+        int mesSeleccionado = fechaSeleccionada.get(Calendar.MONTH);
+        int diaSeleccionado = fechaSeleccionada.get(Calendar.DAY_OF_MONTH);
+        
+        if (añoSeleccionado == añoActual && mesSeleccionado == mesActual && diaSeleccionado == diaActual) {
+            return true;
+        } else {
+            return false;
+        }
+     
+     
+     }
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-       Proyecto proyect=new Proyecto();
+       Calendar fechaActual = Calendar.getInstance();
+        
+        if (validarfecha()) 
+        {     
+        if (validar())
+       {   
+        Proyecto proyect=new Proyecto();
        ProyectoData proyectod=new ProyectoData();
        String var;
        //int numeroInt = Integer.parseInt(jTextidentidad.getText());
@@ -469,8 +508,12 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
       java.time.LocalDate fechaInicioLocalDate = jDateChooser1.getCalendar().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
       proyect.setFecha_inicio(fechaInicioLocalDate);
        proyectod.insertProyecto(proyect);
-         Limpiar();
-       
+         limpiar();
+       }
+       else {JOptionPane.showMessageDialog(this, "Necesita llenar Los Campos");}
+        }
+        else{JOptionPane.showMessageDialog(this, "Por Favor seleccione fecha Actual"); }
+        
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jTextnombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextnombre1ActionPerformed
