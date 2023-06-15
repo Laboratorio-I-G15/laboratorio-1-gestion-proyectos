@@ -196,10 +196,10 @@ public static Equipo equipo=new Equipo();
     
     private boolean validar()
     { 
-        if (jTexnombre.getText()=="" || jDateChooser1.getDate()==null)
-           {return false;}
+         if (!jTexnombre.getText().equals("") && (jDateChooser1.getCalendar()!=null) )
+           {return true;}
         else
-        {return true;}
+        {return false;}
     
     }
     
@@ -220,7 +220,8 @@ public static Equipo equipo=new Equipo();
            jButtonEquipo.setEnabled(false);
            jButtonProyecto.setEnabled(true);
        
-       }// TODO add your handling code here:
+       }
+        else{JOptionPane.showMessageDialog(this, "Hay Campos Vacios");}// TODO add your handling code here:
     }//GEN-LAST:event_jButtonEquipoActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
