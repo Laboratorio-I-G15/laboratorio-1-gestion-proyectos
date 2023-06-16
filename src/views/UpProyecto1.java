@@ -32,6 +32,8 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
         jButtonActualizar.setEnabled(false);
         jButtonBorrar.setEnabled(false);
         jButtonGuardar.setEnabled(false);
+        
+
         for(int i=0;i<proyectos.size();i++)
         {
          jComboProyecto.addItem(proyectos.get(i));
@@ -55,8 +57,6 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jRadioActualizar = new javax.swing.JRadioButton();
         jRadioNuevo = new javax.swing.JRadioButton();
-        jLabel3 = new javax.swing.JLabel();
-        jTextidentidad = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextdescripcion = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
@@ -70,6 +70,7 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jTextnombre1 = new javax.swing.JTextField();
+        jTextidentidad = new javax.swing.JLabel();
 
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
@@ -121,11 +122,6 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
                 jRadioNuevoActionPerformed(evt);
             }
         });
-
-        jLabel3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("ID:");
-        jLabel3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         jTextdescripcion.setColumns(20);
         jTextdescripcion.setRows(5);
@@ -198,54 +194,47 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
                             .addGap(20, 20, 20)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(63, 63, 63)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                    .addComponent(jTextidentidad)
-                                                    .addGap(32, 32, 32))
-                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                    .addComponent(jTextnombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)))
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(26, 26, 26)
-                                                    .addComponent(radioActivar))))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGap(77, 77, 77)
-                                            .addComponent(jButtonActualizar)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jButtonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(99, 99, 99)
-                                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(124, 124, 124))
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jRadioActualizar)
                                     .addGap(165, 165, 165)
                                     .addComponent(jRadioNuevo))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jComboProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jTextnombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jComboProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextidentidad, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGap(64, 64, 64)
                                     .addComponent(jButton1))))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGap(32, 32, 32)
+                            .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(711, 711, 711))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
                             .addContainerGap()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(711, 711, 711))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(701, 701, 701))))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addGap(61, 61, 61)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(26, 26, 26)
+                                            .addComponent(radioActivar))))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(138, 138, 138)
+                                    .addComponent(jButtonActualizar)
+                                    .addGap(121, 121, 121)
+                                    .addComponent(jButtonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(99, 99, 99)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(124, 124, 124)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(228, 228, 228)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -266,29 +255,32 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextidentidad, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(40, 40, 40)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(radioActivar)
-                            .addComponent(jTextnombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextnombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(radioActivar)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addGap(41, 41, 41)
+                .addComponent(jTextidentidad, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addGap(60, 60, 60)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGuardar)
                     .addComponent(jButtonActualizar)
                     .addComponent(jButtonBorrar)
                     .addComponent(jButton2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -303,7 +295,7 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(144, Short.MAX_VALUE)
+                .addContainerGap(111, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -324,7 +316,7 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
         proyecto1 = (Proyecto) jComboProyecto.getSelectedItem();
         jRadioActualizar.setSelected(false);
         jRadioNuevo.setSelected(false);
-        
+        jTextidentidad.setEnabled(false);
        
         String var;
         
@@ -338,7 +330,7 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
         jDateChooser1.setDate(fechaInicioSQL);
         radioActivar.setSelected(proyecto1.getEstado());
         jTextdescripcion.setEditable(false);
-        jTextidentidad.setEditable(false);
+        jTextidentidad.setEnabled(false);
         jTextnombre1.setEditable(false);
         jDateChooser1.setEnabled(false);
         radioActivar.setEnabled(false);
@@ -358,14 +350,14 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
         if (!jRadioActualizar.isSelected())
         {
             jTextdescripcion.setEditable(false);
-            jTextidentidad.setEditable(false);
+            jTextidentidad.setEnabled(false);
             jDateChooser1.setEnabled(false);
             radioActivar.setEnabled(false);
             jButtonActualizar.setEnabled(false);
 
         }
         else{ jTextdescripcion.setEditable(true);
-            jTextidentidad.setEditable(false);
+            jTextidentidad.setEnabled(false);
             jTextnombre1.setEditable(true);
             jDateChooser1.setEnabled(true);
             radioActivar.setEnabled(true);
@@ -376,7 +368,7 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
        }
        else
        { jTextdescripcion.setEditable(false);
-            jTextidentidad.setEditable(false);
+            jTextidentidad.setEnabled(false);
             jDateChooser1.setEnabled(false);
             jTextnombre1.setEditable(false);
             radioActivar.setEnabled(false);
@@ -395,7 +387,7 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
         if (!jRadioNuevo.isSelected())
         {
             jTextdescripcion.setEditable(false);
-            jTextidentidad.setEditable(false);
+            jTextidentidad.setEnabled(false);
             jDateChooser1.setEnabled(false);
             radioActivar.setEnabled(false);
             jButtonActualizar.setEnabled(false);
@@ -403,7 +395,7 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
 
         }
         else{ jTextdescripcion.setEditable(true);
-            jTextidentidad.setEditable(false);
+            jTextidentidad.setEnabled(false);
             jTextnombre1.setEditable(true);
             jDateChooser1.setEnabled(true);
             radioActivar.setEnabled(true);
@@ -456,7 +448,7 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
        proyectod.updateProyecto(proyect); // TODO add your handling code here:
        limpiar();
        jTextdescripcion.setEditable(false);
-            jTextidentidad.setEditable(false);
+            jTextidentidad.setEnabled(false);
             jDateChooser1.setEnabled(false);
             jTextnombre1.setEditable(false);
             radioActivar.setEnabled(false);
@@ -543,7 +535,6 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<Proyecto> jComboProyecto;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -553,7 +544,7 @@ public class UpProyecto1 extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRadioNuevo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextdescripcion;
-    private javax.swing.JTextField jTextidentidad;
+    private javax.swing.JLabel jTextidentidad;
     private javax.swing.JTextField jTextnombre1;
     private javax.swing.JRadioButton radioActivar;
     // End of variables declaration//GEN-END:variables
