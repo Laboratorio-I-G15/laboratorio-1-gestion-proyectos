@@ -15,6 +15,8 @@ import models.Miembro;
  */
 public class MiembrosViews extends javax.swing.JInternalFrame {
 
+    ProyectoView vistaMenu = null;
+
     /**
      * Creates new form MiembrosViews
      */
@@ -45,24 +47,6 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
         btnCerrar = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         radioActivar = new javax.swing.JRadioButton();
-
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameClosing(evt);
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -199,12 +183,15 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-       dispose();
+        if (vistaMenu == null) {
+            vistaMenu= new ProyectoView();
+            vistaMenu.setVisible(true);
+            Gestion.desktop.add(vistaMenu);
+            
+        }
+        this.setEnabled(false);
+        dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
-
-    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
- Gestion.vistaMiembro=null;
-    }//GEN-LAST:event_formInternalFrameClosing
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         MiembroData miembroData = new MiembroData();
@@ -214,17 +201,22 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
         miembro.setDni(Long.parseLong(txtDniMiembro.getText()));
         miembro.setEstado(radioActivar.isSelected());
         if (miembroData.insertMiembro(miembro)) {
-         JOptionPane.showMessageDialog(null, "Se añadio correctamente un nuevo miembro");
-        }else{
-        JOptionPane.showMessageDialog(null, "Ocurrio un error!");  
+            JOptionPane.showMessageDialog(null, "Se añadio correctamente un nuevo miembro");
+            limpiar();
+        } else {
+            JOptionPane.showMessageDialog(null, "Ocurrio un error!");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void radioActivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioActivarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_radioActivarActionPerformed
-
-
+    void limpiar() {
+        txtApellidoMiembro.setText("");
+        txtNombreMiembro.setText("");
+        txtDniMiembro.setText("");
+        radioActivar.setSelected(false);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnGuardar;

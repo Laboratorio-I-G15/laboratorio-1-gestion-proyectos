@@ -14,7 +14,7 @@ public class Gestion extends javax.swing.JFrame {
  * Aca deberiamos definir las variables globales que va utilizar
  * esta vista principal.
  */
-  public static MiembrosViews vistaMiembro = null;
+  
   public static ProyectoView vistaProyecto = null;
   public static ProyectoView vistaProyectoso = null;
  
@@ -108,12 +108,7 @@ public class Gestion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-          if (vistaMiembro == null) {
-            vistaMiembro = new MiembrosViews();
-            vistaMiembro.setVisible(true);
-             desktop.add(vistaMiembro);
-        }
-       
+   
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
