@@ -67,6 +67,29 @@ public class EquipoMiembroData {
         }
         return id_equipo_miembro;
     }
+    /**
+     * 
+     * obtiene el id del equipo
+     */ 
+   public int selectIdEquipo(int id_miembroEquipo) {
+
+        int id_equipo= 0;
+
+        String consulta = "SELECT *  FROM equipo_miembro JOIN equipo ON equipo_miembro.id_equipo = equipo.id_equipo WHERE equipo_miembro.id_miembro_eq = ?";
+        try (PreparedStatement stmt = Conexion.getConexion().prepareStatement(consulta)) {
+            // bindeo id_proyecto
+            stmt.setInt(1, id_miembroEquipo);
+            System.out.println(stmt);
+            ResultSet result = stmt.executeQuery();
+            if (result.next()) {
+                id_equipo = result.getInt("equipo.id_equipo");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: \n" + e.getMessage(), "Se ha producido un error.", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+        return id_equipo;
+    }
 
     /**
      * devuelve ArrayList miembro de un equipo

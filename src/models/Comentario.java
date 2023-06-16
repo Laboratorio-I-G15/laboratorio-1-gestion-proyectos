@@ -68,7 +68,7 @@ public class Comentario {
 
     @Override
     public String toString() {
-        return "idComentario=" + idComentario + "\n  Comentario=" + comentario + "\n FechaAvance=" + fechaAvance + "\n Tarea=" + tarea.getNombre() ;
+        return "\n-Fecha de avance:"+ fechaAvance+" - Comentario: " + comentario ;
     }
     
 }

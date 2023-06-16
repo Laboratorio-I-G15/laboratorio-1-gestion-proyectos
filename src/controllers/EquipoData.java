@@ -152,7 +152,7 @@ public void insertEquipos(Equipo equipo, Proyecto proyecto) {
      */
     public Equipo selectEquipo(int id_equipo) {
         Equipo buscado = new Equipo();
-        String consulta = "SELECT * FROM `id_equipo` WHERE ìd_equipo` = ? ";
+        String consulta = "SELECT * FROM equipo WHERE id_equipo = ? ";
         try (PreparedStatement stmt = Conexion.getConexion().prepareStatement(consulta)) {
             stmt.setInt(1, id_equipo);
             ResultSet result = stmt.executeQuery();

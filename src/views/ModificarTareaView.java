@@ -5,7 +5,10 @@
  */
 package views;
 
+import controllers.EquipoData;
+import controllers.EquipoMiembroData;
 import controllers.MiembroData;
+import controllers.ProyectoData;
 import controllers.TareaData;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -14,8 +17,10 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import models.Equipo;
 import models.EquipoMiembro;
 import models.Miembro;
+import models.Proyecto;
 import models.Tarea;
 
 /**
@@ -28,6 +33,12 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
         private ArrayList<Tarea> tareas= new ArrayList();
         private TareaData tareaD = new TareaData();
         private EquipoMiembro equipoMiembro= new EquipoMiembro();
+        private EquipoMiembroData equipoMD= new EquipoMiembroData();
+        private Equipo equipo = new Equipo();
+        private EquipoData equipoD = new EquipoData();
+        private Proyecto proyecto = new Proyecto();
+        private ProyectoData proyectoD = new ProyectoData();
+        
         public ProyectoView proyectoV = new ProyectoView();
     /**
      * Creates new form MiembrosViews
@@ -37,8 +48,8 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
         this.setTitle("Aministrar Tarea");
         jidEquipoMiembro.setVisible(false);
         bBorrar.setEnabled(false);
-        bActualizar.setEnabled(false);
         Inactivo.setEnabled(false);
+        limpiarPantalla();
     }
 
     /**
@@ -318,71 +329,142 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void limpiarPantalla(){
+            
+        txtNombreTarea.setText("");
+        jFechaCreacion.setDate(null);
+        jFechaCierre.setDate(null);
+        bBorrar.setEnabled(false);
+        Pendiente.setSelected(false);
+        Progreso.setSelected(false);
+        Inactivo.setSelected(false);
+        Completado.setSelected(false);
+        
+    }
+    
+    private boolean validarCampos(){
+        
+        if(txtNombreTarea.getText().length()==0){
+            JOptionPane.showMessageDialog(null,"El campo nombre está vacio");
+            return false;
+        }else
+            if(tareaD.TareaExistente(txtNombreTarea.getText()))
+            {
+                JOptionPane.showMessageDialog(null,"Ya existe una tarea con el mismo nombre");
+                return false;
+            }
+        if(jFechaCreacion.getDate()==null){
+            JOptionPane.showMessageDialog(null,"Ingrese una fecha de Creacion");
+            return false;
+        }
+        if(jFechaCierre.getDate()==null){
+            JOptionPane.showMessageDialog(null,"Ingrese una fecha de Cierre");
+            return false;
+        }
+        
+        
+        return true;
+    }
     private void bCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCerrarActionPerformed
        dispose();
        Gestion.desktop.add(proyectoV);
        proyectoV.setVisible(true);
     }//GEN-LAST:event_bCerrarActionPerformed
 
+   public void cargarCombo(){
+           //obtener una lista de las tareas
+           int id=Integer.parseInt(jidEquipoMiembro.getText());
+           equipoMiembro.setId_equipo_miembro(id);
+           tareas = tareaD.selectTareasMiembro(equipoMiembro);//Obtiene un ArrayList de Tareas del MiembroEquipo 
+           //añadir al combo de la ventana tareaMiembro las tareas obtenidas
+           for(Tarea t : tareas){
+              jComboTareas.addItem(t);
+           }
+   }
+   
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
                 
     }//GEN-LAST:event_formInternalFrameClosing
-
+    private boolean validarFechas(){
+        ZoneId zona= ZoneId.systemDefault();
+        
+        Date DateCre = jFechaCreacion.getDate();
+        Date DateCie = jFechaCierre.getDate();
+        
+        LocalDate fechaCre=DateCre.toInstant().atZone(zona).toLocalDate();
+        LocalDate fechaCie=DateCie.toInstant().atZone(zona).toLocalDate();
+        //obtento el id equipo con el id del equipoMiembro
+        int idEquipo=equipoMD.selectIdEquipo(Integer.parseInt(jidEquipoMiembro.getText()));
+        System.out.println("idEquipo:"+idEquipo);
+        equipo=equipoD.selectEquipo(idEquipo);
+        //obtengo el proyecto con el id del equipo
+        proyecto=proyectoD.selectProyecto(equipo.getId_proyecto());
+        
+        if(proyecto.getFecha_inicio().isAfter(fechaCre)){
+             JOptionPane.showMessageDialog(null,"Ingrese una fecha posterior a la creacion del proyecto: " + proyecto.getFecha_inicio().toString());
+             return false;
+        }
+        if(fechaCre.isAfter(fechaCie)){
+             JOptionPane.showMessageDialog(null,"Ingrese una fecha posterior a la creacion del la tarea");
+             return false;
+        }
+        
+        return true;
+    }
     private void bActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bActualizarActionPerformed
         ///
-        tarea= (Tarea) jComboTareas.getSelectedItem();
-        System.out.println("Tarea:"+tarea.toString());
-        //fecha
+        if(validarCampos()){
+                tarea= (Tarea) jComboTareas.getSelectedItem();
+           System.out.println("Tarea:"+tarea.toString());
+           //fecha
 
-        ZoneId zona= ZoneId.systemDefault();
-        Date DateCreacion = jFechaCreacion.getDate();
-        Date DateCierre = jFechaCierre.getDate();
-         LocalDate fechaCreacion= DateCreacion.toInstant().atZone(zona).toLocalDate();
-         LocalDate fechaCierre= DateCierre.toInstant().atZone(zona).toLocalDate();
-        //
-        if(Inactivo.isSelected()){
-           bBorrar.setEnabled(false);
-        }else{
-             bBorrar.setEnabled(true); 
-        }
+           ZoneId zona= ZoneId.systemDefault();
+           Date DateCreacion = jFechaCreacion.getDate();
+           Date DateCierre = jFechaCierre.getDate();
+            LocalDate fechaCreacion= DateCreacion.toInstant().atZone(zona).toLocalDate();
+            LocalDate fechaCierre= DateCierre.toInstant().atZone(zona).toLocalDate();
+           //
+           if(Inactivo.isSelected()){
+              bBorrar.setEnabled(false);
+           }else{
+                bBorrar.setEnabled(true); 
+           }
+
+
+           if(Completado.isSelected())
+               tarea.setEstado(1);
+
+           if(Progreso.isSelected())
+               tarea.setEstado(2);
+
+           if(Pendiente.isSelected())
+               tarea.setEstado(3);
+           if(!Completado.isSelected()&&!Progreso.isSelected()&&!Pendiente.isSelected()&&!Inactivo.isSelected()){
+               tarea.setEstado(0);
+           }
+          tarea.setNombre(txtNombreTarea.getText().toString());
           
-        
-        if(Completado.isSelected())
-            tarea.setEstado(1);
-        
-        if(Progreso.isSelected())
-            tarea.setEstado(2);
-        
-        if(Pendiente.isSelected())
-            tarea.setEstado(3);
-        if(!Completado.isSelected()&&!Progreso.isSelected()&&!Pendiente.isSelected()&&!Inactivo.isSelected()){
-            tarea.setEstado(0);
+          tarea.setFechaCierre(fechaCierre);
+          tarea.setFechaCreacion(fechaCreacion);
+          int id=Integer.parseInt(jidEquipoMiembro.getText());
+          equipoMiembro.setId_equipo_miembro(id);
+          tarea.setEquipoMiembro(equipoMiembro);
+
+
+          //
+           if(validarFechas()){
+                if(tareaD.updateTarea(tarea)){
+                    JOptionPane.showMessageDialog(null,"Tarea actualizada");
+                }else
+                    JOptionPane.showMessageDialog(null,"No se pudo actualizar la tarea");                             
+           }
+            cargarCombo();
+            limpiarPantalla();
         }
-       tarea.setNombre(txtNombreTarea.getText().toString());
-       tarea.setFechaCierre(fechaCierre);
-       tarea.setFechaCreacion(fechaCreacion);
-       int id=Integer.parseInt(jidEquipoMiembro.getText());
-       equipoMiembro.setId_equipo_miembro(id);
-       tarea.setEquipoMiembro(equipoMiembro);
        
-       
-       //
-        System.out.println("Estado:"+tarea.getEstado());
-       tareaD.updateTarea(tarea);
        
     }//GEN-LAST:event_bActualizarActionPerformed
 
-    private void actualizarCombo(){
-        //obtener el id equipoMiembro
-       int id=Integer.parseInt(jidEquipoMiembro.getText());
-        tareas=tareaD.selectTareasMiembro(id); //obtiene un array de las tareas por id miembro
-        jComboTareas.removeAllItems();
-        for (Tarea tarea1 : tareas) {
-            jComboTareas.addItem(tarea1);
-        }
-        
-    }
-    
     
     private void CompletadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompletadoActionPerformed
         // TODO add your handling code here:
@@ -421,39 +503,46 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
 
     private void bAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarActionPerformed
         // TODO add your handling code here:
-        
-       //fecha
-        ZoneId zona= ZoneId.systemDefault();
-        Date DateCreacion = jFechaCreacion.getDate();
-        Date DateCierre = jFechaCierre.getDate();
-         LocalDate fechaCreacion= DateCreacion.toInstant().atZone(zona).toLocalDate();
-         LocalDate fechaCierre= DateCierre.toInstant().atZone(zona).toLocalDate();
-        //
-       
-        if(Completado.isSelected())
-            tarea.setEstado(1);
-        
-        if(Progreso.isSelected())
-            tarea.setEstado(2);
-        
-        if(Pendiente.isSelected())
-            tarea.setEstado(3);
-        
-        if(!Completado.isSelected()&&!Progreso.isSelected()&&!Pendiente.isSelected())
-            tarea.setEstado(0);
-        
-       
-       tarea.setNombre(txtNombreTarea.getText().toString());
-       tarea.setFechaCierre(fechaCierre);
-       tarea.setFechaCreacion(fechaCreacion);
-       int id=Integer.parseInt(jidEquipoMiembro.getText());
-       equipoMiembro.setId_equipo_miembro(id);
-       tarea.setEquipoMiembro(equipoMiembro);
-       
-        // 
-        tareaD.insertTarea(tarea);
-        //jComboTareas.addItem(tarea);
-        actualizarCombo();
+        if(validarCampos()){
+                //fecha
+            ZoneId zona= ZoneId.systemDefault();
+            Date DateCreacion = jFechaCreacion.getDate();
+            Date DateCierre = jFechaCierre.getDate();
+             LocalDate fechaCreacion= DateCreacion.toInstant().atZone(zona).toLocalDate();
+             LocalDate fechaCierre= DateCierre.toInstant().atZone(zona).toLocalDate();
+            //
+
+            if(Completado.isSelected())
+                tarea.setEstado(1);
+
+            if(Progreso.isSelected())
+                tarea.setEstado(2);
+
+            if(Pendiente.isSelected())
+                tarea.setEstado(3);
+
+            if(!Completado.isSelected()&&!Progreso.isSelected()&&!Pendiente.isSelected())
+                tarea.setEstado(0);
+
+
+           tarea.setNombre(txtNombreTarea.getText().toString());
+           tarea.setFechaCierre(fechaCierre);
+           tarea.setFechaCreacion(fechaCreacion);
+           int id=Integer.parseInt(jidEquipoMiembro.getText());
+           equipoMiembro.setId_equipo_miembro(id);
+           tarea.setEquipoMiembro(equipoMiembro);
+
+            // 
+            if(validarFechas()){
+                if(tareaD.insertTarea(tarea)){
+                    JOptionPane.showMessageDialog(null,"Tarea agregada con éxito");
+                }else
+                    JOptionPane.showMessageDialog(null,"No se pudo agregar la tarea");
+                
+            }
+            limpiarPantalla();
+            cargarCombo();     
+        } 
     }//GEN-LAST:event_bAgregarActionPerformed
 
     private void bBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBorrarActionPerformed
@@ -467,44 +556,29 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
         ///
          tarea= (Tarea) jComboTareas.getSelectedItem();
         System.out.println("Tarea:"+tarea.toString());
-        //fecha
-
-        ZoneId zona= ZoneId.systemDefault();
-        Date DateCreacion = jFechaCreacion.getDate();
-        Date DateCierre = jFechaCierre.getDate();
-         LocalDate fechaCreacion= DateCreacion.toInstant().atZone(zona).toLocalDate();
-         LocalDate fechaCierre= DateCierre.toInstant().atZone(zona).toLocalDate();
-        //
-       
         
-       tarea.setEstado(4);
-       tarea.setNombre(txtNombreTarea.getText().toString());
-       tarea.setFechaCierre(fechaCierre);
-       tarea.setFechaCreacion(fechaCreacion);
-       int id=Integer.parseInt(jidEquipoMiembro.getText());
-       equipoMiembro.setId_equipo_miembro(id);
-       tarea.setEquipoMiembro(equipoMiembro);
+
+        System.out.println("id:"+tarea.getIdTarea());
+       if(tareaD.updateTareaEstado(tarea.getIdTarea(),4)){
+           JOptionPane.showMessageDialog(null,"Tarea borrada");
+           bBorrar.setEnabled(false);
+            limpiarPantalla();
+            cargarCombo();
+       }else
+           JOptionPane.showMessageDialog(null,"No se pudo borrar la tarea");
        
-       
-       //
-        System.out.println("Estado:"+tarea.getEstado());
-       tareaD.updateTarea(tarea);
-       bBorrar.setEnabled(false);
-      
     }//GEN-LAST:event_bBorrarActionPerformed
 
     private void jComboTareasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboTareasItemStateChanged
         // TODO add your handling code here:
         
         
-         bActualizar.setEnabled(true);
         tarea= (Tarea) jComboTareas.getSelectedItem();
         txtNombreTarea.setText(tarea.getNombre());
         if(tarea.getEstado()==4){
             bBorrar.setEnabled(false);           
         }else{
            bBorrar.setEnabled(true);         
-
                 }
         //fecha
         LocalDate fechaCreacion=tarea.getFechaCreacion();
@@ -558,7 +632,6 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
             Completado.setSelected(false);
             Pendiente.setSelected(false);
             Progreso.setSelected(false);
-
         }
     }//GEN-LAST:event_InactivoActionPerformed
 

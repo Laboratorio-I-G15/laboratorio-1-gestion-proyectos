@@ -22,6 +22,27 @@ public class TareaData {
 
     public TareaData() {
     }
+    //Validar si ya existe una tarea con el mismo nombre, si existe devuelve true
+    public boolean TareaExistente(String nombre){
+        
+        try {
+            String sql = "SELECT * FROM `tarea` WHERE nombre_tarea LIKE \"%?\"";
+            PreparedStatement ps = Conexion.getConexion().prepareStatement(sql);
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs == null) {
+                System.out.println("No se encontraron tareas");
+            } else {
+                while (rs.next()) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al acceder a la tabla Tarea " + e.getMessage());
+        }
+        return false;
+    }
 
     //asignar tarea, devuelve true si se asigno la tarea
     public boolean insertTarea(Tarea tarea) {
@@ -66,6 +87,28 @@ public class TareaData {
             ps.setInt(5, tarea.getEquipoMiembro().getId_equipo_miembro());
             ps.setInt(6, tarea.getIdTarea());
 
+            resultado = ps.executeUpdate();
+            if (resultado == 1) {
+                System.out.println("Se actualizó la tarea");
+                return true;
+            } else {
+                System.out.println("Se produjo un error al actualizar la tarea");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al acceder a la tabla Tarea " + e.getMessage());
+        }
+        return false;
+    }
+    //update estado de la tarea
+    public boolean updateTareaEstado(int idTarea,int estado) {
+        int resultado;
+
+        try {
+            String sql = "UPDATE tarea SET estado_tarea=? WHERE id_tarea=?";
+            PreparedStatement ps = Conexion.getConexion().prepareStatement(sql);
+            ps.setInt(1, estado);
+            ps.setInt(2, idTarea);
+//
             resultado = ps.executeUpdate();
             if (resultado == 1) {
                 System.out.println("Se actualizó la tarea");
