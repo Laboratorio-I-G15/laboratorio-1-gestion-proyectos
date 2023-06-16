@@ -14,15 +14,20 @@ import models.Miembro;
  * @author leo_t
  */
 public class MiembrosViews extends javax.swing.JInternalFrame {
-
+   public  static  int id;
     ProyectoView vistaMenu = null;
 
     /**
      * Creates new form MiembrosViews
      */
     public MiembrosViews() {
+     
         initComponents();
         this.setTitle("Aministrar miembros");
+        jRadioActualizar.setSelected(true);
+        jRadionuevo.setSelected(false);
+        btnGuardar.setEnabled(false);
+        
     }
 
     /**
@@ -47,6 +52,8 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
         btnCerrar = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         radioActivar = new javax.swing.JRadioButton();
+        jRadionuevo = new javax.swing.JRadioButton();
+        jRadioActualizar = new javax.swing.JRadioButton();
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -73,6 +80,12 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
         jLabel5.setText("DNI:");
         jLabel5.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
+        txtNombreMiembro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreMiembroActionPerformed(evt);
+            }
+        });
+
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +101,11 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
         });
 
         btnUpdate.setText("Actualizar");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         radioActivar.setText("Activar/Desactivar");
         radioActivar.addActionListener(new java.awt.event.ActionListener() {
@@ -96,10 +114,32 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
             }
         });
 
+        jRadionuevo.setText("Nuevo");
+        jRadionuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadionuevoActionPerformed(evt);
+            }
+        });
+
+        jRadioActualizar.setText("Actualizar");
+        jRadioActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioActualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnGuardar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnUpdate)
+                .addGap(79, 79, 79)
+                .addComponent(btnCerrar)
+                .addGap(39, 39, 39))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -111,27 +151,29 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(82, 82, 82)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(82, 82, 82))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jRadioActualizar)
+                                .addGap(51, 51, 51)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtDniMiembro)
                             .addComponent(txtApellidoMiembro)
                             .addComponent(txtNombreMiembro)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(radioActivar)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(9, 9, 9)
+                                        .addComponent(radioActivar))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(44, 44, 44)
+                                        .addComponent(jRadionuevo)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(59, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnGuardar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnUpdate)
-                .addGap(79, 79, 79)
-                .addComponent(btnCerrar)
-                .addGap(39, 39, 39))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel2, jLabel3, jLabel4, jLabel5});
@@ -141,7 +183,11 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
+                .addGap(24, 24, 24)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadionuevo)
+                    .addComponent(jRadioActualizar))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNombreMiembro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -192,8 +238,17 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
         this.setEnabled(false);
         dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
+  private boolean validar() {
+  if (txtNombreMiembro.getText().equals("") || txtApellidoMiembro.getText().equals("") || txtDniMiembro.getText().equals("")) {
+    return false;
+  } else {
+    return true;
+  }
+}
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        if (validar())
+        {
         MiembroData miembroData = new MiembroData();
         Miembro miembro = new Miembro();
         miembro.setApellido(txtApellidoMiembro.getText());
@@ -206,11 +261,59 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Ocurrio un error!");
         }
+        }
+        else
+        {JOptionPane.showMessageDialog(this, "Tiene que llenar todos los campos");}
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void radioActivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioActivarActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_radioActivarActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+if (validar())
+        {
+        MiembroData miembroData = new MiembroData();
+        Miembro miembro = new Miembro();
+        miembro.setIdMiembro(id);
+        miembro.setApellido(txtApellidoMiembro.getText());
+        miembro.setNombre(txtNombreMiembro.getText());
+        miembro.setDni(Long.parseLong(txtDniMiembro.getText()));
+        miembro.setEstado(radioActivar.isSelected());
+        miembroData.updateMiembro(miembro);
+        limpiar();
+       
+        }
+        else
+        {JOptionPane.showMessageDialog(this, "Tiene que llenar todos los campos");}        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void txtNombreMiembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreMiembroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreMiembroActionPerformed
+
+    private void jRadionuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadionuevoActionPerformed
+        if (jRadionuevo.isSelected())
+        {jRadioActualizar.setSelected(false);
+        btnUpdate.setEnabled(false);
+        btnGuardar.setEnabled(true);
+        limpiar();
+        }
+        else
+        {
+             btnUpdate.setEnabled(true);
+        }
+// TODO add your handling code here:
+    }//GEN-LAST:event_jRadionuevoActionPerformed
+
+    private void jRadioActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioActualizarActionPerformed
+       if(jRadioActualizar.isSelected())
+       {jRadionuevo.setSelected(false);
+       btnGuardar.setEnabled(false);
+       btnUpdate.setEnabled(true);
+       }// TODO add your handling code here:
+       else
+       {btnGuardar.setEnabled(true);}
+    }//GEN-LAST:event_jRadioActualizarActionPerformed
     void limpiar() {
         txtApellidoMiembro.setText("");
         txtNombreMiembro.setText("");
@@ -226,10 +329,12 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton radioActivar;
-    private javax.swing.JTextField txtApellidoMiembro;
-    private javax.swing.JTextField txtDniMiembro;
-    private javax.swing.JTextField txtNombreMiembro;
+    public javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioActualizar;
+    private javax.swing.JRadioButton jRadionuevo;
+    public javax.swing.JRadioButton radioActivar;
+    public javax.swing.JTextField txtApellidoMiembro;
+    public javax.swing.JTextField txtDniMiembro;
+    public javax.swing.JTextField txtNombreMiembro;
     // End of variables declaration//GEN-END:variables
 }

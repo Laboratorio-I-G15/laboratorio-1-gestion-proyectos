@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import models.Miembro;
 
 /**
@@ -93,9 +94,9 @@ public class MiembroData {
             ps.setInt(5, miembro.getIdMiembro());
             validacion = ps.executeUpdate();
             if (validacion == 1) {
-                System.out.println("Se actualizó un miembro de la base de datos");   
+                JOptionPane.showMessageDialog(null,"se HIcieron los cambios en miembros");
             }else{
-                System.out.println("Se produjo un error al actualizar un miembro");
+                JOptionPane.showMessageDialog(null,"error al hacer cambio em miembros");
             }
         } catch (SQLException e) {
             System.out.println("Ocurrio un error al actualizar un miembro: "+e.getMessage());

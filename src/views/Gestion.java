@@ -17,6 +17,7 @@ public class Gestion extends javax.swing.JFrame {
   
   public static ProyectoView vistaProyecto = null;
   public static ProyectoView vistaProyectoso = null;
+    static Object vistaMiembro;
  
     
     public Gestion() {

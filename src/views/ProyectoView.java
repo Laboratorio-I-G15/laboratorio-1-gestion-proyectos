@@ -463,12 +463,25 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         this.setVisible(false);
         Gestion.desktop.add(vista);// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-
+   
     private void btnAdminMiembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminMiembroActionPerformed
         if (vistaMiembro == null) {
             vistaMiembro = new MiembrosViews();
             vistaMiembro.setVisible(true);
             Gestion.desktop.add(vistaMiembro);
+            Miembro miembro=new Miembro();
+            miembro=jComboMiembro.getItemAt(0);
+            if(!vistaMiembro.txtNombreMiembro.getText().equals(""))
+            {
+            vistaMiembro.txtNombreMiembro.setText(miembro.getNombre());
+            
+            vistaMiembro.txtApellidoMiembro.setText(miembro.getApellido());
+            vistaMiembro.txtDniMiembro.setText(String.valueOf(miembro.getDni()));
+            vistaMiembro.radioActivar.setSelected(miembro.isEstado());
+            vistaMiembro.id=miembro.getIdMiembro();
+            }
+            
+       
         }
             dispose();
     }//GEN-LAST:event_btnAdminMiembroActionPerformed
