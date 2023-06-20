@@ -6,3 +6,4 @@ dist/lib/mysql-connector-java-5.1.23-bin.jar
 dist/README.TXT
 nbproject/private/private.xml
 src/views/Gestion1.java
+build/classes/views/ProyectoView$3.class
