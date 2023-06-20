@@ -243,7 +243,7 @@ public class ComentariosView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
-            Gestion.vistaMiembro=null;
+            
     }//GEN-LAST:event_formInternalFrameClosing
     private void limpiarPantalla(){
         
