@@ -16,7 +16,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class Gestion extends javax.swing.JFrame {
 
     /**
-     * ----------DEFINICION DE VARIABLES GLOBALES---------- Aca deberiamos definir las variables globales que va utilizar esta vista principal.
+     * ----------DEFINICION DE VARIABLES GLOBALES----------
      */
     public static ProyectoView vistaProyecto = null;
     public static ProyectoView vistaProyectoso = null;

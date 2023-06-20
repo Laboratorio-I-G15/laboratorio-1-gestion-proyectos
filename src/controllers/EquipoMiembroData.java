@@ -67,13 +67,14 @@ public class EquipoMiembroData {
         }
         return id_equipo_miembro;
     }
-    /**
-     * 
-     * obtiene el id del equipo
-     */ 
-   public int selectIdEquipo(int id_miembroEquipo) {
 
-        int id_equipo= 0;
+    /**
+     *
+     * obtiene el id del equipo
+     */
+    public int selectIdEquipo(int id_miembroEquipo) {
+
+        int id_equipo = 0;
 
         String consulta = "SELECT *  FROM equipo_miembro JOIN equipo ON equipo_miembro.id_equipo = equipo.id_equipo WHERE equipo_miembro.id_miembro_eq = ?";
         try (PreparedStatement stmt = Conexion.getConexion().prepareStatement(consulta)) {
@@ -127,55 +128,51 @@ public class EquipoMiembroData {
      * @param equipo
      * @return
      */
-    
+    public void insertEquipoMiembros(int id_miembro, int id_equipo) {
+        try {
 
+            String selectSql = "SELECT COUNT(*) FROM equipo_miembro WHERE id_miembro = ? AND id_equipo = ?";
+            PreparedStatement selectStatement = Conexion.getConexion().prepareStatement(selectSql);
+            selectStatement.setInt(1, id_miembro);
+            selectStatement.setInt(2, id_equipo);
+            ResultSet resultSet = selectStatement.executeQuery();
+            resultSet.next();
+            int count = resultSet.getInt(1);
 
-public void insertEquipoMiembros(int id_miembro, int id_equipo) {
-    try {
-        
-        String selectSql = "SELECT COUNT(*) FROM equipo_miembro WHERE id_miembro = ? AND id_equipo = ?";
-        PreparedStatement selectStatement = Conexion.getConexion().prepareStatement(selectSql);
-        selectStatement.setInt(1, id_miembro);
-        selectStatement.setInt(2, id_equipo);
-        ResultSet resultSet = selectStatement.executeQuery();
-        resultSet.next();
-        int count = resultSet.getInt(1);
+            if (count > 0) {
+                JOptionPane.showMessageDialog(null, "Este miembro ya está asociado a este equipo.");
+                return;
+            }
 
-        if (count > 0) {
-            JOptionPane.showMessageDialog(null, "Este miembro ya está asociado a este equipo.");
-            return; 
+            // Insertar la nueva fila
+            String insertSql = "INSERT INTO equipo_miembro(fecha_inscripcion, id_equipo, id_miembro) VALUES (?,?,?)";
+            PreparedStatement insertStatement = Conexion.getConexion().prepareStatement(insertSql);
+            insertStatement.setDate(1, new java.sql.Date(System.currentTimeMillis())); // Fecha actual
+            insertStatement.setInt(2, id_equipo);
+            insertStatement.setInt(3, id_miembro);
+            int validacion = insertStatement.executeUpdate();
+
+            if (validacion == 1) {
+                JOptionPane.showMessageDialog(null, "Miembro agregado al equipo correctamente.");
+            } else {
+                System.out.println("Se produjo un error al agregar un miembro al equipo.");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: \n" + e.getMessage(), "Se ha producido un error.", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
-
-        // Insertar la nueva fila
-        String insertSql = "INSERT INTO equipo_miembro(fecha_inscripcion, id_equipo, id_miembro) VALUES (?,?,?)";
-        PreparedStatement insertStatement = Conexion.getConexion().prepareStatement(insertSql);
-        insertStatement.setDate(1, new java.sql.Date(System.currentTimeMillis())); // Fecha actual
-        insertStatement.setInt(2, id_equipo);
-        insertStatement.setInt(3, id_miembro);
-        int validacion = insertStatement.executeUpdate();
-
-        if (validacion == 1) {
-            JOptionPane.showMessageDialog(null, "Miembro agregado al equipo correctamente.");
-        } else {
-            System.out.println("Se produjo un error al agregar un miembro al equipo.");
-        }
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Error: \n" + e.getMessage(), "Se ha producido un error.", JOptionPane.ERROR_MESSAGE);
-        e.printStackTrace();
     }
-}
-
 
     public void insertEquipoMiembro(int id_miembro, int id_equipo) {
 
         int validacion = 0;
         try {
             String sql = "INSERT INTO equipo_miembro( fecha_inscripcion, id_equipo, id_miembro) VALUES (?,?,?)";
-         
+
             PreparedStatement ps = Conexion.getConexion().prepareStatement(sql);
-            
+
             java.sql.Date fechaInicioSQL = java.sql.Date.valueOf(LocalDate.now());
-            
+
             ps.setDate(1, fechaInicioSQL);
             ps.setInt(2, id_equipo);
             ps.setInt(3, id_miembro);
@@ -200,6 +197,7 @@ public void insertEquipoMiembros(int id_miembro, int id_equipo) {
         try (PreparedStatement stmt = Conexion.getConexion().prepareStatement(consulta)) {
             // bindeo id_proyecto
             stmt.setInt(1, equipo.getId_equipo());
+            System.out.println(stmt);
             ResultSet result = stmt.executeQuery();
             while (result.next()) {
                 Miembro miembro_1 = new Miembro();
@@ -212,6 +210,7 @@ public void insertEquipoMiembros(int id_miembro, int id_equipo) {
 
             }
         } catch (SQLException e) {
+            System.out.println("emd218");
             JOptionPane.showMessageDialog(null, "Error: \n" + e.getMessage(), "Se ha producido un error.", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }

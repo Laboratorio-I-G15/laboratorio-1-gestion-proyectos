@@ -34,7 +34,8 @@ public class ProyectoView extends javax.swing.JInternalFrame {
     private EquipoMiembro equipoM = new EquipoMiembro();
     private EquipoMiembroData equipoMD = new EquipoMiembroData();
     private Miembro miembro = new Miembro();
-    private ArrayList<Miembro> miembros = new ArrayList();
+    private ArrayList<Miembro> miembros;
+    private Proyecto proyect = new Proyecto();
     private Equipo equipo = new Equipo();
     public static MiembrosViews vistaMiembro = null;
     private Comentario comentario = new Comentario();
@@ -68,12 +69,9 @@ public class ProyectoView extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jComboEquipos = new javax.swing.JComboBox<>();
-        jBuscarEquipos = new javax.swing.JButton();
         jComboProyecto = new javax.swing.JComboBox<>();
-        jBuscarMiembro = new javax.swing.JButton();
         jComboMiembro = new javax.swing.JComboBox<>();
         jComboTarea = new javax.swing.JComboBox<>();
-        jBuscarTarea = new javax.swing.JButton();
         jBuscarComentario = new javax.swing.JButton();
         bAdministrarTareas = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -99,35 +97,27 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(854, 728));
         setMinimumSize(new java.awt.Dimension(854, 728));
+        setName(""); // NOI18N
         setPreferredSize(new java.awt.Dimension(854, 729));
 
         jComboEquipos.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-
-        jBuscarEquipos.setText("Buscar Equipos");
-        jBuscarEquipos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBuscarEquiposActionPerformed(evt);
+        jComboEquipos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboEquiposMouseClicked(evt);
             }
         });
 
         jComboProyecto.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jComboProyecto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboProyectoActionPerformed(evt);
-            }
-        });
-
-        jBuscarMiembro.setText("Buscar Miembros");
-        jBuscarMiembro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBuscarMiembroActionPerformed(evt);
+        jComboProyecto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboProyectoMouseClicked(evt);
             }
         });
 
         jComboMiembro.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jComboMiembro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboMiembroActionPerformed(evt);
+        jComboMiembro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboMiembroMouseClicked(evt);
             }
         });
 
@@ -135,13 +125,6 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         jComboTarea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboTareaActionPerformed(evt);
-            }
-        });
-
-        jBuscarTarea.setText("Buscar Tareas");
-        jBuscarTarea.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBuscarTareaActionPerformed(evt);
             }
         });
 
@@ -254,155 +237,114 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(BAdministrarComentario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jBuscarEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jBuscarMiembro, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(58, 58, 58)
-                                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel4)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboMiembro, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jBuscarTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jBuscarComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel5)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel7)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(Completado)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(Progreso)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(Pendiente)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(Inactivo)))
-                                    .addGap(192, 192, 192)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 758, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(540, 540, 540)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButtonMoificarP, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnAdminMiembro, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(bAdministrarTareas, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 52, Short.MAX_VALUE))
+                            .addComponent(jLabel2))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(234, 234, 234)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(247, 247, 247)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(BAdministrarComentario)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(184, 184, 184)
+                                .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboMiembro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboEquipos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboProyecto, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboTarea, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel5)
+                                                .addGap(69, 69, 69)
+                                                .addComponent(Completado)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(Progreso)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(Pendiente)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(Inactivo)))
+                                        .addGap(0, 8, Short.MAX_VALUE))
+                                    .addComponent(jScrollPane1))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(41, 41, 41)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jBuscarComentario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(bAdministrarTareas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btnAdminMiembro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jButton12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(45, 45, 45)
+                                        .addComponent(jButtonMoificarP, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(35, 35, 35))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBuscarEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonMoificarP, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBuscarMiembro, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboMiembro, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jBuscarTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnAdminMiembro, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jBuscarComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(bAdministrarTareas, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Completado)
-                            .addComponent(Progreso)
-                            .addComponent(Pendiente)
-                            .addComponent(Inactivo))))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BAdministrarComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34))
+                    .addComponent(jComboMiembro, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdminMiembro, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(Completado)
+                    .addComponent(Progreso)
+                    .addComponent(Pendiente)
+                    .addComponent(Inactivo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bAdministrarTareas, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BAdministrarComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jBuscarComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jBuscarEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarEquiposActionPerformed
-        // TODO add your handling code here:
-        jComboEquipos.removeAllItems();
-        ArrayList<Equipo> equipos = new ArrayList();
-        Proyecto proyecto1 = new Proyecto();
-        //String nombre = (String) jComboalumno.getSelectedItem();
-        proyecto1 = (Proyecto) jComboProyecto.getSelectedItem();
-        // proyecto=proyectoD.selectEquipos(proyect);
-        equipos = proyectoD.selectEquipos(proyecto1);
-        for (Equipo Lequipo : equipos) {
-            jComboEquipos.addItem(Lequipo);
-        }
-    }//GEN-LAST:event_jBuscarEquiposActionPerformed
-
-    private void jBuscarMiembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarMiembroActionPerformed
-        // TODO add your handling code here:
-        jComboMiembro.removeAllItems();
-        ///No puede buscar miembros de un equipo si no se selecciona el equipo primero
-
-        equipo = (Equipo) jComboEquipos.getSelectedItem();
-        if (equipo != null) {
-            miembros = equipoMD.selectEquipoMiembro(equipo.getId_equipo());
-            for (Miembro miembro : miembros) {
-                jComboMiembro.addItem(miembro);
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Seleccione un equipo");
-        }
-
-    }//GEN-LAST:event_jBuscarMiembroActionPerformed
 
     private void jComboTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboTareaActionPerformed
         // TODO add your handling code here:
@@ -481,16 +423,8 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton12ActionPerformed
 
-    private void jComboProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboProyectoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboProyectoActionPerformed
-
-    private void jComboMiembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboMiembroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboMiembroActionPerformed
-
     private void jButtonMoificarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMoificarPActionPerformed
-        UpProyecto1 proyec = new UpProyecto1();
+        AdminProyecto proyec = new AdminProyecto();
         proyec.setVisible(true);
         Gestion.desktop.add(proyec);
         this.setVisible(false);
@@ -524,67 +458,6 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         //}
         //  dispose();
     }//GEN-LAST:event_btnAdminMiembroActionPerformed
-
-    private void jBuscarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarTareaActionPerformed
-//        // TODO add your handling code here:
-//        //       jComboMiembro.removeAllItems();
-//        //        ArrayList<Tarea> tareas = new ArrayList();
-//        //        Tarea tarea = new Tarea();
-//        //        TareaData tareaD = new TareaData();
-//        //        EquipoMiembro equipoM = new EquipoMiembro();
-//        //        EquipoMiembroData equipoMD = new EquipoMiembroData();
-//        //        Miembro miembro = new Miembro();
-//        int idMiembroEquipo;
-//
-//        ///No puede buscar Tareas si no selecciona el miembro
-//        //conseguir el id del equipoMiembro
-//        miembro = (Miembro) jComboMiembro.getSelectedItem();
-//        if (miembro != null) {
-//            System.out.println(miembro.toString());
-//            idMiembroEquipo = equipoMD.selectIdEquipoMiembro(miembro.getIdMiembro());
-//            //setear el id del equipo miembro
-//            equipoM.setId_equipo_miembro(idMiembroEquipo);
-//
-//            tareas = tareaD.selectTareasMiembro(idMiembroEquipo);
-//
-//            for (Tarea t : tareas) {
-//                jComboTarea.addItem(t);
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Seleccione un miembro");
-//        }
-        Progreso.setSelected(false);
-        Completado.setSelected(false);
-        Inactivo.setSelected(false);
-        Pendiente.setSelected(false);
-
-        jComboTarea.removeAllItems();
-
-        tareas = obtenerTareas();
-        if (tareas != null) {
-            Pendiente.setEnabled(true);
-            Completado.setEnabled(true);
-            Progreso.setEnabled(true);
-            Inactivo.setEnabled(true);
-            BAdministrarComentario.setEnabled(true);
-            jBuscarComentario.setEnabled(true);
-            for (Tarea t : tareas) {
-                jComboTarea.addItem(t);
-            }
-        } else {
-            Pendiente.setEnabled(false);
-            Completado.setEnabled(false);
-            Progreso.setEnabled(false);
-            Inactivo.setEnabled(false);
-            BAdministrarComentario.setEnabled(false);
-            jBuscarComentario.setEnabled(false);
-            miembro = (Miembro) jComboMiembro.getSelectedItem();
-            if (miembro != null) {
-                JOptionPane.showMessageDialog(null, "No hay tareas asignadas a este miembro");
-            }
-        }
-
-    }//GEN-LAST:event_jBuscarTareaActionPerformed
 
     public ArrayList<Tarea> obtenerTareas() {
         jComboTarea.removeAllItems();
@@ -690,7 +563,6 @@ public class ProyectoView extends javax.swing.JInternalFrame {
                     jComboTarea.addItem(t);
                     System.out.println("" + t.toString());
                 }
-
             }
         } else {
             JOptionPane.showMessageDialog(null, "No hay tareas asignadas a este miembro");
@@ -715,6 +587,71 @@ public class ProyectoView extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
+    private void jComboEquiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboEquiposMouseClicked
+
+        jComboMiembro.removeAllItems();
+        equipo = (Equipo) jComboEquipos.getSelectedItem();
+        //   System.out.println("linea 399" + equipo.toString());
+        if (equipo != null) {
+            miembros = equipoMD.selectEquipoMiembro(equipo.getId_equipo());
+            for (Miembro miembro : miembros) {
+                jComboMiembro.addItem(miembro);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un equipo");
+        }
+
+    }//GEN-LAST:event_jComboEquiposMouseClicked
+
+    private void jComboProyectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboProyectoMouseClicked
+        // TODO add your handling code here:
+
+        // TODO add your handling code here:
+        jComboEquipos.removeAllItems();
+        ArrayList<Equipo> equipos = new ArrayList();
+        Proyecto proyecto1 = new Proyecto();
+        proyecto1 = (Proyecto) jComboProyecto.getSelectedItem();
+        equipos = proyectoD.selectEquipos(proyecto1);
+        for (Equipo Lequipo : equipos) {
+            jComboEquipos.addItem(Lequipo);
+        }
+
+    }//GEN-LAST:event_jComboProyectoMouseClicked
+
+    private void jComboMiembroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboMiembroMouseClicked
+        // TODO add your handling code here:
+        Progreso.setSelected(false);
+        Completado.setSelected(false);
+        Inactivo.setSelected(false);
+        Pendiente.setSelected(false);
+
+        jComboTarea.removeAllItems();
+
+        tareas = obtenerTareas();
+        if (tareas != null) {
+            Pendiente.setEnabled(true);
+            Completado.setEnabled(true);
+            Progreso.setEnabled(true);
+            Inactivo.setEnabled(true);
+            BAdministrarComentario.setEnabled(true);
+            jBuscarComentario.setEnabled(true);
+            for (Tarea t : tareas) {
+                jComboTarea.addItem(t);
+            }
+        } else {
+            Pendiente.setEnabled(false);
+            Completado.setEnabled(false);
+            Progreso.setEnabled(false);
+            Inactivo.setEnabled(false);
+            BAdministrarComentario.setEnabled(false);
+            jBuscarComentario.setEnabled(false);
+            miembro = (Miembro) jComboMiembro.getSelectedItem();
+            if (miembro != null) {
+                JOptionPane.showMessageDialog(null, "No hay tareas asignadas a este miembro");
+            }
+        }
+    }//GEN-LAST:event_jComboMiembroMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BAdministrarComentario;
     private javax.swing.JTextArea Comentarios;
@@ -725,9 +662,6 @@ public class ProyectoView extends javax.swing.JInternalFrame {
     private javax.swing.JButton bAdministrarTareas;
     private javax.swing.JButton btnAdminMiembro;
     private javax.swing.JButton jBuscarComentario;
-    private javax.swing.JButton jBuscarEquipos;
-    private javax.swing.JButton jBuscarMiembro;
-    private javax.swing.JButton jBuscarTarea;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButtonMoificarP;
