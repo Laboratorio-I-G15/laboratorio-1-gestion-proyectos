@@ -56,8 +56,11 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         Completado.setEnabled(false);
         Progreso.setEnabled(false);
         Inactivo.setEnabled(false);
+        Gestion.desktop.removeAll();
+        Gestion.desktop.repaint();
         this.setVisible(true);
         Gestion.desktop.add(this);
+        Gestion.desktop.moveToFront(this);
     }
 
     /**
@@ -382,9 +385,13 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         for (Tarea t : tareas) {
             vistaC.ComboTareas.addItem(t);
         }
-        this.setVisible(false);
+        dispose();
+        Gestion.desktop.removeAll();
+        Gestion.desktop.repaint();
         vistaC.setVisible(true);
         Gestion.desktop.add(vistaC);
+        Gestion.desktop.moveToFront(vistaC);
+        this.setVisible(false);
     }//GEN-LAST:event_BAdministrarComentarioActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed

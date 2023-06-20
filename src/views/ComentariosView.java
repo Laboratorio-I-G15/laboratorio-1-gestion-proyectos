@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import models.Comentario;
 import models.Miembro;
 import models.Tarea;
+import static views.Gestion.vistaProyecto;
 
 /**
  *
@@ -248,6 +249,7 @@ public class ComentariosView extends javax.swing.JInternalFrame {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         dispose();
+        vistaProyecto = new ProyectoView();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
