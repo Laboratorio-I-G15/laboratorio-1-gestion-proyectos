@@ -12,7 +12,8 @@ import java.time.LocalDate;
  * @author Ro
  */
 public class Comentario {
-     private int idComentario;
+
+    private int idComentario;
     private String comentario;
     private LocalDate fechaAvance;
     private Tarea tarea;
@@ -32,7 +33,6 @@ public class Comentario {
         this.fechaAvance = fechaAvance;
         this.tarea = tarea;
     }
-    
 
     public int getIdComentario() {
         return idComentario;
@@ -68,7 +68,7 @@ public class Comentario {
 
     @Override
     public String toString() {
-        return "\n-Fecha de avance:"+ fechaAvance+" - Comentario: " + comentario ;
+        return fechaAvance + ",  " + comentario;
     }
-    
+
 }

@@ -8,24 +8,27 @@ package models;
  * @author leo_t
  */
 public class Miembro {
+
     private int idMiembro;
     private long dni;
     private String apellido;
     private String nombre;
     private boolean estado;
-    
+
     /**
      * Constructor vacio para utilizar metodos get y set
      */
     public Miembro() {
     }
+
     /**
      * Constructor parametrizado con todos los atributos
+     *
      * @param idMiembro
      * @param dni
      * @param apellido
      * @param nombre
-     * @param estado 
+     * @param estado
      */
     public Miembro(int idMiembro, long dni, String apellido, String nombre, boolean estado) {
         this.idMiembro = idMiembro;
@@ -34,13 +37,15 @@ public class Miembro {
         this.nombre = nombre;
         this.estado = estado;
     }
-/**
- * Contructor parametrizado pero sin el idMiembro
- * @param dni
- * @param apellido
- * @param nombre
- * @param estado 
- */
+
+    /**
+     * Contructor parametrizado pero sin el idMiembro
+     *
+     * @param dni
+     * @param apellido
+     * @param nombre
+     * @param estado
+     */
     public Miembro(long dni, String apellido, String nombre, boolean estado) {
         this.dni = dni;
         this.apellido = apellido;
@@ -48,10 +53,9 @@ public class Miembro {
         this.estado = estado;
     }
 
-    /** 
-    * Meotodos getter & setter para el acceso 
-    * a los atributos del objeto usando encapsulamiento.
-    */
+    /**
+     * Meotodos getter & setter para el acceso a los atributos del objeto usando encapsulamiento.
+     */
     public int getIdMiembro() {
         return idMiembro;
     }
@@ -94,10 +98,6 @@ public class Miembro {
 
     @Override
     public String toString() {
-    return "Miembro = " + idMiembro + 
-        "\n, dni=" + dni + 
-        "\n, apellido=" + apellido + 
-        "\n, nombre=" + nombre + 
-        "\n, estado=" + estado;
+        return apellido + ", " + nombre;
     }
 }
