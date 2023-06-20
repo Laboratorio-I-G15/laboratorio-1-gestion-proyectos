@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package views;
-
-import javax.swing.JInternalFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -13,24 +11,21 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author leo_t
  */
-public class Gestion extends javax.swing.JFrame {
+public final class Gestion extends javax.swing.JFrame {
 
     /**
      * ----------DEFINICION DE VARIABLES GLOBALES----------
      */
     public static ProyectoView vistaProyecto = null;
-    public static ProyectoView vistaProyectoso = null;
-    static Object vistaMiembro;
 
     public Gestion() {
         initComponents();
+        aplicarLibreria();
         this.setLocationRelativeTo(null);
         this.setTitle("Sistema de Gestion de Proyectos");
         vistaProyecto = new ProyectoView();
-
         vistaProyecto.setVisible(true);
         desktop.add(vistaProyecto);
-
     }
 
     /**
@@ -81,21 +76,20 @@ public class Gestion extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-
+//    public static void main(String args[]) {
+//        
+//    }
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JDesktopPane desktop;
+    // End of variables declaration//GEN-END:variables
+void aplicarLibreria() {
         try {
             UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
             //UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
             /* Create and display the form */
-            java.awt.EventQueue.invokeLater(() -> {
-                new Gestion().setVisible(true);
-            });
+            
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             System.out.println("Libreria no soportada");
         }
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JDesktopPane desktop;
-    // End of variables declaration//GEN-END:variables
 }

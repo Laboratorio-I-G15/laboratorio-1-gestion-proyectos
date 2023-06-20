@@ -38,7 +38,7 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
 
         //for (int i = 0; i < proyectos.size(); i++) {
         for (Proyecto proyecto : proyectos) {
-            jComboProyecto.addItem(proyecto.getNombre());
+            jComboProyecto.addItem(proyecto);
         }
         this.setTitle("Aministrar miembros");
     }
