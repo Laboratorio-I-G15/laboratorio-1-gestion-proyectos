@@ -84,8 +84,8 @@ public class Gestion extends javax.swing.JFrame {
     public static void main(String args[]) {
 
         try {
-            //          UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
-            UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
+            UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
+            //UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
             /* Create and display the form */
             java.awt.EventQueue.invokeLater(() -> {
                 new Gestion().setVisible(true);
