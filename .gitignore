@@ -8,3 +8,4 @@ nbproject/private/private.xml
 src/views/Gestion1.java
 build/classes/views/ProyectoView$3.class
 src/controllers/Conexion.java
+build/classes/views/ProyectoView.form
