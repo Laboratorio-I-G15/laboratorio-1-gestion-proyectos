@@ -26,9 +26,9 @@ public class TareaData {
     public boolean TareaExistente(String nombre){
         
         try {
-            String sql = "SELECT * FROM `tarea` WHERE nombre_tarea LIKE \"%?\"";
+             String sql = "SELECT * FROM `tarea` WHERE nombre_tarea LIKE ?";
             PreparedStatement ps = Conexion.getConexion().prepareStatement(sql);
-            ps.setString(1, nombre);
+            ps.setString(1, "%" + nombre );
             ResultSet rs = ps.executeQuery();
 
             if (rs == null) {
