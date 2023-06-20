@@ -52,12 +52,12 @@ public class ProyectoView extends javax.swing.JInternalFrame {
             jComboProyecto.addItem(proy);
         }
         BAdministrarComentario.setEnabled(false);
-        jBuscarComentario.setEnabled(false);
         Pendiente.setEnabled(false);
         Completado.setEnabled(false);
         Progreso.setEnabled(false);
         Inactivo.setEnabled(false);
-
+        this.setVisible(true);
+        Gestion.desktop.add(this);
     }
 
     /**
@@ -72,7 +72,6 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         jComboProyecto = new javax.swing.JComboBox<>();
         jComboMiembro = new javax.swing.JComboBox<>();
         jComboTarea = new javax.swing.JComboBox<>();
-        jBuscarComentario = new javax.swing.JButton();
         bAdministrarTareas = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -101,9 +100,9 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         setPreferredSize(new java.awt.Dimension(854, 729));
 
         jComboEquipos.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jComboEquipos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jComboEquiposMouseClicked(evt);
+        jComboEquipos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboEquiposActionPerformed(evt);
             }
         });
 
@@ -113,25 +112,28 @@ public class ProyectoView extends javax.swing.JInternalFrame {
                 jComboProyectoMouseClicked(evt);
             }
         });
+        jComboProyecto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboProyectoActionPerformed(evt);
+            }
+        });
 
         jComboMiembro.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jComboMiembro.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jComboMiembroMouseClicked(evt);
+        jComboMiembro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboMiembroActionPerformed(evt);
             }
         });
 
         jComboTarea.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jComboTarea.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboTareaMouseClicked(evt);
+            }
+        });
         jComboTarea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboTareaActionPerformed(evt);
-            }
-        });
-
-        jBuscarComentario.setText("Ver comentarios");
-        jBuscarComentario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBuscarComentarioActionPerformed(evt);
             }
         });
 
@@ -279,19 +281,18 @@ public class ProyectoView extends javax.swing.JInternalFrame {
                                                 .addComponent(Pendiente)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(Inactivo)))
-                                        .addGap(0, 8, Short.MAX_VALUE))
-                                    .addComponent(jScrollPane1))
+                                        .addGap(0, 57, Short.MAX_VALUE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(41, 41, 41)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jBuscarComentario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(bAdministrarTareas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(btnAdminMiembro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jButton12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGap(45, 45, 45)
-                                        .addComponent(jButtonMoificarP, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(jButtonMoificarP, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(35, 35, 35))))
         );
         layout.setVerticalGroup(
@@ -331,15 +332,12 @@ public class ProyectoView extends javax.swing.JInternalFrame {
                     .addComponent(jComboTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bAdministrarTareas, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BAdministrarComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jBuscarComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BAdministrarComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33))
         );
 
@@ -349,32 +347,6 @@ public class ProyectoView extends javax.swing.JInternalFrame {
     private void jComboTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboTareaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboTareaActionPerformed
-
-    private void jBuscarComentarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarComentarioActionPerformed
-        // TODO add your handling code here:
-        Comentarios.setText("");
-        miembro = (Miembro) jComboMiembro.getSelectedItem(); //obtiene el miembro seleccionado en el combo
-        if (miembro != null) {
-            tarea = (Tarea) jComboTarea.getSelectedItem();
-            if (tarea != null) {
-                //obtener listado de comentarios
-                comentario.setTarea(tarea);
-                comentarios = comentarioD.selectComentarios(comentario);
-                if (comentarios != null) {
-                    for (Comentario c : comentarios) {
-                        Comentarios.append(c.toString());
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "No hay avances registrados para la tarea seleccionada");
-                }
-            } else {
-                jBuscarComentario.setEnabled(false);
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Seleccione un miembro");
-        }
-    }//GEN-LAST:event_jBuscarComentarioActionPerformed
 
     private void bAdministrarTareasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAdministrarTareasActionPerformed
         // TODO add your handling code here:
@@ -420,16 +392,16 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         this.setVisible(false);
         vista.setVisible(true);
         Gestion.desktop.add(vista);
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButtonMoificarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMoificarPActionPerformed
         AdminProyecto proyec = new AdminProyecto();
         proyec.setVisible(true);
         Gestion.desktop.add(proyec);
+        dispose();
         this.setVisible(false);
-        proyec.setVisible(true);
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jButtonMoificarPActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -454,9 +426,7 @@ public class ProyectoView extends javax.swing.JInternalFrame {
             vistaMiembro.radioActivar.setSelected(miembro.isEstado());
             vistaMiembro.id = miembro.getIdMiembro();
         }
-
-        //}
-        //  dispose();
+        dispose();
     }//GEN-LAST:event_btnAdminMiembroActionPerformed
 
     public ArrayList<Tarea> obtenerTareas() {
@@ -587,7 +557,52 @@ public class ProyectoView extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
-    private void jComboEquiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboEquiposMouseClicked
+    private void jComboProyectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboProyectoMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jComboProyectoMouseClicked
+
+    private void jComboTareaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboTareaMouseClicked
+        // TODO add your handling code here:
+        Comentarios.setText("");
+        miembro = (Miembro) jComboMiembro.getSelectedItem(); //obtiene el miembro seleccionado en el combo
+        if (miembro != null) {
+            tarea = (Tarea) jComboTarea.getSelectedItem();
+            if (tarea != null) {
+                //obtener listado de comentarios
+                comentario.setTarea(tarea);
+                comentarios = comentarioD.selectComentarios(comentario);
+                if (comentarios != null) {
+                    for (Comentario c : comentarios) {
+                        Comentarios.append(c.toString() + "\n");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "No hay avances registrados para la tarea seleccionada");
+                }
+            } else {
+                //        jBuscarComentario.setEnabled(false);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un miembro");
+        }
+    }//GEN-LAST:event_jComboTareaMouseClicked
+
+    private void jComboProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboProyectoActionPerformed
+        // TODO add your handling code here:
+        jComboEquipos.removeAllItems();
+        ArrayList<Equipo> equipos = new ArrayList();
+        Proyecto proyecto1 = new Proyecto();
+        proyecto1 = (Proyecto) jComboProyecto.getSelectedItem();
+        equipos = proyectoD.selectEquipos(proyecto1);
+        for (Equipo Lequipo : equipos) {
+            jComboEquipos.addItem(Lequipo);
+        }
+        System.out.println("linea 655");
+    }//GEN-LAST:event_jComboProyectoActionPerformed
+
+    private void jComboEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboEquiposActionPerformed
+        // TODO add your handling code here:
 
         jComboMiembro.removeAllItems();
         equipo = (Equipo) jComboEquipos.getSelectedItem();
@@ -600,25 +615,9 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione un equipo");
         }
+    }//GEN-LAST:event_jComboEquiposActionPerformed
 
-    }//GEN-LAST:event_jComboEquiposMouseClicked
-
-    private void jComboProyectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboProyectoMouseClicked
-        // TODO add your handling code here:
-
-        // TODO add your handling code here:
-        jComboEquipos.removeAllItems();
-        ArrayList<Equipo> equipos = new ArrayList();
-        Proyecto proyecto1 = new Proyecto();
-        proyecto1 = (Proyecto) jComboProyecto.getSelectedItem();
-        equipos = proyectoD.selectEquipos(proyecto1);
-        for (Equipo Lequipo : equipos) {
-            jComboEquipos.addItem(Lequipo);
-        }
-
-    }//GEN-LAST:event_jComboProyectoMouseClicked
-
-    private void jComboMiembroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboMiembroMouseClicked
+    private void jComboMiembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboMiembroActionPerformed
         // TODO add your handling code here:
         Progreso.setSelected(false);
         Completado.setSelected(false);
@@ -634,7 +633,7 @@ public class ProyectoView extends javax.swing.JInternalFrame {
             Progreso.setEnabled(true);
             Inactivo.setEnabled(true);
             BAdministrarComentario.setEnabled(true);
-            jBuscarComentario.setEnabled(true);
+            //  jBuscarComentario.setEnabled(true);
             for (Tarea t : tareas) {
                 jComboTarea.addItem(t);
             }
@@ -644,13 +643,13 @@ public class ProyectoView extends javax.swing.JInternalFrame {
             Progreso.setEnabled(false);
             Inactivo.setEnabled(false);
             BAdministrarComentario.setEnabled(false);
-            jBuscarComentario.setEnabled(false);
+            //     jBuscarComentario.setEnabled(false);
             miembro = (Miembro) jComboMiembro.getSelectedItem();
             if (miembro != null) {
                 JOptionPane.showMessageDialog(null, "No hay tareas asignadas a este miembro");
             }
         }
-    }//GEN-LAST:event_jComboMiembroMouseClicked
+    }//GEN-LAST:event_jComboMiembroActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BAdministrarComentario;
@@ -661,7 +660,6 @@ public class ProyectoView extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton Progreso;
     private javax.swing.JButton bAdministrarTareas;
     private javax.swing.JButton btnAdminMiembro;
-    private javax.swing.JButton jBuscarComentario;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButtonMoificarP;

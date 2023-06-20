@@ -391,11 +391,9 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
         }
     }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        dispose();        // TODO add your handling code here:
-        vistaProyecto.setVisible(true);
-        //      vistaProyecto = new ProyectoView();
-        //      vistaProyecto.setVisible(true);
-        //      desktop.add(vistaProyecto);
+        // TODO add your handling code here:
+        dispose();
+        vistaProyecto = new ProyectoView();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed

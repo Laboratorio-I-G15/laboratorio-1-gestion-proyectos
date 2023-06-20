@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package views;
+
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -24,8 +25,6 @@ public final class Gestion extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Sistema de Gestion de Proyectos");
         vistaProyecto = new ProyectoView();
-        vistaProyecto.setVisible(true);
-        desktop.add(vistaProyecto);
     }
 
     /**
@@ -77,17 +76,18 @@ public final class Gestion extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 //    public static void main(String args[]) {
-//        
+//
 //    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane desktop;
     // End of variables declaration//GEN-END:variables
-void aplicarLibreria() {
+
+    void aplicarLibreria() {
         try {
             UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
             //UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
             /* Create and display the form */
-            
+
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             System.out.println("Libreria no soportada");
         }

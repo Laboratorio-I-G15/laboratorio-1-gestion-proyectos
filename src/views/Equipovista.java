@@ -219,10 +219,8 @@ public class Equipovista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonEquipoActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
-        dispose();        // TODO add your handling code here:
-        //    vistaProyecto = new ProyectoView();
-        vistaProyecto.setVisible(true);
-        //  desktop.add(vistaProyecto);
+        dispose();
+        vistaProyecto = new ProyectoView();
     }//GEN-LAST:event_SalirActionPerformed
 
     private void jButtonProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProyectoActionPerformed

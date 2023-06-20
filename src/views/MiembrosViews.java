@@ -213,10 +213,11 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(radioActivar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 249, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30))
         );
 
@@ -237,17 +238,8 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-//        if (vistaMenu == null) {
-//            vistaMenu= new ProyectoView();
-//            vistaMenu.setVisible(true);
-//            Gestion.desktop.add(vistaMenu);
-//
-//        }
-//        this.setEnabled(false);
         dispose();
-        //   vistaProyecto = new ProyectoView();
-        vistaProyecto.setVisible(true);
-//        desktop.add(vistaProyecto);
+        vistaProyecto = new ProyectoView();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private boolean validar() {
@@ -294,7 +286,7 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
 
         } else {
             JOptionPane.showMessageDialog(this, "Tiene que llenar todos los campos");
-        }        // TODO add your handling code here:
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void txtNombreMiembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreMiembroActionPerformed
@@ -310,7 +302,6 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
         } else {
             btnUpdate.setEnabled(true);
         }
-// TODO add your handling code here:
     }//GEN-LAST:event_jRadionuevoActionPerformed
 
     private void jRadioActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioActualizarActionPerformed
@@ -318,8 +309,7 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
             jRadionuevo.setSelected(false);
             btnGuardar.setEnabled(false);
             btnUpdate.setEnabled(true);
-        }// TODO add your handling code here:
-        else {
+        } else {
             btnGuardar.setEnabled(true);
         }
     }//GEN-LAST:event_jRadioActualizarActionPerformed
