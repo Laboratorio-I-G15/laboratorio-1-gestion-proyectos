@@ -242,16 +242,16 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
         vistaProyecto = new ProyectoView();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
-       private boolean validar() {
+    private boolean validar() {
         if (txtNombreMiembro.getText().equals("") || txtApellidoMiembro.getText().equals("") || txtDniMiembro.getText().equals("")) {
-             JOptionPane.showMessageDialog(this, "Tiene que llenar todos los campos");
+            JOptionPane.showMessageDialog(this, "Tiene que llenar todos los campos");
             return false;
         } else {
             try {
                 Integer.parseInt(txtDniMiembro.getText());
                 return true;
             } catch (NumberFormatException nfe) {
-                 JOptionPane.showMessageDialog(this, "Ingrese un DNI válido");
+                JOptionPane.showMessageDialog(this, "Ingrese un DNI válido");
                 return false;
             }
         }
@@ -261,7 +261,7 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
         if (validar()) {
             MiembroData miembroData = new MiembroData();
             Miembro miembro = new Miembro();
-            miembro.setApellido(txtApellidoMiembro.getText());
+            miembro.setApellido(txtApellidoMiembro.getText().toUpperCase());
             miembro.setNombre(txtNombreMiembro.getText());
             miembro.setDni(Long.parseLong(txtDniMiembro.getText()));
             miembro.setEstado(radioActivar.isSelected());
