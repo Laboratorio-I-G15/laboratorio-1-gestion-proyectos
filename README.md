@@ -16,7 +16,7 @@
    <h2>Profesores  Luis Javier Mercado - Juan José Saez</h2>
 </div>
 <div align="center">
-      <img src="https://github.com/Laboratorio-I-G15/laboratorio-1-gestion-proyectos/blob/main/librerias_usadas/gestino.png" alt="Logo" width="600" height="450">
+      <img src="https://github.com/Laboratorio-I-G15/laboratorio-1-gestion-proyectos/blob/main/librerias_usadas/gestino.png" alt="Logo" width="800" height="650">
   <div>
 <div align="left">
   <ul><h2>Integrantes</h2>
