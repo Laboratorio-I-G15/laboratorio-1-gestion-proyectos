@@ -21,21 +21,34 @@ public class IniciarPrograma extends javax.swing.JFrame {
     /**
      * * CAMBIA USO DE BASE DATOS LOCAL O REMOTO **
      */
-    public static final boolean LOCAL = true;
+   public static final boolean LOCAL = false;
     Timer timer;
     ActionListener actionListener;
-
+     Gestion gestion;
+    AdminProyecto adminProyecto;
+    ComentariosView comentarios;
+    Enlace enlace;
+    Equipovista equipo;
+    MiembrosViews miembros;
+    ModificarTareaView tarea;
+    ProyectoView proyecto;
+    int seleccion = 0;
+    String claseCargada = "";
     /**
      * Creates new form IniciarPrograma
      */
     public IniciarPrograma() {
         actionListener = (ActionEvent ae) -> {
-            if (Progreso.getValue() < 100) {
-                Progreso.setValue(Progreso.getValue() + 10);
+            seleccion += 10;
+           if (Progreso.getValue() < 80) {
+                Progreso.setValue(seleccion);
+                cargar.setText("Cargando... " + claseCargada);
+                cargarClases();
             } else {
                 timer.stop();
                 dispose();
-                mostrarGestion();
+                cargarClases();
+                gestion.setVisible(true);
             }
         };
         initComponents();
@@ -53,6 +66,7 @@ public class IniciarPrograma extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        cargar = new javax.swing.JLabel();
         Progreso = new javax.swing.JProgressBar();
         jLabel1 = new javax.swing.JLabel();
 
@@ -60,6 +74,13 @@ public class IniciarPrograma extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(null);
+
+        cargar.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+        cargar.setForeground(new java.awt.Color(0, 0, 0));
+        cargar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cargar.setToolTipText("");
+        getContentPane().add(cargar);
+        cargar.setBounds(140, 10, 340, 30);
 
         Progreso.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Progreso.setForeground(new java.awt.Color(255, 102, 51));
@@ -87,10 +108,45 @@ public class IniciarPrograma extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar Progreso;
+    private javax.swing.JLabel cargar;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
-    private void mostrarGestion() {
-        Gestion gestion = new Gestion();
-        gestion.setVisible(true);
+ public void cargarClases() {
+        switch (seleccion) {
+            case 10:
+                gestion = new Gestion();
+                claseCargada = "Gestion";
+                break;
+            case 20:
+                adminProyecto = new AdminProyecto();
+                claseCargada = "Proyectos";
+                break;
+            case 30:
+                comentarios = new ComentariosView();
+                claseCargada = "Comentarios";
+                break;
+            case 40:
+                enlace = new Enlace();
+                claseCargada = "Enlace";
+                break;
+            case 50:
+                equipo = new Equipovista();
+                claseCargada = "Equipos";
+                break;
+            case 60:
+                miembros = new MiembrosViews();
+                claseCargada = "Miembros";
+                break;
+            case 70:
+                tarea = new ModificarTareaView();
+                claseCargada = "Tareas";
+                break;
+            case 80:
+                proyecto = new ProyectoView();
+                claseCargada = "Menu";
+                break;
+            default:
+                break;
+        }
     }
 }

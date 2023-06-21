@@ -193,6 +193,7 @@ private void initCombobox() {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         dispose();
+        vistaProyecto = new ProyectoView();
         vistaProyecto.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
