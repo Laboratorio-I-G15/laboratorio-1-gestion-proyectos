@@ -249,20 +249,43 @@ public class EquipoData {
 
     public boolean verifyEquipo(String nombre_equipo) {
 //        Equipo buscado = new Equipo();
-        String consulta = "SELECT id_equipo FROM equipo WHERE nombre_equipo like ? ";
-        try (PreparedStatement stmt = Conexion.getConexion().prepareStatement(consulta)) {
-            stmt.setString(1, nombre_equipo);
-            ResultSet result = stmt.executeQuery();
-            System.out.println(stmt);
-            if (result == null) {
+//        String consulta = "SELECT id_equipo FROM equipo WHERE nombre_equipo like ? ";
+//        try (PreparedStatement stmt = Conexion.getConexion().prepareStatement(consulta)) {
+//            stmt.setString(1, nombre_equipo);
+//            ResultSet result = stmt.executeQuery();
+//            System.out.println(stmt);
+//            if (result == null) {
+//                return false;
+//            }
+//
+//        } catch (SQLException e) {
+//            JOptionPane.showMessageDialog(null, "Error: \n" + e.getMessage(), "Se ha producido un error.", JOptionPane.ERROR_MESSAGE);
+//            e.printStackTrace();
+//        }
+//        return true;
+//    }
+ int validacion = 0;
+        
+ try {
+            // Verificar si el proyecto ya existe
+            String selectSql = "SELECT COUNT(*) FROM equipo WHERE nombre_equipo = ?";
+            PreparedStatement selectStatement = Conexion.getConexion().prepareStatement(selectSql);
+            selectStatement.setString(1,nombre_equipo);
+            ResultSet resultSet = selectStatement.executeQuery();
+            resultSet.next();
+            int count = resultSet.getInt(1);
+            if (count > 0) {
+              
+                JOptionPane.showMessageDialog(null, "El proyecto ya ha sido ingresado anteriormente.");
+              
                 return false;
             }
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error: \n" + e.getMessage(), "Se ha producido un error.", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            else
+            {return true;}
+              } catch (SQLException e) {
+            System.out.println("Ocurrió un error al agregar un Equipo: " + e.getMessage());
         }
-        return true;
-    }
+ return false;
+ }
 
 }

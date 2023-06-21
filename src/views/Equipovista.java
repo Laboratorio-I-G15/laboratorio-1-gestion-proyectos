@@ -241,9 +241,12 @@ public class Equipovista extends javax.swing.JInternalFrame {
 
     private void jButtonEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEquipoActionPerformed
         int cont;
+        EquipoData equi=new EquipoData();
         Calendar fechaActual = Calendar.getInstance();
         if (validar()) {
             equipo.setNombre(jTexnombre.getText());
+            if (equi.verifyEquipo(equipo.getNombre()))
+            {
             if (jRadioButton1.isSelected()) {
                 cont = 1;
             } else {
@@ -255,6 +258,9 @@ public class Equipovista extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Tiene que Asignar Equipo a un Proyecto");
             jButtonEquipo.setEnabled(false);
             jButtonProyecto.setEnabled(true);
+            }
+            else
+            {JOptionPane.showMessageDialog(this, "ya Existe Equipo con ese nombre");}
 
         } else {
             JOptionPane.showMessageDialog(this, "Hay Campos Vacios");
