@@ -52,11 +52,7 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         for (Proyecto proy : proyectos) {
             jComboProyecto.addItem(proy);
         }
-        BAdministrarComentario.setEnabled(false);
-        Pendiente.setEnabled(false);
-        Completado.setEnabled(false);
-        Progreso.setEnabled(false);
-        Inactivo.setEnabled(false);
+      
         Gestion.desktop.removeAll();
         Gestion.desktop.repaint();
         this.setVisible(true);
@@ -604,10 +600,11 @@ public class ProyectoView extends javax.swing.JInternalFrame {
 
     private void jComboProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboProyectoActionPerformed
         // TODO add your handling code here:
+         cargarComboTarea();
         jComboEquipos.removeAllItems();
         jComboMiembro.removeAllItems();
         jComboTarea.removeAllItems();
-        cargarComboTarea();
+       
         ArrayList<Equipo> equipos = new ArrayList();
         Proyecto proyecto1 = new Proyecto();
         proyecto1 = (Proyecto) jComboProyecto.getSelectedItem();
@@ -623,7 +620,6 @@ public class ProyectoView extends javax.swing.JInternalFrame {
 
         jComboMiembro.removeAllItems();
         jComboTarea.removeAllItems();
-        cargarComboTarea();
         equipo = (Equipo) jComboEquipos.getSelectedItem();
         //   System.out.println("linea 399" + equipo.toString());
         if (equipo != null) {
@@ -670,29 +666,7 @@ public class ProyectoView extends javax.swing.JInternalFrame {
 
         jComboTarea.removeAllItems();
         cargarComboTarea();
-//        tareas = obtenerTareas();
-//        if (tareas != null) {
-//            Pendiente.setEnabled(true);
-//            Completado.setEnabled(true);
-//            Progreso.setEnabled(true);
-//            Inactivo.setEnabled(true);
-//            BAdministrarComentario.setEnabled(true);
-//            //  jBuscarComentario.setEnabled(true);
-//            for (Tarea t : tareas) {
-//                jComboTarea.addItem(t);
-//            }
-//        } else {
-//            Pendiente.setEnabled(false);
-//            Completado.setEnabled(false);
-//            Progreso.setEnabled(false);
-//            Inactivo.setEnabled(false);
-//            BAdministrarComentario.setEnabled(false);
-//            //     jBuscarComentario.setEnabled(false);
-//            miembro = (Miembro) jComboMiembro.getSelectedItem();
-//            if (miembro != null) {
-//                JOptionPane.showMessageDialog(null, "No hay tareas asignadas a este miembro");
-//            }
-//        }
+//       
     }//GEN-LAST:event_jComboMiembroActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
