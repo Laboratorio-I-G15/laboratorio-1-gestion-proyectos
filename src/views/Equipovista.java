@@ -23,6 +23,7 @@ import static views.Gestion.vistaProyecto;
 public class Equipovista extends javax.swing.JInternalFrame {
 
     public static Equipo equipo = new Equipo();
+     public static Equipo equipoc=new Equipo();
 
     /**
      * Creates new form Equipovista
@@ -300,22 +301,20 @@ public class Equipovista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jRadioButtonactualizarActionPerformed
 
     private void jButtonactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonactualizarActionPerformed
-        int con;
-        EquipoData equipod = new EquipoData();
-        System.out.println(equipo);
-        equipo.setNombre(jTexnombre.getText());
+       int con;
+      EquipoData equipod=new EquipoData();
+      equipoc.setNombre(jTexnombre.getText());
         System.out.println(equipo.getNombre());
-        java.time.LocalDate fechaInicioLocalDate = jDateChooser1.getCalendar().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        equipo.setCreacion(fechaInicioLocalDate);
-        System.out.println(equipo.getId_equipo());
-        if (jRadioButton1.isSelected()) {
-            con = 1;
-        } else {
-            con = 0;
-        }
-        equipo.setEstado(con);
-        System.out.println(equipo);
-        equipod.updateEquipo(equipo);
+      java.time.LocalDate fechaInicioLocalDate = jDateChooser1.getCalendar().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+      equipoc.setCreacion(fechaInicioLocalDate);
+      if (jRadioButton1.isSelected())
+      { con=1;}
+      else
+      { con=0;}
+      equipoc.setEstado(con);
+        System.out.println(equipoc);
+      equipod.updateEquipo(equipoc);
+      
 
     }//GEN-LAST:event_jButtonactualizarActionPerformed
 

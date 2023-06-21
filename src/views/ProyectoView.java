@@ -403,6 +403,7 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         // TODO EDITAR EQUIPO
         equipo = (Equipo) jComboEquipos.getSelectedItem();
         proyecto = (Proyecto) jComboProyecto.getSelectedItem();
+        Equipovista.equipoc= (Equipo) jComboEquipos.getSelectedItem();
         ////////////////////////////////////NUEVO////////////////////////////////////
         if (proyecto != null) {
             Equipovista vista = new Equipovista();
