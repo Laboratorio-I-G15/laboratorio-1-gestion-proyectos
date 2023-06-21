@@ -228,13 +228,15 @@ public void insertEquipos(Equipo equipo, Proyecto proyecto) {
      */
     public int updateEquipo(Equipo equipo) {
         int result = 0;
-        String consulta = "UPDATE `equipo` SET `id_proyecto`='?',`nombre_equipo`='?',`fecha_creacion_equipo`='?',`estado_equipo`='?' WHERE `id_equipo` = ?";
+     
+        String consulta = "UPDATE `equipo` SET  `nombre_equipo`=?, `fecha_creacion_equipo`=?, `estado_equipo`=? WHERE `id_equipo` = ?";
+
         try (PreparedStatement stmt = Conexion.getConexion().prepareStatement(consulta)) {
-            stmt.setInt(1, equipo.getId_proyecto());
-            stmt.setString(2, equipo.getNombre());
-            stmt.setDate(3, java.sql.Date.valueOf(equipo.getCreacion()));
-            stmt.setInt(4, equipo.getEstado());
-            stmt.setInt(5, equipo.getId_equipo());
+          
+            stmt.setString(1, equipo.getNombre());
+            stmt.setDate(2, java.sql.Date.valueOf(equipo.getCreacion()));
+            stmt.setInt(3, equipo.getEstado());
+            stmt.setInt(4, equipo.getId_equipo());
             result = stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Se actualizo correctamente", "EQUIPO", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {

@@ -23,14 +23,19 @@ import static views.Gestion.vistaProyecto;
 public class Equipovista extends javax.swing.JInternalFrame {
 
     public static Equipo equipo = new Equipo();
-
+    
     /**
      * Creates new form Equipovista
      */
     public Equipovista() {
         initComponents();
         jButtonProyecto.setEnabled(false);
-
+        jButtonEquipo.setEnabled(false);
+       jRadioButtonactualizar.setSelected(true);
+       jRadioButtonnuevo.setSelected(false);
+     
+       
+       
         cargarCombo();
     }
 
@@ -64,6 +69,9 @@ public class Equipovista extends javax.swing.JInternalFrame {
         jButtonProyecto = new javax.swing.JButton();
         jRadioButton1 = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
+        jRadioButtonactualizar = new javax.swing.JRadioButton();
+        jRadioButtonnuevo = new javax.swing.JRadioButton();
+        jButtonactualizar = new javax.swing.JButton();
 
         jLabel2.setText("jLabel2");
 
@@ -119,6 +127,27 @@ public class Equipovista extends javax.swing.JInternalFrame {
         jLabel7.setText("Proyecto:");
         jLabel7.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
+        jRadioButtonactualizar.setText("Actualizar");
+        jRadioButtonactualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonactualizarActionPerformed(evt);
+            }
+        });
+
+        jRadioButtonnuevo.setText("Nuevo");
+        jRadioButtonnuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonnuevoActionPerformed(evt);
+            }
+        });
+
+        jButtonactualizar.setText("Actualizar");
+        jButtonactualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonactualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -141,10 +170,16 @@ public class Equipovista extends javax.swing.JInternalFrame {
                             .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTexnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTexnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jRadioButtonnuevo)
+                                .addGap(78, 78, 78)
+                                .addComponent(jRadioButtonactualizar)))))
                 .addGap(0, 240, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonactualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -172,16 +207,25 @@ public class Equipovista extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonactualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(129, 129, 129)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jRadioButtonactualizar)
+                            .addComponent(jRadioButtonnuevo))
+                        .addContainerGap(208, Short.MAX_VALUE))))
         );
 
         pack();
@@ -230,11 +274,59 @@ public class Equipovista extends javax.swing.JInternalFrame {
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jButtonProyectoActionPerformed
+   private void limpiar()
+   {
+       jTexnombre.setText("");
+       jDateChooser1.setCalendar(null);
+      jRadioButton1.setEnabled(false);
+   }
+    private void jRadioButtonnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonnuevoActionPerformed
+      if(jRadioButtonnuevo.isSelected())
+      {
+      jRadioButtonactualizar.setSelected(false);
+      jButtonactualizar.setEnabled(false);
+      jButtonEquipo.setEnabled(true);
+      jButtonProyecto.setEnabled(true);
+      limpiar();      
+      }// TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonnuevoActionPerformed
+
+    private void jRadioButtonactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonactualizarActionPerformed
+       if (jRadioButtonactualizar.isSelected())
+       {  jComboBox1.setEnabled(false);
+          jRadioButtonnuevo.setSelected(false);
+         jButtonactualizar.setEnabled(true);
+          jButtonEquipo.setEnabled(false);
+      jButtonProyecto.setEnabled(false);
+         
+       }// TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonactualizarActionPerformed
+
+    private void jButtonactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonactualizarActionPerformed
+     int con;
+      EquipoData equipod=new EquipoData();
+      equipo.setNombre(jTexnombre.getText());
+        System.out.println(equipo.getNombre());
+      java.time.LocalDate fechaInicioLocalDate = jDateChooser1.getCalendar().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+      equipo.setCreacion(fechaInicioLocalDate);
+      if (jRadioButton1.isSelected())
+      { con=1;}
+      else
+      { con=0;}
+      equipo.setEstado(con);
+        System.out.println(equipo);
+      equipod.updateEquipo(equipo);
+      
+      
+      
+        
+    }//GEN-LAST:event_jButtonactualizarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Salir;
     private javax.swing.JButton jButtonEquipo;
     private javax.swing.JButton jButtonProyecto;
+    private javax.swing.JButton jButtonactualizar;
     private javax.swing.JComboBox<Proyecto> jComboBox1;
     public com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
@@ -244,6 +336,8 @@ public class Equipovista extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     public javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButtonactualizar;
+    private javax.swing.JRadioButton jRadioButtonnuevo;
     public javax.swing.JTextField jTexnombre;
     // End of variables declaration//GEN-END:variables
 }
