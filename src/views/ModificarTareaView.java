@@ -180,7 +180,7 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
             }
         });
 
-        bBorrar.setText("Borrar");
+        bBorrar.setText("Desactivar");
         bBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bBorrarActionPerformed(evt);
@@ -203,7 +203,9 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
                 .addComponent(jidEquipoMiembro)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(216, 216, 216)
+                .addGap(75, 75, 75)
+                .addComponent(bActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,31 +219,32 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
                             .addComponent(jComboTareas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtNombreTarea)
                             .addComponent(jFechaCreacion, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                            .addComponent(jFechaCierre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jFechaCierre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(238, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
+                                .addGap(41, 41, 41)
                                 .addComponent(Completado)
-                                .addGap(27, 27, 27)
-                                .addComponent(Progreso))
+                                .addGap(18, 18, 18)
+                                .addComponent(Progreso)
+                                .addGap(18, 18, 18)
+                                .addComponent(Pendiente))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(69, 69, 69)
-                                .addComponent(bActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(bAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
+                                .addGap(86, 86, 86)
+                                .addComponent(bAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(75, 75, 75)
+                                .addComponent(bBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(bBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(bCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(bCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(72, 72, 72))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(Pendiente)
                                 .addGap(18, 18, 18)
-                                .addComponent(Inactivo)))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                                .addComponent(Inactivo)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel2, jLabel3, jLabel4, jLabel5});
@@ -249,7 +252,7 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(99, 99, 99)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboTareas, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -280,7 +283,7 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
                     .addComponent(Inactivo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jidEquipoMiembro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -339,9 +342,6 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
         if (txtNombreTarea.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "El campo nombre está vacio");
             return false;
-        } else if (tareaD.TareaExistente(txtNombreTarea.getText())) {
-            JOptionPane.showMessageDialog(null, "Ya existe una tarea con el mismo nombre");
-            return false;
         }
         if (jFechaCreacion.getDate() == null) {
             JOptionPane.showMessageDialog(null, "Ingrese una fecha de Creacion");
@@ -390,11 +390,11 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
         proyecto = proyectoD.selectProyecto(equipo.getId_proyecto());
 
         if (proyecto.getFecha_inicio().isAfter(fechaCre)) {
-            JOptionPane.showMessageDialog(null, "Ingrese una fecha posterior a la creacion del proyecto: " + proyecto.getFecha_inicio().toString());
+            JOptionPane.showMessageDialog(null, "La fecha de creacion debe ser posterior a la creacion del proyecto: " + proyecto.getFecha_inicio().toString());
             return false;
         }
         if (fechaCre.isAfter(fechaCie)) {
-            JOptionPane.showMessageDialog(null, "Ingrese una fecha posterior a la creacion del la tarea");
+            JOptionPane.showMessageDialog(null, "La fecha de cierre debe ser posterior a la creacion del la tarea");
             return false;
         }
 
@@ -449,9 +449,10 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(null, "No se pudo actualizar la tarea");
                 }
             }
-            cargarCombo();
-            limpiarPantalla();
+           
         }
+         cargarCombo();
+            limpiarPantalla();
 
     }//GEN-LAST:event_bActualizarActionPerformed
 
@@ -492,6 +493,9 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
     private void bAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarActionPerformed
         // TODO add your handling code here:
         if (validarCampos()) {
+            if (tareaD.TareaExistente(txtNombreTarea.getText())) {
+            JOptionPane.showMessageDialog(null, "Ya existe una tarea con el mismo nombre");
+            }else{
             //fecha
             ZoneId zona = ZoneId.systemDefault();
             Date DateCreacion = jFechaCreacion.getDate();
@@ -532,9 +536,11 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
                 }
 
             }
-            limpiarPantalla();
-            cargarCombo();
+           
+                    }
         }
+         limpiarPantalla();
+            cargarCombo();
     }//GEN-LAST:event_bAgregarActionPerformed
 
     private void bBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBorrarActionPerformed
