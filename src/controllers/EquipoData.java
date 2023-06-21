@@ -246,4 +246,23 @@ public class EquipoData {
         }
         return result;
     }
+
+    public boolean verifyEquipo(String nombre_equipo) {
+//        Equipo buscado = new Equipo();
+        String consulta = "SELECT id_equipo FROM equipo WHERE nombre_equipo like ? ";
+        try (PreparedStatement stmt = Conexion.getConexion().prepareStatement(consulta)) {
+            stmt.setString(1, nombre_equipo);
+            ResultSet result = stmt.executeQuery();
+            System.out.println(stmt);
+            if (result == null) {
+                return false;
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: \n" + e.getMessage(), "Se ha producido un error.", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+        return true;
+    }
+
 }
