@@ -29,14 +29,13 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
      */
     public AdminProyecto() {
         initComponents();
-        
+
         jButtonActualizar.setEnabled(false);
         jButtonBorrar.setEnabled(false);
         jButtonGuardar.setEnabled(false);
         inicializarcombo();
 
         //for (int i = 0; i < proyectos.size(); i++) {
-       
         //Ythis.setTitle("Aministrar miembros");
     }
 
@@ -65,7 +64,6 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jTextnombre1 = new javax.swing.JTextField();
-        jTextidentidad = new javax.swing.JLabel();
         jRadioButtonnoactivos = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -173,8 +171,6 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
             }
         });
 
-        jTextidentidad.setText("asd");
-
         jRadioButtonnoactivos.setText("No activos");
         jRadioButtonnoactivos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,9 +188,7 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(235, 235, 235)
                         .addComponent(jButtonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jTextidentidad, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonGuardar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73)
@@ -266,8 +260,7 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextidentidad, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -309,15 +302,14 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public void inicializarcombo()
-    {ArrayList<Proyecto> proyectos = new ArrayList();
+    public void inicializarcombo() {
+        ArrayList<Proyecto> proyectos = new ArrayList();
         ProyectoData proyectod = new ProyectoData();
         proyectos = proyectod.selectProyecto();
-         for (Proyecto proyecto : proyectos) {
+        for (Proyecto proyecto : proyectos) {
             jComboProyecto.addItem(proyecto);
         }
-    
-    
+
     }
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
 
@@ -531,22 +523,19 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jRadioButtonnoactivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonnoactivosActionPerformed
-       if (jRadioButtonnoactivos.isSelected())
-       {  jComboProyecto.removeAllItems();
-           ProyectoData proyec=new ProyectoData();
-          ArrayList<Proyecto>proyectos=new ArrayList();
-          proyectos=proyec.selectProyectoid0();
-          for(int i=0;i<proyectos.size();i++)
-          {
-             jComboProyecto.addItem(proyectos.get(i));
-          }
-          
-       
-       
-       }
-       else
-       {  jComboProyecto.removeAllItems();
-           inicializarcombo();}
+        if (jRadioButtonnoactivos.isSelected()) {
+            jComboProyecto.removeAllItems();
+            ProyectoData proyec = new ProyectoData();
+            ArrayList<Proyecto> proyectos = new ArrayList();
+            proyectos = proyec.selectProyectoid0();
+            for (int i = 0; i < proyectos.size(); i++) {
+                jComboProyecto.addItem(proyectos.get(i));
+            }
+
+        } else {
+            jComboProyecto.removeAllItems();
+            inicializarcombo();
+        }
     }//GEN-LAST:event_jRadioButtonnoactivosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -568,7 +557,6 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRadioNuevo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextdescripcion;
-    private javax.swing.JLabel jTextidentidad;
     private javax.swing.JTextField jTextnombre1;
     private javax.swing.JRadioButton radioActivar;
     // End of variables declaration//GEN-END:variables
