@@ -111,11 +111,6 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         });
 
         jComboProyecto.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jComboProyecto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jComboProyectoMouseClicked(evt);
-            }
-        });
         jComboProyecto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboProyectoActionPerformed(evt);
@@ -130,11 +125,6 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         });
 
         jComboTarea.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jComboTarea.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jComboTareaMouseClicked(evt);
-            }
-        });
         jComboTarea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboTareaActionPerformed(evt);
@@ -611,16 +601,6 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_jButtonSalirActionPerformed
-
-    private void jComboProyectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboProyectoMouseClicked
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_jComboProyectoMouseClicked
-
-    private void jComboTareaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboTareaMouseClicked
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_jComboTareaMouseClicked
 
     private void jComboProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboProyectoActionPerformed
         // TODO add your handling code here:

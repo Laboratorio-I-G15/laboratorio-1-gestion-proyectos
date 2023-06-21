@@ -19,6 +19,9 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class IniciarPrograma extends javax.swing.JFrame {
 
+    /**
+     * * CAMBIA USO DE BASE DATOS LOCAL O REMOTO **
+     */
     public static final boolean LOCAL = true;
     Timer timer;
     ActionListener actionListener;
