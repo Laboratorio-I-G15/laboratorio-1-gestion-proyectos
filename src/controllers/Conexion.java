@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import views.IniciarPrograma;
 
 /**
  *
@@ -22,13 +23,13 @@ public class Conexion {
      */
     private static Connection conectar = null;
     private static String base = "leotoloza_proyectogestion"; //nombre de la base de datos
-    private static String usuario = "leotoloza"; // usuario para acceder a la base de datos, por defecto es 'root'
-    private static String pass = "LeonelSantiagoToloza113346"; // contraseña para acceder, por defecto el usuario root, no tiene contraseña
-    private static String url = "jdbc:mysql://mysql-leotoloza.alwaysdata.net/" + base; // URL es la direccion de la Conexion, por defecto en local y el puerto 3306 + el nombre de la db
-//    private static String base = "leotoloza_proyectogestion"; //nombre de la base de datos
-//    private static String usuario = "leotoloza"; // usuario para acceder a la base de datos, por defecto es 'root'
-//    private static String pass = "LeonelSantiagoToloza113346"; // contraseña para acceder, por defecto el usuario root, no tiene contraseña
-//    private static String url = "jdbc:mysql://mysql-leotoloza.alwaysdata.net/" + base; // URL es la direccion de la Conexion, por defecto en local y el puerto 3306 + el nombre de la db
+    private static String usuario = "root"; // usuario para acceder a la base de datos, por defecto es 'root'
+    private static String pass = ""; // contraseña para acceder, por defecto el usuario root, no tiene contraseña
+    private static String url = "jdbc:mysql://localhost/" + base; // URL es la direccion de la Conexion, por defecto en local y el puerto 3306 + el nombre de la db
+    private static String base1 = "leotoloza_proyectogestion"; //nombre de la base de datos
+    private static String usuario1 = "leotoloza"; // usuario para acceder a la base de datos, por defecto es 'root'
+    private static String pass1 = "LeonelSantiagoToloza113346"; // contraseña para acceder, por defecto el usuario root, no tiene contraseña
+    private static String url1 = "jdbc:mysql://mysql-leotoloza.alwaysdata.net/" + base; // URL es la direccion de la Conexion, por defecto en local y el puerto 3306 + el nombre de la db
 
     /**
      * constructor privado para usar un patron singleton para la conexion.
@@ -45,7 +46,13 @@ public class Conexion {
         if (conectar == null) {
             try {
                 Class.forName("org.mariadb.jdbc.Driver");
-                conectar = DriverManager.getConnection(url, usuario, pass);
+                if (IniciarPrograma.LOCAL) {
+                    conectar = DriverManager.getConnection(url, usuario, pass);
+                    System.out.println("Vamo por local");
+                } else {
+                    conectar = DriverManager.getConnection(url1, usuario1, pass1);
+                    System.out.println("Vamo por remoto");
+                }
 
                 /* descomentar  para  corroborar  que la conexion sea correcta  */
                 // JOptionPane.showMessageDialog(null, "Se conecto correctamente", "BASE DATOS", JOptionPane.INFORMATION_MESSAGE);

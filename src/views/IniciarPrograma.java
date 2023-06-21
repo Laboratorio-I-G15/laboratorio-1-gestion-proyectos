@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+// cambair etsa costatante para usar local o remoto
 
 /**
  *
@@ -18,6 +19,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class IniciarPrograma extends javax.swing.JFrame {
 
+    public static final boolean LOCAL = true;
     Timer timer;
     ActionListener actionListener;
 
