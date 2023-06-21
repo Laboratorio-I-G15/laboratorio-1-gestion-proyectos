@@ -12,11 +12,10 @@ import java.time.LocalDate;
  * @author Ro
  */
 public class Tarea {
-    
-    
+
     private int idTarea;
     private String nombre;
-    private LocalDate fechaCreacion;  
+    private LocalDate fechaCreacion;
     private LocalDate fechaCierre;
     private int estado;
     private EquipoMiembro equipoMiembro;
@@ -91,11 +90,6 @@ public class Tarea {
 
     @Override
     public String toString() {
-        return   nombre ;
+        return nombre;
     }
-
-  
-    
-    
-    
 }

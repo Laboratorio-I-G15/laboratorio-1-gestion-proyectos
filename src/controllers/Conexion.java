@@ -48,21 +48,16 @@ public class Conexion {
                 Class.forName("org.mariadb.jdbc.Driver");
                 if (IniciarPrograma.LOCAL) {
                     conectar = DriverManager.getConnection(url, usuario, pass);
-                    System.out.println("Vamo por local");
                 } else {
                     conectar = DriverManager.getConnection(url1, usuario1, pass1);
-                    System.out.println("Vamo por remoto");
                 }
-
-                /* descomentar  para  corroborar  que la conexion sea correcta  */
-                // JOptionPane.showMessageDialog(null, "Se conecto correctamente", "BASE DATOS", JOptionPane.INFORMATION_MESSAGE);
                 System.out.println("Conectado exitosamente!");
             } catch (HeadlessException | ClassNotFoundException | SQLException e) {
                 System.out.println(e.getMessage());
                 JOptionPane.showMessageDialog(null, "Error: \n" + e.getMessage(), "Se ha producido un error.", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            //System.out.println(" Utilizando Conexion existente! ");
+            System.out.println(" Utilizando Conexion existente! ");
         }
         return conectar;
     }

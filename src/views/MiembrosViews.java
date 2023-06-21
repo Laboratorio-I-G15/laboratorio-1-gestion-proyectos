@@ -24,13 +24,11 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
      * Creates new form MiembrosViews
      */
     public MiembrosViews() {
-
         initComponents();
         this.setTitle("Aministrar miembros");
         jRadioActualizar.setSelected(true);
         jRadionuevo.setSelected(false);
         btnGuardar.setEnabled(false);
-
     }
 
     /**
@@ -86,12 +84,6 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
         jLabel5.setText("DNI:");
         jLabel5.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
-        txtNombreMiembro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreMiembroActionPerformed(evt);
-            }
-        });
-
         btnGuardar.setText("Guardar");
         btnGuardar.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true)));
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -117,11 +109,6 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
         });
 
         radioActivar.setText("Activar/Desactivar");
-        radioActivar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioActivarActionPerformed(evt);
-            }
-        });
 
         jRadionuevo.setText("Nuevo");
         jRadionuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -276,9 +263,6 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void radioActivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioActivarActionPerformed
-    }//GEN-LAST:event_radioActivarActionPerformed
-
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         if (validar()) {
             MiembroData miembroData = new MiembroData();
@@ -295,10 +279,6 @@ public class MiembrosViews extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Tiene que llenar todos los campos");
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
-
-    private void txtNombreMiembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreMiembroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreMiembroActionPerformed
 
     private void jRadionuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadionuevoActionPerformed
         if (jRadionuevo.isSelected()) {

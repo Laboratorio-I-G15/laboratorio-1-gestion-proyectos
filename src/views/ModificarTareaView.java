@@ -83,23 +83,6 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
         setMaximumSize(new java.awt.Dimension(854, 728));
         setMinimumSize(new java.awt.Dimension(854, 728));
         setPreferredSize(new java.awt.Dimension(854, 728));
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameClosing(evt);
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-            }
-        });
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -136,16 +119,6 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
         });
 
         jComboTareas.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jComboTareas.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboTareasItemStateChanged(evt);
-            }
-        });
-        jComboTareas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jComboTareasMouseClicked(evt);
-            }
-        });
 
         jLabel7.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -338,7 +311,6 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
     }
 
     private boolean validarCampos() {
-
         if (txtNombreTarea.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "El campo nombre está vacio");
             return false;
@@ -351,7 +323,6 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Ingrese una fecha de Cierre");
             return false;
         }
-
         return true;
     }
     private void bCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCerrarActionPerformed
@@ -364,15 +335,10 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
         int id = Integer.parseInt(jidEquipoMiembro.getText());
         equipoMiembro.setId_equipo_miembro(id);
         tareas = tareaD.selectTareasMiembro(equipoMiembro);//Obtiene un ArrayList de Tareas del MiembroEquipo
-        //añadir al combo de la ventana tareaMiembro las tareas obtenidas
         for (Tarea t : tareas) {
             jComboTareas.addItem(t);
         }
     }
-
-    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
-
-    }//GEN-LAST:event_formInternalFrameClosing
 
     private boolean validarFechas() {
         ZoneId zona = ZoneId.systemDefault();
@@ -384,11 +350,9 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
         LocalDate fechaCie = DateCie.toInstant().atZone(zona).toLocalDate();
         //obtento el id equipo con el id del equipoMiembro
         int idEquipo = equipoMD.selectIdEquipo(Integer.parseInt(jidEquipoMiembro.getText()));
-        System.out.println("idEquipo:" + idEquipo);
         equipo = equipoD.selectEquipo(idEquipo);
         //obtengo el proyecto con el id del equipo
         proyecto = proyectoD.selectProyecto(equipo.getId_proyecto());
-
         if (proyecto.getFecha_inicio().isAfter(fechaCre)) {
             JOptionPane.showMessageDialog(null, "La fecha de creacion debe ser posterior a la creacion del proyecto: " + proyecto.getFecha_inicio().toString());
             return false;
@@ -397,36 +361,27 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "La fecha de cierre debe ser posterior a la creacion del la tarea");
             return false;
         }
-
         return true;
     }
     private void bActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bActualizarActionPerformed
-        ///
         if (validarCampos()) {
             tarea = (Tarea) jComboTareas.getSelectedItem();
-            System.out.println("Tarea:" + tarea.toString());
-            //fecha
-
             ZoneId zona = ZoneId.systemDefault();
             Date DateCreacion = jFechaCreacion.getDate();
             Date DateCierre = jFechaCierre.getDate();
             LocalDate fechaCreacion = DateCreacion.toInstant().atZone(zona).toLocalDate();
             LocalDate fechaCierre = DateCierre.toInstant().atZone(zona).toLocalDate();
-            //
             if (Inactivo.isSelected()) {
                 bBorrar.setEnabled(false);
             } else {
                 bBorrar.setEnabled(true);
             }
-
             if (Completado.isSelected()) {
                 tarea.setEstado(1);
             }
-
             if (Progreso.isSelected()) {
                 tarea.setEstado(2);
             }
-
             if (Pendiente.isSelected()) {
                 tarea.setEstado(3);
             }
@@ -434,14 +389,11 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
                 tarea.setEstado(0);
             }
             tarea.setNombre(txtNombreTarea.getText().toString());
-
             tarea.setFechaCierre(fechaCierre);
             tarea.setFechaCreacion(fechaCreacion);
             int id = Integer.parseInt(jidEquipoMiembro.getText());
             equipoMiembro.setId_equipo_miembro(id);
             tarea.setEquipoMiembro(equipoMiembro);
-
-            //
             if (validarFechas()) {
                 if (tareaD.updateTarea(tarea)) {
                     JOptionPane.showMessageDialog(null, "Tarea actualizada");
@@ -449,11 +401,9 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(null, "No se pudo actualizar la tarea");
                 }
             }
-           
         }
-         cargarCombo();
-            limpiarPantalla();
-
+        cargarCombo();
+        limpiarPantalla();
     }//GEN-LAST:event_bActualizarActionPerformed
 
     private void CompletadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompletadoActionPerformed
@@ -465,18 +415,12 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_CompletadoActionPerformed
 
-    private void jComboTareasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboTareasMouseClicked
-        // TODO add your handling code here:
-        ////////////////////////////////////////////////////////
-    }//GEN-LAST:event_jComboTareasMouseClicked
-
     private void ProgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProgresoActionPerformed
         // TODO add your handling code here:
         if (Progreso.isSelected()) {
             Completado.setSelected(false);
             Pendiente.setSelected(false);
             Inactivo.setSelected(false);
-
         }
     }//GEN-LAST:event_ProgresoActionPerformed
 
@@ -486,7 +430,6 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
             Completado.setSelected(false);
             Progreso.setSelected(false);
             Inactivo.setSelected(false);
-
         }
     }//GEN-LAST:event_PendienteActionPerformed
 
@@ -494,68 +437,54 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (validarCampos()) {
             if (tareaD.TareaExistente(txtNombreTarea.getText())) {
-            JOptionPane.showMessageDialog(null, "Ya existe una tarea con el mismo nombre");
-            }else{
-            //fecha
-            ZoneId zona = ZoneId.systemDefault();
-            Date DateCreacion = jFechaCreacion.getDate();
-            Date DateCierre = jFechaCierre.getDate();
-            LocalDate fechaCreacion = DateCreacion.toInstant().atZone(zona).toLocalDate();
-            LocalDate fechaCierre = DateCierre.toInstant().atZone(zona).toLocalDate();
-            //
+                JOptionPane.showMessageDialog(null, "Ya existe una tarea con el mismo nombre");
+            } else {
+                ZoneId zona = ZoneId.systemDefault();
+                Date DateCreacion = jFechaCreacion.getDate();
+                Date DateCierre = jFechaCierre.getDate();
+                LocalDate fechaCreacion = DateCreacion.toInstant().atZone(zona).toLocalDate();
+                LocalDate fechaCierre = DateCierre.toInstant().atZone(zona).toLocalDate();
+                if (Completado.isSelected()) {
+                    tarea.setEstado(1);
+                }
+                if (Progreso.isSelected()) {
+                    tarea.setEstado(2);
+                }
+                if (Pendiente.isSelected()) {
+                    tarea.setEstado(3);
+                }
+                if (!Completado.isSelected() && !Progreso.isSelected() && !Pendiente.isSelected()) {
+                    tarea.setEstado(0);
+                }
+                tarea.setNombre(txtNombreTarea.getText().toString());
+                tarea.setFechaCierre(fechaCierre);
+                tarea.setFechaCreacion(fechaCreacion);
+                int id = Integer.parseInt(jidEquipoMiembro.getText());
+                equipoMiembro.setId_equipo_miembro(id);
+                tarea.setEquipoMiembro(equipoMiembro);
+                if (validarFechas()) {
+                    if (tareaD.insertTarea(tarea)) {
+                        JOptionPane.showMessageDialog(null, "Tarea agregada con éxito");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se pudo agregar la tarea");
+                    }
 
-            if (Completado.isSelected()) {
-                tarea.setEstado(1);
-            }
-
-            if (Progreso.isSelected()) {
-                tarea.setEstado(2);
-            }
-
-            if (Pendiente.isSelected()) {
-                tarea.setEstado(3);
-            }
-
-            if (!Completado.isSelected() && !Progreso.isSelected() && !Pendiente.isSelected()) {
-                tarea.setEstado(0);
-            }
-
-            tarea.setNombre(txtNombreTarea.getText().toString());
-            tarea.setFechaCierre(fechaCierre);
-            tarea.setFechaCreacion(fechaCreacion);
-            int id = Integer.parseInt(jidEquipoMiembro.getText());
-            equipoMiembro.setId_equipo_miembro(id);
-            tarea.setEquipoMiembro(equipoMiembro);
-
-            //
-            if (validarFechas()) {
-                if (tareaD.insertTarea(tarea)) {
-                    JOptionPane.showMessageDialog(null, "Tarea agregada con éxito");
-                } else {
-                    JOptionPane.showMessageDialog(null, "No se pudo agregar la tarea");
                 }
 
             }
-           
-                    }
         }
-         limpiarPantalla();
-            cargarCombo();
+        limpiarPantalla();
+        cargarCombo();
     }//GEN-LAST:event_bAgregarActionPerformed
 
     private void bBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBorrarActionPerformed
         // TODO add your handling code here:
-
         Inactivo.setVisible(true);
         Inactivo.setSelected(true);
         Completado.setSelected(false);
         Progreso.setSelected(false);
         Pendiente.setSelected(false);
-        ///
         tarea = (Tarea) jComboTareas.getSelectedItem();
-        System.out.println("Tarea:" + tarea.toString());
-
-        System.out.println("id:" + tarea.getIdTarea());
         if (tareaD.updateTareaEstado(tarea.getIdTarea(), 4)) {
             JOptionPane.showMessageDialog(null, "Tarea borrada");
             bBorrar.setEnabled(false);
@@ -564,62 +493,7 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(null, "No se pudo borrar la tarea");
         }
-
     }//GEN-LAST:event_bBorrarActionPerformed
-
-    private void jComboTareasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboTareasItemStateChanged
-        // TODO add your handling code here:
-
-        tarea = (Tarea) jComboTareas.getSelectedItem();
-        txtNombreTarea.setText(tarea.getNombre());
-        if (tarea.getEstado() == 4) {
-            bBorrar.setEnabled(false);
-        } else {
-            bBorrar.setEnabled(true);
-        }
-        //fecha
-        LocalDate fechaCreacion = tarea.getFechaCreacion();
-        LocalDate fechaCierre = tarea.getFechaCierre();
-        ZoneId zona = ZoneId.systemDefault();
-        Date DateCreacion = Date.from(fechaCreacion.atStartOfDay(zona).toInstant());
-        Date DateCierre = Date.from(fechaCierre.atStartOfDay(zona).toInstant());
-
-        jFechaCreacion.setDate(DateCreacion);
-        jFechaCierre.setDate(DateCierre);
-        //
-        int estado = tarea.getEstado();
-
-        switch (estado) {
-            case 1: //1 completado
-                Completado.setSelected(true);
-                Pendiente.setSelected(false);
-                Progreso.setSelected(false);
-                Inactivo.setSelected(false);
-
-                break;
-            case 2: //2 progreso
-                Completado.setSelected(false);
-                Pendiente.setSelected(true);
-                Progreso.setSelected(false);
-                Inactivo.setSelected(false);
-
-                break;
-            case 3:  //3 pendiente
-                Completado.setSelected(false);
-                Pendiente.setSelected(false);
-                Progreso.setSelected(true);
-                Inactivo.setSelected(false);
-
-                break;
-            case 4: //inactivo
-                Completado.setSelected(false);
-                Pendiente.setSelected(false);
-                Progreso.setSelected(false);
-                Inactivo.setVisible(true);
-                Inactivo.setSelected(true);
-                break;
-        }
-    }//GEN-LAST:event_jComboTareasItemStateChanged
 
     private void InactivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InactivoActionPerformed
         // TODO add your handling code here:

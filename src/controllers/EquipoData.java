@@ -21,11 +21,10 @@ public class EquipoData {
 
     public EquipoData() {
     }
-    
+
     /**
-     * 
+     *
      */
-    
     /**
      * Recibe Equipo y Proyecto , se inserta el eqipo
      *
@@ -50,42 +49,42 @@ public class EquipoData {
         return result;
     }
 
-public void insertEquipos(Equipo equipo, Proyecto proyecto) {
-    String consultaSelect = "SELECT COUNT(*) FROM equipo WHERE nombre_equipo = ? AND id_proyecto <> ?";
-    String consultaInsert = "INSERT INTO equipo (id_proyecto, nombre_equipo, fecha_creacion_equipo, estado_equipo) VALUES (?, ?, ?, ?)";
+    public void insertEquipos(Equipo equipo, Proyecto proyecto) {
+        String consultaSelect = "SELECT COUNT(*) FROM equipo WHERE nombre_equipo = ? AND id_proyecto <> ?";
+        String consultaInsert = "INSERT INTO equipo (id_proyecto, nombre_equipo, fecha_creacion_equipo, estado_equipo) VALUES (?, ?, ?, ?)";
 
-    try (PreparedStatement stmtSelect = Conexion.getConexion().prepareStatement(consultaSelect)) {
-        // Verificar si el equipo ya existe en otro proyecto
-        stmtSelect.setString(1, equipo.getNombre());
-        stmtSelect.setInt(2, proyecto.getId_proyecto());
-        ResultSet resultSet = stmtSelect.executeQuery();
-        resultSet.next();
-        int count = resultSet.getInt(1);
+        try (PreparedStatement stmtSelect = Conexion.getConexion().prepareStatement(consultaSelect)) {
+            // Verificar si el equipo ya existe en otro proyecto
+            stmtSelect.setString(1, equipo.getNombre());
+            stmtSelect.setInt(2, proyecto.getId_proyecto());
+            ResultSet resultSet = stmtSelect.executeQuery();
+            resultSet.next();
+            int count = resultSet.getInt(1);
 
-        if (count > 0) {
-            JOptionPane.showMessageDialog(null, "Este equipo ya está asociado a otro proyecto.");
-            return; // Salir del método sin realizar la inserción
-        }
-
-        // Insertar el nuevo equipo
-        try (PreparedStatement stmtInsert = Conexion.getConexion().prepareStatement(consultaInsert)) {
-            stmtInsert.setInt(1, proyecto.getId_proyecto());
-            stmtInsert.setString(2, equipo.getNombre());
-            stmtInsert.setDate(3, java.sql.Date.valueOf(equipo.getCreacion()));
-            stmtInsert.setInt(4, equipo.getEstado());
-            int result = stmtInsert.executeUpdate();
-
-            if (result == 1) {
-                JOptionPane.showMessageDialog(null, "Equipo agregado correctamente al proyecto.");
-            } else {
-                System.out.println("Se produjo un error al insertar el equipo.");
+            if (count > 0) {
+                JOptionPane.showMessageDialog(null, "Este equipo ya está asociado a otro proyecto.");
+                return; // Salir del método sin realizar la inserción
             }
+
+            // Insertar el nuevo equipo
+            try (PreparedStatement stmtInsert = Conexion.getConexion().prepareStatement(consultaInsert)) {
+                stmtInsert.setInt(1, proyecto.getId_proyecto());
+                stmtInsert.setString(2, equipo.getNombre());
+                stmtInsert.setDate(3, java.sql.Date.valueOf(equipo.getCreacion()));
+                stmtInsert.setInt(4, equipo.getEstado());
+                int result = stmtInsert.executeUpdate();
+
+                if (result == 1) {
+                    JOptionPane.showMessageDialog(null, "Equipo agregado correctamente al proyecto.");
+                } else {
+                    System.out.println("Se produjo un error al insertar el equipo.");
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: \n" + e.getMessage(), "Se ha producido un error.", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Error: \n" + e.getMessage(), "Se ha producido un error.", JOptionPane.ERROR_MESSAGE);
-        e.printStackTrace();
     }
-}
 
     /**
      *
@@ -228,11 +227,13 @@ public void insertEquipos(Equipo equipo, Proyecto proyecto) {
      */
     public int updateEquipo(Equipo equipo) {
         int result = 0;
-     
+        System.out.println(equipo.getId_equipo());
+        System.out.println(equipo);
+
         String consulta = "UPDATE `equipo` SET  `nombre_equipo`=?, `fecha_creacion_equipo`=?, `estado_equipo`=? WHERE `id_equipo` = ?";
 
         try (PreparedStatement stmt = Conexion.getConexion().prepareStatement(consulta)) {
-          
+
             stmt.setString(1, equipo.getNombre());
             stmt.setDate(2, java.sql.Date.valueOf(equipo.getCreacion()));
             stmt.setInt(3, equipo.getEstado());

@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-// cambair etsa costatante para usar local o remoto
 
 /**
  *
@@ -81,7 +80,6 @@ public class IniciarPrograma extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-
         java.awt.EventQueue.invokeLater(() -> {
             new IniciarPrograma().setVisible(true);
         });
@@ -91,7 +89,6 @@ public class IniciarPrograma extends javax.swing.JFrame {
     private javax.swing.JProgressBar Progreso;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
-
     private void mostrarGestion() {
         Gestion gestion = new Gestion();
         gestion.setVisible(true);

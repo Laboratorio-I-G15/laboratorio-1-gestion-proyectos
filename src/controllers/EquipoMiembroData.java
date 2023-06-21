@@ -56,7 +56,6 @@ public class EquipoMiembroData {
         try (PreparedStatement stmt = Conexion.getConexion().prepareStatement(consulta)) {
             // bindeo id_proyecto
             stmt.setInt(1, id_miembro);
-            System.out.println(stmt);
             ResultSet result = stmt.executeQuery();
             if (result.next()) {
                 id_equipo_miembro = result.getInt("id_miembro_eq");
@@ -80,7 +79,6 @@ public class EquipoMiembroData {
         try (PreparedStatement stmt = Conexion.getConexion().prepareStatement(consulta)) {
             // bindeo id_proyecto
             stmt.setInt(1, id_miembroEquipo);
-            System.out.println(stmt);
             ResultSet result = stmt.executeQuery();
             if (result.next()) {
                 id_equipo = result.getInt("equipo.id_equipo");
@@ -197,7 +195,6 @@ public class EquipoMiembroData {
         try (PreparedStatement stmt = Conexion.getConexion().prepareStatement(consulta)) {
             // bindeo id_proyecto
             stmt.setInt(1, equipo.getId_equipo());
-            System.out.println(stmt);
             ResultSet result = stmt.executeQuery();
             while (result.next()) {
                 Miembro miembro_1 = new Miembro();
@@ -207,10 +204,8 @@ public class EquipoMiembroData {
                 miembro_1.setNombre(result.getString("nombre"));
                 miembro_1.setEstado(result.getBoolean("estado"));
                 miembros.add(miembro_1);
-
             }
         } catch (SQLException e) {
-            System.out.println("emd218");
             JOptionPane.showMessageDialog(null, "Error: \n" + e.getMessage(), "Se ha producido un error.", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }

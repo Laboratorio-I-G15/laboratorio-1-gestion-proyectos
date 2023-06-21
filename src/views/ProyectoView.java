@@ -52,7 +52,7 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         for (Proyecto proy : proyectos) {
             jComboProyecto.addItem(proy);
         }
-      
+
         Gestion.desktop.removeAll();
         Gestion.desktop.repaint();
         this.setVisible(true);
@@ -371,13 +371,9 @@ public class ProyectoView extends javax.swing.JInternalFrame {
             modificarTarea.setVisible(true);
             Gestion.desktop.add(modificarTarea);
             this.setVisible(false);
-            //System.out.println(miembro.toString());
             int idMiembroEquipo = equipoMD.selectIdEquipoMiembro(miembro.getIdMiembro());//busca el id del EquipoMiembro
-            //Pasa el id a la ventana modificar Tarea
             modificarTarea.jidEquipoMiembro.setText(String.valueOf(idMiembroEquipo));//setea en un jLabel el id del EquipoMiembro obtenido en la ventana modifcarTarea
-            //obtener una lista de las tareas
             tareas = tareaD.selectTareasMiembro(idMiembroEquipo);//Obtiene un ArrayList de Tareas segun el id MiembroEquipo obtenido
-            //añadir al combo de la ventana tareaMiembro las tareas obtenidas
             for (Tarea t : tareas) {
                 modificarTarea.jComboTareas.addItem(t);
             }
@@ -407,8 +403,6 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         // TODO EDITAR EQUIPO
         equipo = (Equipo) jComboEquipos.getSelectedItem();
         proyecto = (Proyecto) jComboProyecto.getSelectedItem();
-        System.out.println(equipo);
-
         ////////////////////////////////////NUEVO////////////////////////////////////
         if (proyecto != null) {
             Equipovista vista = new Equipovista();
@@ -449,20 +443,16 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         equipo = (Equipo) jComboEquipos.getSelectedItem();
         proyecto = (Proyecto) jComboProyecto.getSelectedItem();
         miembro = (Miembro) jComboMiembro.getSelectedItem();
-        //Miembro miembro = new Miembro();
         this.setVisible(false);
         vistaMiembro = new MiembrosViews();
         vistaMiembro.setVisible(true);
         Gestion.desktop.add(vistaMiembro);
-        System.out.println(miembro);
         if (miembro != null) {
-            //if (!vistaMiembro.txtNombreMiembro.getText().equals("")) {
             vistaMiembro.txtNombreMiembro.setText(miembro.getNombre());
             vistaMiembro.txtApellidoMiembro.setText(miembro.getApellido());
             vistaMiembro.txtDniMiembro.setText(String.valueOf(miembro.getDni()));
             vistaMiembro.radioActivar.setSelected(miembro.isEstado());
             vistaMiembro.id = miembro.getIdMiembro();
-            // }
         }
         dispose();
     }//GEN-LAST:event_btnAdminMiembroActionPerformed
@@ -470,7 +460,8 @@ public class ProyectoView extends javax.swing.JInternalFrame {
     public ArrayList<Tarea> obtenerTareas() {
         jComboTarea.removeAllItems();
         miembro = (Miembro) jComboMiembro.getSelectedItem();
-        if (miembro != null) {  //conseguir el id del equipoMiembro
+        //conseguir el id del equipoMiembro
+        if (miembro != null) {
             int idMiembroEquipo = equipoMD.selectIdEquipoMiembro(miembro.getIdMiembro());
             //setear el id del equipo miembro
             equipoM.setId_equipo_miembro(idMiembroEquipo);
@@ -496,12 +487,9 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         if (tareas != null) {
             jComboTarea.removeAllItems();
             for (Tarea t : tareas) {
-                System.out.println("" + t.toString());
                 if (t.getEstado() == 2) {
                     jComboTarea.addItem(t);
-                    System.out.println("" + t.toString());
                 }
-
             }
         } else {
             JOptionPane.showMessageDialog(null, "No hay tareas asignadas a este miembro");
@@ -515,18 +503,14 @@ public class ProyectoView extends javax.swing.JInternalFrame {
             Completado.setSelected(false);
             Inactivo.setSelected(false);
         }
-
         tareas = obtenerTareas();
         jComboTarea.removeAllItems();
         if (tareas != null) {
             jComboTarea.removeAllItems();
             for (Tarea t : tareas) {
-                System.out.println("" + t.toString());
                 if (t.getEstado() == 3) {
                     jComboTarea.addItem(t);
-                    System.out.println("" + t.toString());
                 }
-
             }
         } else {
             JOptionPane.showMessageDialog(null, "No hay tareas asignadas a este miembro");
@@ -540,17 +524,13 @@ public class ProyectoView extends javax.swing.JInternalFrame {
             Completado.setSelected(false);
             Progreso.setSelected(false);
         }
-
         tareas = obtenerTareas();
         if (tareas != null) {
             jComboTarea.removeAllItems();
             for (Tarea t : tareas) {
-                System.out.println("" + t.toString());
                 if (t.getEstado() == 4) {
                     jComboTarea.addItem(t);
-                    System.out.println("" + t.toString());
                 }
-
             }
         } else {
             JOptionPane.showMessageDialog(null, "No hay tareas asignadas a este miembro");
@@ -564,15 +544,12 @@ public class ProyectoView extends javax.swing.JInternalFrame {
             Progreso.setSelected(false);
             Inactivo.setSelected(false);
         }
-
         tareas = obtenerTareas();
         if (tareas != null) {
             jComboTarea.removeAllItems();
             for (Tarea t : tareas) {
-                System.out.println("" + t.toString());
                 if (t.getEstado() == 1) {
                     jComboTarea.addItem(t);
-                    System.out.println("" + t.toString());
                 }
             }
         } else {
@@ -583,28 +560,20 @@ public class ProyectoView extends javax.swing.JInternalFrame {
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
         // TODO add your handling code here:
         int option = JOptionPane.showConfirmDialog(null, "¿Estás seguro de salir?", "Confirmación", JOptionPane.YES_NO_OPTION);
-
         // Verificar la opción seleccionada
         if (option == JOptionPane.YES_OPTION) {
-            System.out.println("Se seleccionó 'Sí'");
             System.exit(0);
         } else if (option == JOptionPane.NO_OPTION) {
-            System.out.println("Se seleccionó 'No'");
         } else if (option == JOptionPane.CANCEL_OPTION) {
-            System.out.println("Se seleccionó 'Cancelar'");
-        } else {
-            System.out.println("Se cerró el cuadro de diálogo");
         }
-
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
     private void jComboProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboProyectoActionPerformed
         // TODO add your handling code here:
-         cargarComboTarea();
+        cargarComboTarea();
         jComboEquipos.removeAllItems();
         jComboMiembro.removeAllItems();
         jComboTarea.removeAllItems();
-       
         ArrayList<Equipo> equipos = new ArrayList();
         Proyecto proyecto1 = new Proyecto();
         proyecto1 = (Proyecto) jComboProyecto.getSelectedItem();
@@ -612,7 +581,6 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         for (Equipo Lequipo : equipos) {
             jComboEquipos.addItem(Lequipo);
         }
-        System.out.println("linea 655");
     }//GEN-LAST:event_jComboProyectoActionPerformed
 
     private void jComboEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboEquiposActionPerformed
@@ -621,7 +589,6 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         jComboMiembro.removeAllItems();
         jComboTarea.removeAllItems();
         equipo = (Equipo) jComboEquipos.getSelectedItem();
-        //   System.out.println("linea 399" + equipo.toString());
         if (equipo != null) {
             miembros = equipoMD.selectEquipoMiembro(equipo.getId_equipo());
             for (Miembro miembro : miembros) {
@@ -666,7 +633,7 @@ public class ProyectoView extends javax.swing.JInternalFrame {
 
         jComboTarea.removeAllItems();
         cargarComboTarea();
-//       
+//
     }//GEN-LAST:event_jComboMiembroActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

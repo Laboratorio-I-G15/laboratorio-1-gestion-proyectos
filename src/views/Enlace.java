@@ -33,8 +33,7 @@ public class Enlace extends javax.swing.JInternalFrame {
     public Enlace() {
         initComponents();
         initCombobox();
-
-        this.setTitle("Aministrar miembros");
+        this.setTitle("Administrar miembros");
     }
 
     /**
@@ -84,11 +83,6 @@ public class Enlace extends javax.swing.JInternalFrame {
         });
 
         jComboMiembro.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jComboMiembro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboMiembroActionPerformed(evt);
-            }
-        });
 
         jComboEquipos1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
@@ -180,19 +174,14 @@ private void initCombobox() {
         EquipoData equipod = new EquipoData();
         equipos = equipod.selectEquipos(1);
         proyectos = proyectod.selectProyecto();
-
         for (int i = 0; i < equipos.size(); i++) {
             jComboEquipos1.addItem(equipos.get(i));
-
         }
         for (int i = 0; i < miembros.size(); i++) {
             jComboMiembro.addItem(miembros.get(i));
-
         }
-
     }
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
-
     }//GEN-LAST:event_formInternalFrameClosing
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -200,19 +189,12 @@ private void initCombobox() {
         Equipo equipo = (Equipo) jComboEquipos1.getSelectedItem();
         Miembro miembro1 = (Miembro) jComboMiembro.getSelectedItem();
         equipo_miembro_data.insertEquipoMiembros(miembro1.getIdMiembro(), equipo.getId_equipo());
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        dispose();        // TODO add your handling code here:
-        //      vistaProyecto = new ProyectoView();
+        dispose();
         vistaProyecto.setVisible(true);
-        //    desktop.add(vistaProyecto);
     }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jComboMiembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboMiembroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboMiembroActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;

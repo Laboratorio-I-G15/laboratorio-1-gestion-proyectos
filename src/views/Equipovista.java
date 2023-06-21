@@ -23,7 +23,7 @@ import static views.Gestion.vistaProyecto;
 public class Equipovista extends javax.swing.JInternalFrame {
 
     public static Equipo equipo = new Equipo();
-    
+
     /**
      * Creates new form Equipovista
      */
@@ -31,11 +31,9 @@ public class Equipovista extends javax.swing.JInternalFrame {
         initComponents();
         jButtonProyecto.setEnabled(false);
         jButtonEquipo.setEnabled(false);
-       jRadioButtonactualizar.setSelected(true);
-       jRadioButtonnuevo.setSelected(false);
-     
-       
-       
+        jRadioButtonactualizar.setSelected(true);
+        jRadioButtonnuevo.setSelected(false);
+
         cargarCombo();
     }
 
@@ -274,52 +272,51 @@ public class Equipovista extends javax.swing.JInternalFrame {
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jButtonProyectoActionPerformed
-   private void limpiar()
-   {
-       jTexnombre.setText("");
-       jDateChooser1.setCalendar(null);
-      jRadioButton1.setEnabled(false);
-   }
+
+    private void limpiar() {
+        jTexnombre.setText("");
+        jDateChooser1.setCalendar(null);
+        jRadioButton1.setEnabled(false);
+    }
     private void jRadioButtonnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonnuevoActionPerformed
-      if(jRadioButtonnuevo.isSelected())
-      {
-      jRadioButtonactualizar.setSelected(false);
-      jButtonactualizar.setEnabled(false);
-      jButtonEquipo.setEnabled(true);
-      jButtonProyecto.setEnabled(true);
-      limpiar();      
-      }// TODO add your handling code here:
+        if (jRadioButtonnuevo.isSelected()) {
+            jRadioButtonactualizar.setSelected(false);
+            jButtonactualizar.setEnabled(false);
+            jButtonEquipo.setEnabled(true);
+            jButtonProyecto.setEnabled(true);
+            limpiar();
+        }// TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonnuevoActionPerformed
 
     private void jRadioButtonactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonactualizarActionPerformed
-       if (jRadioButtonactualizar.isSelected())
-       {  jComboBox1.setEnabled(false);
-          jRadioButtonnuevo.setSelected(false);
-         jButtonactualizar.setEnabled(true);
-          jButtonEquipo.setEnabled(false);
-      jButtonProyecto.setEnabled(false);
-         
-       }// TODO add your handling code here:
+        if (jRadioButtonactualizar.isSelected()) {
+            jComboBox1.setEnabled(false);
+            jRadioButtonnuevo.setSelected(false);
+            jButtonactualizar.setEnabled(true);
+            jButtonEquipo.setEnabled(false);
+            jButtonProyecto.setEnabled(false);
+
+        }// TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonactualizarActionPerformed
 
     private void jButtonactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonactualizarActionPerformed
-     int con;
-      EquipoData equipod=new EquipoData();
-      equipo.setNombre(jTexnombre.getText());
-        System.out.println(equipo.getNombre());
-      java.time.LocalDate fechaInicioLocalDate = jDateChooser1.getCalendar().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-      equipo.setCreacion(fechaInicioLocalDate);
-      if (jRadioButton1.isSelected())
-      { con=1;}
-      else
-      { con=0;}
-      equipo.setEstado(con);
+        int con;
+        EquipoData equipod = new EquipoData();
         System.out.println(equipo);
-      equipod.updateEquipo(equipo);
-      
-      
-      
-        
+        equipo.setNombre(jTexnombre.getText());
+        System.out.println(equipo.getNombre());
+        java.time.LocalDate fechaInicioLocalDate = jDateChooser1.getCalendar().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        equipo.setCreacion(fechaInicioLocalDate);
+        System.out.println(equipo.getId_equipo());
+        if (jRadioButton1.isSelected()) {
+            con = 1;
+        } else {
+            con = 0;
+        }
+        equipo.setEstado(con);
+        System.out.println(equipo);
+        equipod.updateEquipo(equipo);
+
     }//GEN-LAST:event_jButtonactualizarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

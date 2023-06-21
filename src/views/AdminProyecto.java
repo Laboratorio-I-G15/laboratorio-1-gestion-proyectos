@@ -29,14 +29,11 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
      */
     public AdminProyecto() {
         initComponents();
-
         jButtonActualizar.setEnabled(false);
         jButtonBorrar.setEnabled(false);
         jButtonGuardar.setEnabled(false);
         inicializarcombo();
 
-        //for (int i = 0; i < proyectos.size(); i++) {
-        //Ythis.setTitle("Aministrar miembros");
     }
 
     /**
@@ -66,6 +63,7 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
         jTextnombre1 = new javax.swing.JTextField();
         jRadioButtonnoactivos = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
+        jTextidentidad = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(854, 728));
         setMinimumSize(new java.awt.Dimension(854, 728));
@@ -165,12 +163,6 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
         jLabel7.setText("Nombre:");
         jLabel7.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
-        jTextnombre1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextnombre1ActionPerformed(evt);
-            }
-        });
-
         jRadioButtonnoactivos.setText("No activos");
         jRadioButtonnoactivos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -222,8 +214,8 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextnombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextnombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(64, 64, 64)
@@ -286,7 +278,9 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
+                .addComponent(jTextidentidad, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(263, 263, 263))
         );
@@ -294,7 +288,9 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextidentidad, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(6, 6, 6))
@@ -309,13 +305,13 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
         for (Proyecto proyecto : proyectos) {
             jComboProyecto.addItem(proyecto);
         }
-
     }
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
 
     }//GEN-LAST:event_formInternalFrameClosing
 
     private void jRadioActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioActualizarActionPerformed
+        // TODO add your handling code here:
         if (ver && jTextidentidad.getText() != "") {
             if (jRadioNuevo.isSelected()) {
                 jRadioActualizar.setSelected(false);
@@ -326,7 +322,6 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
                 jDateChooser1.setEnabled(false);
                 radioActivar.setEnabled(false);
                 jButtonActualizar.setEnabled(false);
-
             } else {
                 jTextdescripcion.setEditable(true);
                 jTextidentidad.setEnabled(false);
@@ -335,7 +330,6 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
                 radioActivar.setEnabled(true);
                 jButtonActualizar.setEnabled(true);
                 jButtonBorrar.setEnabled(false);
-
             }
         } else {
             jTextdescripcion.setEditable(false);
@@ -344,17 +338,14 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
             jTextnombre1.setEditable(false);
             radioActivar.setEnabled(false);
             jButtonActualizar.setEnabled(false);
-
             JOptionPane.showMessageDialog(this, "Para Actualizar en Necesario Presionar el boton Cargar");
         }
-        // TODO add your handling code here:
     }//GEN-LAST:event_jRadioActualizarActionPerformed
 
     private void jRadioNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioNuevoActionPerformed
         if (jRadioActualizar.isSelected()) {
             jRadioNuevo.setSelected(false);
         }
-
         if (!jRadioNuevo.isSelected()) {
             jTextdescripcion.setEditable(false);
             jTextidentidad.setEnabled(false);
@@ -370,11 +361,9 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
             jDateChooser1.setEnabled(true);
             radioActivar.setEnabled(true);
             jButtonActualizar.setEnabled(false);
-
             jButtonGuardar.setEnabled(true);
             jButtonBorrar.setEnabled(false);
-
-        } // TODO add your handling code here:
+        }
         limpiar();
     }//GEN-LAST:event_jRadioNuevoActionPerformed
 
@@ -389,7 +378,6 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
     private boolean validar() {
         if (!jTextnombre1.getText().equals("") && !jTextdescripcion.getText().equals("")) {
             return true;
-
         } else {
             return false;
         }
@@ -423,7 +411,6 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Necesita llenar Los Campos");
         }
-
     }//GEN-LAST:event_jButtonActualizarActionPerformed
 
     private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
@@ -447,32 +434,25 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
             return false;
         }
         Calendar fechaSeleccionada = jDateChooser1.getCalendar();
-
         int añoActual = fechaActual.get(Calendar.YEAR);
         int mesActual = fechaActual.get(Calendar.MONTH);
         int diaActual = fechaActual.get(Calendar.DAY_OF_MONTH);
-
         int añoSeleccionado = fechaSeleccionada.get(Calendar.YEAR);
         int mesSeleccionado = fechaSeleccionada.get(Calendar.MONTH);
         int diaSeleccionado = fechaSeleccionada.get(Calendar.DAY_OF_MONTH);
-
         if (añoSeleccionado == añoActual && mesSeleccionado == mesActual && diaSeleccionado == diaActual) {
             return true;
         } else {
             return false;
         }
-
     }
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         Calendar fechaActual = Calendar.getInstance();
-
         if (validarfecha()) {
             if (validar()) {
                 Proyecto proyect = new Proyecto();
                 ProyectoData proyectod = new ProyectoData();
                 String var;
-                //int numeroInt = Integer.parseInt(jTextidentidad.getText());
-                //proyect.setId_proyecto(numeroInt);
                 proyect.setNombre(jTextnombre1.getText());
                 proyect.setDescripcion(jTextdescripcion.getText());
                 proyect.setEstado(radioActivar.isSelected());
@@ -486,12 +466,7 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Por Favor seleccione fecha Actual");
         }
-
     }//GEN-LAST:event_jButtonGuardarActionPerformed
-
-    private void jTextnombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextnombre1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextnombre1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Proyecto proyecto1;
@@ -499,12 +474,9 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
         jRadioActualizar.setSelected(false);
         jRadioNuevo.setSelected(false);
         jTextidentidad.setEnabled(false);
-
         String var;
-
         int i = proyecto1.getId_proyecto();
         var = "" + i;
-
         jTextidentidad.setText(var);
         jTextnombre1.setText(proyecto1.getNombre());
         jTextdescripcion.setText(proyecto1.getDescripcion());
@@ -531,7 +503,6 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
             for (int i = 0; i < proyectos.size(); i++) {
                 jComboProyecto.addItem(proyectos.get(i));
             }
-
         } else {
             jComboProyecto.removeAllItems();
             inicializarcombo();
@@ -557,6 +528,7 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRadioNuevo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextdescripcion;
+    private javax.swing.JLabel jTextidentidad;
     private javax.swing.JTextField jTextnombre1;
     private javax.swing.JRadioButton radioActivar;
     // End of variables declaration//GEN-END:variables

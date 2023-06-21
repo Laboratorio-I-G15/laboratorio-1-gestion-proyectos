@@ -36,8 +36,7 @@ public class ComentariosView extends javax.swing.JInternalFrame {
      */
     public ComentariosView() {
         initComponents();
-        this.setTitle("Aministrar Comentarios");
-//        cargarCombo();
+        this.setTitle("Administrar Comentarios");
     }
 
     /**
@@ -58,24 +57,6 @@ public class ComentariosView extends javax.swing.JInternalFrame {
         jFechaAvance = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameClosing(evt);
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-            }
-        });
 
         jPanel1.setMaximumSize(new java.awt.Dimension(854, 728));
         jPanel1.setMinimumSize(new java.awt.Dimension(854, 728));
@@ -106,11 +87,6 @@ public class ComentariosView extends javax.swing.JInternalFrame {
         });
 
         ComboTareas.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        ComboTareas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComboTareasActionPerformed(evt);
-            }
-        });
 
         Comentario.setColumns(20);
         Comentario.setRows(5);
@@ -206,26 +182,14 @@ public class ComentariosView extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 694, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 702, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-//    private void cargarCombo(){
-//        //array de tareas
-//        tareas=proyView.obtenerTareas();
-//        System.out.println("tareas:"+tareas.toString());
-//        for (Tarea t : tareas) {
-//            ComboTareas.addItem(t);
-//        }
-//    }
-
     private boolean validarCampos() {
-
         tarea = (Tarea) ComboTareas.getSelectedItem();
-        //
-
         if (Comentario.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "El campo comentarios está vacio");
             return false;
@@ -242,9 +206,7 @@ public class ComentariosView extends javax.swing.JInternalFrame {
                 return false;
             }
         }
-
         return true;
-
     }
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
@@ -252,24 +214,15 @@ public class ComentariosView extends javax.swing.JInternalFrame {
         vistaProyecto = new ProyectoView();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
-    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
-
-    }//GEN-LAST:event_formInternalFrameClosing
-
     private void limpiarPantalla() {
-
         jFechaAvance.setDate(null);
         Comentario.setText("");
     }
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
-
         if (validarCampos()) {
-
-            //fecha
             ZoneId zona = ZoneId.systemDefault();
             Date DateAvance = jFechaAvance.getDate();
             LocalDate fechaAvance = DateAvance.toInstant().atZone(zona).toLocalDate();
-            //tarea
             tarea = (Tarea) ComboTareas.getSelectedItem();
             comentario.setComentario(Comentario.getText().toString());
             comentario.setFechaAvance(fechaAvance);
@@ -282,10 +235,6 @@ public class ComentariosView extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_GuardarActionPerformed
-
-    private void ComboTareasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboTareasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ComboTareasActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JComboBox<Tarea> ComboTareas;

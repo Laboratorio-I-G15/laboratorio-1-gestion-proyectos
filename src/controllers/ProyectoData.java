@@ -35,14 +35,12 @@ public class ProyectoData {
             ResultSet resultSet = selectStatement.executeQuery();
             resultSet.next();
             int count = resultSet.getInt(1);
-
             if (count > 0) {
                 JOptionPane.showMessageDialog(null, "Ya a sido agregado este equipo al Proyecto");
                 JOptionPane.showMessageDialog(null, "El proyecto ya ha sido ingresado anteriormente.", "Proyecto Duplicado", JOptionPane.WARNING_MESSAGE);
-                return; // Salir del método sin realizar la inserción
+                // Salir del método sin realizar la inserción
+                return;
             }
-
-            // Insertar el nuevo proyecto
             String insertSql = "INSERT INTO proyecto (nombre_proyecto, descripcion_proyecto, fecha_inicio_proyecto, estado) VALUES (?,?,?,?)";
             PreparedStatement insertStatement = Conexion.getConexion().prepareStatement(insertSql);
             insertStatement.setString(1, proyecto.getNombre());
@@ -106,21 +104,16 @@ public class ProyectoData {
                     java.time.LocalDate fechaInicioLocalDate = fechaInicioUtil.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     proyect.setFecha_inicio(fechaInicioLocalDate);
                     proyect.setEstado(rs.getBoolean("estado"));
-
                     proyectos.add(proyect);
                 }
-            } 
-
+            }
         } catch (SQLException e) {
             System.out.println("Ocurrio un error: " + (e.getMessage()));
         }
         return proyectos;
-
     }
 
-    //---------------------------------------------------------------------------------------------------
-   
-        public ArrayList<Proyecto> selectProyectoid0() {
+    public ArrayList<Proyecto> selectProyectoid0() {
         ArrayList<Proyecto> proyectos = new ArrayList();
         try {
             String sql = "SELECT * from proyecto WHERE estado = 0";
@@ -142,15 +135,12 @@ public class ProyectoData {
 
                     proyectos.add(proyect);
                 }
-            } 
-
+            }
         } catch (SQLException e) {
             System.out.println("Ocurrio un error: " + (e.getMessage()));
         }
         return proyectos;
-
     }
-
 
 //---------------------------------------------------------------------------------------------------
     public Proyecto selectProyecto(int id_proyecto) {
@@ -161,7 +151,6 @@ public class ProyectoData {
         try (PreparedStatement stmt = Conexion.getConexion().prepareStatement(consulta)) {
             stmt.setInt(1, id_proyecto);
             ResultSet result = stmt.executeQuery();
-            System.out.println(stmt);
             if (result.next()) {
                 proyect.setId_proyecto(result.getInt("id_proyecto"));
                 proyect.setNombre(result.getString("nombre_proyecto"));
@@ -191,7 +180,6 @@ public class ProyectoData {
             ps.setBoolean(4, proyecto.getEstado());
             ps.setInt(5, proyecto.getId_proyecto());
             validacion = ps.executeUpdate();
-
             if (validacion == 1) {
                 System.out.println("Proyecto Actualizado");
                 JOptionPane.showMessageDialog(null, "Peticion Confirmada");

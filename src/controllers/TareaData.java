@@ -22,15 +22,14 @@ public class TareaData {
 
     public TareaData() {
     }
-    //Validar si ya existe una tarea con el mismo nombre, si existe devuelve true
-    public boolean TareaExistente(String nombre){
-        
-        try {
-             String sql = "SELECT * FROM `tarea` WHERE nombre_tarea LIKE ?";
-            PreparedStatement ps = Conexion.getConexion().prepareStatement(sql);
-            ps.setString(1, "%" + nombre );
-            ResultSet rs = ps.executeQuery();
 
+    //Validar si ya existe una tarea con el mismo nombre, si existe devuelve true
+    public boolean TareaExistente(String nombre) {
+        try {
+            String sql = "SELECT * FROM `tarea` WHERE nombre_tarea LIKE ?";
+            PreparedStatement ps = Conexion.getConexion().prepareStatement(sql);
+            ps.setString(1, "%" + nombre);
+            ResultSet rs = ps.executeQuery();
             if (rs == null) {
                 System.out.println("No se encontraron tareas");
             } else {
@@ -46,11 +45,8 @@ public class TareaData {
 
     //asignar tarea, devuelve true si se asigno la tarea
     public boolean insertTarea(Tarea tarea) {
-
         int resultado;
-
         try {
-
             String sql = "INSERT INTO tarea (nombre_tarea, fecha_inicio_tarea, fecha_fin_tarea, estado_tarea, id_miembro_equipo) VALUES (?,?,?,?,?)";
             PreparedStatement ps = Conexion.getConexion().prepareStatement(sql);
             ps.setString(1, tarea.getNombre());
@@ -58,7 +54,6 @@ public class TareaData {
             ps.setDate(3, Date.valueOf(tarea.getFechaCierre()));
             ps.setInt(4, tarea.getEstado());
             ps.setInt(5, tarea.getEquipoMiembro().getId_equipo_miembro());
-
             resultado = ps.executeUpdate();
             if (resultado == 1) {
                 System.out.println("Se agregó la tarea");
@@ -70,13 +65,10 @@ public class TareaData {
             System.out.println("Error al acceder a la tabla Tarea" + e.getMessage());
         }
         return false;
-
     }
 
-    //Devuelve true si se actualizó la tarea
     public boolean updateTarea(Tarea tarea) {
         int resultado;
-
         try {
             String sql = "UPDATE tarea SET nombre_tarea=?,fecha_inicio_tarea=?,fecha_fin_tarea=?,estado_tarea=?,id_miembro_equipo=? WHERE id_tarea=?";
             PreparedStatement ps = Conexion.getConexion().prepareStatement(sql);
@@ -86,7 +78,6 @@ public class TareaData {
             ps.setInt(4, tarea.getEstado());
             ps.setInt(5, tarea.getEquipoMiembro().getId_equipo_miembro());
             ps.setInt(6, tarea.getIdTarea());
-
             resultado = ps.executeUpdate();
             if (resultado == 1) {
                 System.out.println("Se actualizó la tarea");
@@ -99,16 +90,15 @@ public class TareaData {
         }
         return false;
     }
-    //update estado de la tarea
-    public boolean updateTareaEstado(int idTarea,int estado) {
-        int resultado;
 
+    //update estado de la tarea
+    public boolean updateTareaEstado(int idTarea, int estado) {
+        int resultado;
         try {
             String sql = "UPDATE tarea SET estado_tarea=? WHERE id_tarea=?";
             PreparedStatement ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, estado);
             ps.setInt(2, idTarea);
-//
             resultado = ps.executeUpdate();
             if (resultado == 1) {
                 System.out.println("Se actualizó la tarea");
@@ -129,7 +119,6 @@ public class TareaData {
      * @return arrayList de tareas
      */
     public ArrayList<Tarea> selectTareasEstado(Tarea tarea) {
-
         ArrayList<Tarea> tareas = new ArrayList();
         EquipoMiembro equipoMiembro = new EquipoMiembro();
         try {
@@ -137,7 +126,6 @@ public class TareaData {
             PreparedStatement ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, tarea.getEstado());
             ResultSet rs = ps.executeQuery();
-
             if (rs == null) {
                 System.out.println("No se encontraron tareas");
             } else {
@@ -160,20 +148,13 @@ public class TareaData {
         return tareas;
     }
 
-    //filtrar tareas de un miembro
     public ArrayList<Tarea> selectTareasMiembro(EquipoMiembro equipoMiembro) {
-
         ArrayList<Tarea> tareas = new ArrayList();
         try {
-//            String sql="SELECT * FROM tarea " +
-//                        "JOIN equipo_miembro ON  tarea.id_miembro_equipo = equipo_miembro.id_miembro_eq"+
-//                        "JOIN miembro ON miembro.id_miembro = equipo_miembro.id_miembro" +
-//                        "WHERE miembro.id_miembro = ?";
             String sql = "SELECT * FROM tarea WHERE id_miembro_equipo=?";
             PreparedStatement ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, equipoMiembro.getId_equipo_miembro());
             ResultSet rs = ps.executeQuery();
-
             if (rs == null) {
                 System.out.println("No se encontraron tareas asignadas al miembro");
             } else {
@@ -195,13 +176,8 @@ public class TareaData {
     }
 
     public ArrayList<Tarea> selectTareasMiembro(int equipoMiembro) {
-
         ArrayList<Tarea> tareas = new ArrayList();
         try {
-//            String sql="SELECT * FROM tarea " +
-//                        "JOIN equipo_miembro ON  tarea.id_miembro_equipo = equipo_miembro.id_miembro_eq"+
-//                        "JOIN miembro ON miembro.id_miembro = equipo_miembro.id_miembro" +
-//                        "WHERE miembro.id_miembro = ?";
             String sql = "SELECT * FROM tarea WHERE id_miembro_equipo = ?";
             PreparedStatement ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, equipoMiembro);
@@ -226,5 +202,4 @@ public class TareaData {
         }
         return tareas;
     }
-
 }
