@@ -236,14 +236,14 @@ public class Equipovista extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonEquipo;
     private javax.swing.JButton jButtonProyecto;
     private javax.swing.JComboBox<Proyecto> jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    public com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JTextField jTexnombre;
+    public javax.swing.JRadioButton jRadioButton1;
+    public javax.swing.JTextField jTexnombre;
     // End of variables declaration//GEN-END:variables
 }
