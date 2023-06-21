@@ -109,7 +109,7 @@ public class ProyectoData {
 
                     proyectos.add(proyect);
                 }
-            }
+            } 
 
         } catch (SQLException e) {
             System.out.println("Ocurrio un error: " + (e.getMessage()));
@@ -119,7 +119,40 @@ public class ProyectoData {
     }
 
     //---------------------------------------------------------------------------------------------------
-    //---------------------------------------------------------------------------------------------------
+   
+        public ArrayList<Proyecto> selectProyectoid0() {
+        ArrayList<Proyecto> proyectos = new ArrayList();
+        try {
+            String sql = "SELECT * from proyecto WHERE estado = 0";
+            PreparedStatement ps = Conexion.getConexion().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs == null) {
+                System.out.println("No hay Proyecto para Mostrar");
+            } else {
+                while (rs.next()) {
+                    Proyecto proyect = new Proyecto();
+                    proyect.setId_proyecto(rs.getInt("id_proyecto"));
+                    proyect.setNombre(rs.getString("nombre_proyecto"));
+                    proyect.setDescripcion(rs.getString("descripcion_proyecto"));
+                    java.sql.Date fechaInicioSQL = rs.getDate("fecha_inicio_proyecto");
+                    java.util.Date fechaInicioUtil = new java.util.Date(fechaInicioSQL.getTime());
+                    java.time.LocalDate fechaInicioLocalDate = fechaInicioUtil.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    proyect.setFecha_inicio(fechaInicioLocalDate);
+                    proyect.setEstado(rs.getBoolean("estado"));
+
+                    proyectos.add(proyect);
+                }
+            } 
+
+        } catch (SQLException e) {
+            System.out.println("Ocurrio un error: " + (e.getMessage()));
+        }
+        return proyectos;
+
+    }
+
+
+//---------------------------------------------------------------------------------------------------
     public Proyecto selectProyecto(int id_proyecto) {
         Proyecto proyect = new Proyecto();
 
