@@ -408,6 +408,7 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
             jTextnombre1.setEditable(false);
             radioActivar.setEnabled(false);
             jButtonActualizar.setEnabled(false);
+            inicializarcombo();
         } else {
             JOptionPane.showMessageDialog(this, "Necesita llenar Los Campos");
         }
@@ -426,6 +427,7 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
         proyect.setFecha_inicio(fechaInicioLocalDate);
         proyectod.updateProyecto(proyect);
         limpiar();
+        inicializarcombo();
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
     private boolean validarfecha() {
@@ -460,6 +462,7 @@ public class AdminProyecto extends javax.swing.JInternalFrame {
                 proyect.setFecha_inicio(fechaInicioLocalDate);
                 proyectod.insertProyecto(proyect);
                 limpiar();
+                inicializarcombo();
             } else {
                 JOptionPane.showMessageDialog(this, "Necesita llenar Los Campos");
             }
