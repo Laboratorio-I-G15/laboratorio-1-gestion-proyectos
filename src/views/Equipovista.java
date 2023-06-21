@@ -277,7 +277,7 @@ public class Equipovista extends javax.swing.JInternalFrame {
     private void limpiar() {
         jTexnombre.setText("");
         jDateChooser1.setCalendar(null);
-        jRadioButton1.setEnabled(false);
+        jRadioButton1.setSelected(false);
     }
     private void jRadioButtonnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonnuevoActionPerformed
         if (jRadioButtonnuevo.isSelected()) {
@@ -285,6 +285,7 @@ public class Equipovista extends javax.swing.JInternalFrame {
             jButtonactualizar.setEnabled(false);
             jButtonEquipo.setEnabled(true);
             jButtonProyecto.setEnabled(true);
+
             limpiar();
         }// TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonnuevoActionPerformed
@@ -293,16 +294,21 @@ public class Equipovista extends javax.swing.JInternalFrame {
         if (jRadioButtonactualizar.isSelected()) {
             jComboBox1.setEnabled(false);
             jRadioButtonnuevo.setSelected(false);
+           
             jButtonactualizar.setEnabled(true);
             jButtonEquipo.setEnabled(false);
             jButtonProyecto.setEnabled(false);
+           
 
         }// TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonactualizarActionPerformed
 
     private void jButtonactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonactualizarActionPerformed
        int con;
-      EquipoData equipod=new EquipoData();
+      if (equipoc!=null)
+      { if(validar())
+      {
+       EquipoData equipod=new EquipoData();
       equipoc.setNombre(jTexnombre.getText());
         System.out.println(equipo.getNombre());
       java.time.LocalDate fechaInicioLocalDate = jDateChooser1.getCalendar().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -314,6 +320,11 @@ public class Equipovista extends javax.swing.JInternalFrame {
       equipoc.setEstado(con);
         System.out.println(equipoc);
       equipod.updateEquipo(equipoc);
+      }else
+      {JOptionPane.showMessageDialog(this, "Hay Campos Vacios");}
+      }
+      JOptionPane.showMessageDialog(this, "No se Puede Actualizar");
+      jButtonactualizar.setEnabled(false);
       
 
     }//GEN-LAST:event_jButtonactualizarActionPerformed
